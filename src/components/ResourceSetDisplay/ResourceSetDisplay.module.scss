@@ -1,0 +1,39 @@
+@import "/src/scss/common.scss";
+
+.ResourceSetDisplay {
+  @include row(sm);
+
+  &[data-arrangement="vertical"] {
+    .resource {
+      @include column;
+      align-items: center;
+    }
+
+    .amount {
+      order: 1;
+    }
+
+    .icon {
+      order: 2;
+    }
+  }
+
+  &[data-arrangement="horizontal"] {
+    .resource {
+      @include row(0.5ch);
+    }
+  }
+}
+
+.resource {
+  @include night-resource-color-code(--icon-color);
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.icon {
+  height: 2.2ch;
+  width: auto;
+}

@@ -1,0 +1,38 @@
+@import "/src/scss/common.scss";
+
+.CapabilityDisplay {
+  @include row(xs);
+  @include padding(sm);
+  align-items: flex-start;
+  background-color: var(--page-background-color);
+
+  & + & {
+    border-top: 1px dashed var(--light-line-color);
+  }
+}
+
+.capabilityTypeIcon {
+  flex: 0 0 auto;
+  width: 1.3em;
+  height: auto;
+}
+
+.details {
+  flex: 1 1 auto;
+}
+
+.titlebar {
+  @include row;
+  margin-bottom: var(--spacing-xs);
+}
+
+.title {
+  flex: 1 1 auto;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-right: auto;
+}
+
+.cost {
+  flex: 0;
+}

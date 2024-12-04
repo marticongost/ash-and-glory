@@ -1,0 +1,49 @@
+@import "/src/scss/common.scss";
+
+.BuildingCard {
+  @include panel;
+  @include column;
+  @include card;
+  align-items: stretch;
+}
+
+.titleBar {
+  @include titlebar;
+  @include row(sm);
+  @include padding(sm);
+  flex: 0 0 23%;
+}
+
+.icon {
+  height: 2.5em;
+  width: auto;
+}
+
+.taxonomy {
+  @include column(0.5ch);
+}
+
+.title {
+  font-family: var(--heading-font-family);
+  font-size: 1.4em;
+}
+
+.types {
+  @include row;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.type + .type:before {
+  content: ", ";
+}
+
+.cost {
+  margin-left: auto;
+}
+
+.capabilities {
+  @include column;
+  flex: 1 1 auto;
+  align-items: stretch;
+}

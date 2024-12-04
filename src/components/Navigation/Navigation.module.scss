@@ -1,0 +1,47 @@
+@import "/src/scss/common.scss";
+
+.Navigation {
+  @include row;
+}
+
+.link {
+  @include column(xs);
+  @include padding(md);
+  --icon-color: var(--night-icon-color);
+  --icon-filter: ;
+  --icon-transform: ;
+  --label-color: var(--night-unselected-text-color);
+  $border: 1px solid var(--night-subtle-separator-color);
+  border-right: $border;
+  &:nth-of-type(1) {
+    border-left: $border;
+  }
+
+  &:hover {
+    --icon-color: var(--night-hover-icon-color);
+    --icon-filter: var(--icon-shadow);
+    --icon-transform: scale(1.1);
+    --label-color: var(--night-hover-text-color);
+    text-shadow: var(--text-shadow);
+  }
+
+  &[data-state="selected"] {
+    --icon-color: var(--night-selected-icon-color);
+    --icon-filter: var(--icon-glow);
+    --label-color: var(--night-selected-text-color);
+    text-shadow: var(--text-glow);
+  }
+}
+
+.icon {
+  width: auto;
+  height: 3rem;
+  fill: var(--icon-color);
+  filter: var(--icon-filter);
+  transform: var(--icon-transform);
+  transition: transform 0.2s linear;
+}
+
+.label {
+  color: var(--label-color);
+}

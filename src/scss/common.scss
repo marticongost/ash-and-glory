@@ -1,0 +1,94 @@
+@function isSpacingSpec($x) {
+  @return ($x == "xs" or $x == "sm" or $x == "md" or $x == "lg" or $x == "xl");
+}
+
+@function spacing($value) {
+  @if isSpacingSpec($value) {
+    @return "var(--spacing-#{$value})";
+  } @else if $value == null {
+    @return 0;
+  } @else {
+    @return $value;
+  }
+}
+
+@mixin padding($value) {
+  padding: #{spacing($value)};
+}
+
+@mixin horizontal-padding($value) {
+  padding-left: #{spacing($value)};
+  padding-right: #{spacing($value)};
+}
+
+@mixin vertical-padding($value) {
+  padding-top: #{spacing($value)};
+  padding-bottom: #{spacing($value)};
+}
+
+@mixin row($gap: null) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: #{spacing($gap)};
+}
+
+@mixin column($gap: null) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: #{spacing($gap)};
+}
+
+@mixin grid($gap: null) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  @if $gap == "sm" or $gap == "md" or $gap == "lg" or $gap == "xl" {
+    gap: var(--spacing-#{$gap});
+  } @else if $gap {
+    gap: $gap;
+  } @else {
+    gap: 0;
+  }
+}
+
+@mixin panel {
+  box-shadow: var(--panel-shadow);
+  border: var(--subtle-line);
+  border-radius: var(--spacing-xs);
+  overflow: hidden;
+}
+
+@mixin titlebar {
+  background-color: var(--night-background-color);
+  color: var(--night-text-color);
+  --icon-color: var(--night-icon-color);
+  @include padding(xs);
+}
+
+$resources: gold, wood, ore, food, population, strife, effort, growth, curiosity, resolve;
+
+@mixin resource-color-code($property) {
+  @each $resource in $resources {
+    &[data-resource="#{$resource}"] {
+      #{$property}: var(--resource-color-#{$resource});
+    }
+  }
+}
+
+@mixin night-resource-color-code($property) {
+  @each $resource in $resources {
+    &[data-resource="#{$resource}"] {
+      #{$property}: var(--night-resource-color-#{$resource});
+    }
+  }
+}
+
+@mixin card {
+  width: 63.5mm;
+  height: 88mm;
+  font-size: 3mm;
+  --spacing-sm: 3mm;
+}

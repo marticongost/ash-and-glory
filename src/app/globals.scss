@@ -1,0 +1,110 @@
+:root {
+  // Spacing
+  --spacing-xl: calc(var(--spacing-sm) * 4);
+  --spacing-lg: calc(var(--spacing-sm) * 2);
+  --spacing-md: calc(var(--spacing-sm) * 1.5);
+  --spacing-sm: 1rem;
+  --spacing-xs: calc(var(--spacing-sm) / 2);
+
+  // Color palette
+  $white: #fff;
+  $mist: #eee;
+  $pearl: #f1e9e1;
+  $cream: #e0d1c2;
+  $latte: #c0a78e;
+  $dull-gray: rgb(185, 177, 177);
+  $black: #171717;
+  $ashen-purple: #1e1214;
+  $resin: #301f22;
+  $gold: rgb(245, 198, 79);
+  $wood: rgb(166, 143, 135);
+  $ore: rgb(185, 198, 200);
+  $food: rgb(140, 137, 122);
+  $growth: rgb(101, 109, 90);
+  $effort: rgb(102, 71, 71);
+  $curiosity: rgb(102, 71, 96);
+  $resolve: rgb(71, 97, 102);
+  $population: rgb(203, 140, 98);
+
+  // Color assignments
+  --page-background-color: #{$white};
+  --light-background-color: #{$mist};
+  --text-color: #{$black};
+  --night-text-color: #{$pearl};
+  --night-background-color: #{$ashen-purple};
+  --night-medium-background-color: #{$resin};
+  --dull-text-color: #{$dull-gray};
+  --night-dull-text-color: #{$dull-gray};
+  --site-header-color: #{$ashen-purple};
+  --icon-color: #{$dull-gray};
+  --night-icon-color: #{$dull-gray};
+  --night-selected-icon-color: #{$cream};
+  --night-hover-icon-color: #{$latte};
+  --light-line-color: #{$cream};
+  --subtle-separator-color: #{$dull-gray}15;
+  --night-subtle-separator-color: #{$pearl}15;
+  --night-unselected-text-color: #{$dull-gray};
+  --night-selected-text-color: #{$pearl};
+  --night-hover-text-color: #{$cream};
+  --resource-color-gold: #{$gold};
+  --night-resource-color-gold: #{$gold};
+  --resource-color-wood: #{$wood};
+  --night-resource-color-wood: #{$wood};
+  --resource-color-ore: #{$ore};
+  --night-resource-color-ore: #{$ore};
+  --resource-color-food: #{$food};
+  --night-resource-color-food: #{$food};
+  --resource-color-growth: #{$growth};
+  --night-resource-color-growth: #{$growth};
+  --resource-color-effort: #{$effort};
+  --night-resource-color-effort: #{$effort};
+  --resource-color-curiosity: #{$curiosity};
+  --night-resource-color-curiosity: #{$curiosity};
+  --resource-color-resolve: #{$resolve};
+  --night-resource-color-resolve: #{$resolve};
+  --resource-color-population: #{$population};
+  --night-resource-color-population: #{$population};
+
+  // Shadows & glow effects
+  $shadow: 0 0 var(--spacing-sm) #{$black}88;
+  --panel-shadow: #{$shadow};
+  --icon-shadow: drop-shadow(#{$shadow});
+  --text-shadow: #{$shadow};
+  $glow: 0 0 var(--spacing-xs) #{$pearl}50;
+  --icon-glow: drop-shadow(#{$glow});
+  --text-glow: #{$glow};
+
+  // Separators
+  --subtle-line: 1px solid var(--subtle-separator-color);
+  --night-subtle-line: 1px solid var(--night-subtle-separator-color);
+}
+
+svg,
+svg * {
+  fill: var(--icon-color) !important;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--text-color);
+  background: var(--page-background-color);
+  font-family: var(--regular-font-family), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

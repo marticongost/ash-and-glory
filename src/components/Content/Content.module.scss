@@ -1,0 +1,10 @@
+@import "/src/scss/common.scss";
+
+.Content {
+  ul {
+    padding-left: var(--spacing-md);
+  }
+  li {
+    margin-top: var(--spacing-xs);
+  }
+}
