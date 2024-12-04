@@ -1,7 +1,7 @@
 import type { JSXElementConstructor, ReactNode } from "react"
 import { ResourceSet, type ResourceSetProps } from "./resources"
 import { instantiate } from "@/modules/utils"
-import { Action, Capability, Passive } from "./capabilities"
+import { Action, Capability, Limitation, Passive, unique } from "./capabilities"
 import CityCenterIcon from "@/svg/buildings/city.svg"
 import HousingIcon from "@/svg/buildings/housing.svg"
 import FarmIcon from "@/svg/buildings/farm.svg"
@@ -127,7 +127,7 @@ declareBuilding({
       effect: <>Construeix un edifici a la ciutat, pagant el seu cost.</>,
     }),
     new Action({
-      id: "build",
+      id: "increase-population",
       title: "Augmentar la població",
       cost: { food: 1 },
       limit: Infinity,
@@ -232,13 +232,17 @@ declareBuilding({
   types: ["production"],
   cost: { wood: 2, ore: 1 },
   capabilities: [
+    new Limitation({
+      id: "must-be-adjacent-to-sea",
+      effect: <>S'ha de construir a una casella adjacent a un o més mars</>,
+    }),
     new Action({
       id: "build-ship",
       title: "Construir vaixell",
       cost: { curiosity: 1, wood: 2 },
       effect: (
         <>
-          Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent.
+          Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent
         </>
       ),
     }),
@@ -338,6 +342,7 @@ declareBuilding({
   types: ["economic"],
   cost: { wood: 1, ore: 1, gold: 1 },
   capabilities: [
+    unique,
     new Action({
       id: "finance",
       title: "Finançament",
@@ -358,6 +363,7 @@ declareBuilding({
   types: ["government", "military"],
   cost: { wood: 2, ore: 3 },
   capabilities: [
+    unique,
     new Passive({
       id: "defense",
       effect: <>Augmenta la defensa dels exèrcits defensors a la ciutat en 3.</>,
@@ -372,6 +378,7 @@ declareBuilding({
   types: ["military"],
   cost: { wood: 2 },
   capabilities: [
+    unique,
     new Action({
       id: "recruit",
       title: "Reclutar",
@@ -392,6 +399,7 @@ declareBuilding({
   types: ["government"],
   cost: { wood: 1, ore: 2, gold: 2 },
   capabilities: [
+    unique,
     new Action({
       id: "oppulence",
       title: "Opulència",
@@ -428,6 +436,7 @@ declareBuilding({
   types: ["academic"],
   cost: { wood: 1, ore: 2 },
   capabilities: [
+    unique,
     new Action({
       id: "teaching",
       title: "Ensenyament",
@@ -448,6 +457,7 @@ declareBuilding({
   types: ["academic", "magic"],
   cost: { resolve: 1, wood: 1, ore: 2 },
   capabilities: [
+    unique,
     new Action({
       id: "arcane-misteries",
       title: "Misteris arcans",
@@ -469,7 +479,7 @@ declareBuilding({
   cost: { ore: 3 },
   capabilities: [
     new Passive({
-      id: "glory-gain",
+      id: "glory-gain-when-constructed",
       trigger: "when-constructed",
       effect: (
         <>
@@ -478,7 +488,7 @@ declareBuilding({
       ),
     }),
     new Passive({
-      id: "glory-gain",
+      id: "glory-gain-at-game-end",
       trigger: "at-game-end",
       effect: (
         <>
@@ -496,6 +506,7 @@ declareBuilding({
   types: ["magic"],
   cost: { resolve: 1, ore: 2, gold: 2 },
   capabilities: [
+    unique,
     new Passive({
       id: "transport",
       effect: (

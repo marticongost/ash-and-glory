@@ -50,3 +50,10 @@ export class Passive extends Capability {
     this.trigger = trigger
   }
 }
+
+export class Limitation extends Capability {}
+
+export const unique = new Limitation({
+  id: "unique",
+  effect: <>Màxim d'una còpia per ciutat</>,
+})
