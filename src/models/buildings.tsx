@@ -20,6 +20,7 @@ import TempleIcon from "@/svg/buildings/temple.svg"
 import UniversityIcon from "@/svg/buildings/university.svg"
 import MageTowerIcon from "@/svg/buildings/mage-tower.svg"
 import StatueIcon from "@/svg/buildings/statue.svg"
+import PortalIcon from "@/svg/buildings/portal.svg"
 import {
   Food,
   Gold,
@@ -472,6 +473,25 @@ declareBuilding({
       effect: (
         <>
           Guanyar <Glory /> si l'estàtua no està <em>danyada</em>
+        </>
+      ),
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "portal",
+  title: "Portal",
+  icon: PortalIcon,
+  types: ["magic"],
+  cost: { resolve: 1, ore: 2, gold: 2 },
+  capabilities: [
+    new Passive({
+      id: "transport",
+      effect: (
+        <>
+          Es considera adjacent a la resta de portals (el propietaris dels portals d'origen i destí han de consentir el
+          moviment).
         </>
       ),
     }),
