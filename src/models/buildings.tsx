@@ -172,6 +172,10 @@ declareBuilding({
   types: ["production"],
   cost: { wood: 2 },
   capabilities: [
+    new Limitation({
+      id: "must-be-adjacent-to-sea",
+      effect: <>S'ha de construir a una casella en contacte amb un o més camps</>,
+    }),
     new Action({
       id: "produce-food",
       title: "Produir menjar",
@@ -192,6 +196,10 @@ declareBuilding({
   types: ["production"],
   cost: { wood: 1, ore: 1 },
   capabilities: [
+    new Limitation({
+      id: "must-be-adjacent-to-sea",
+      effect: <>S'ha de construir a una casella en contacte amb un o més boscos</>,
+    }),
     new Action({
       id: "produce-wood",
       title: "Produir fusta",
@@ -212,6 +220,10 @@ declareBuilding({
   types: ["production"],
   cost: { wood: 1, ore: 1 },
   capabilities: [
+    new Limitation({
+      id: "must-be-adjacent-to-sea",
+      effect: <>S'ha de construir a una casella en contacte amb una o més muntanyes</>,
+    }),
     new Action({
       id: "produce-ore",
       title: "Produir mineral",
