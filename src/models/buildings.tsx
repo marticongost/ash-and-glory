@@ -230,8 +230,18 @@ declareBuilding({
   title: "Port",
   icon: HarbourIcon,
   types: ["production"],
-  cost: { wood: 1, ore: 1 },
+  cost: { wood: 2, ore: 1 },
   capabilities: [
+    new Action({
+      id: "build-ship",
+      title: "Construir vaixell",
+      cost: { curiosity: 1, wood: 2 },
+      effect: (
+        <>
+          Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent.
+        </>
+      ),
+    }),
     new Action({
       id: "fish",
       title: "Pescar",
