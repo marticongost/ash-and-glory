@@ -8,10 +8,20 @@ import VariableIcon from "@/svg/variable.svg"
 export interface ResourceSetDisplayProps extends StandardComponentProps {
   resourceSet?: ResourceSet
   arrangement?: "row" | "column"
+  background?: "day" | "night"
 }
 
-export const ResourceSetDisplay = ({ resourceSet, arrangement = "row", ...baseProps }: ResourceSetDisplayProps) => (
-  <div {...getStandardAttributes(baseProps, styles.ResourceSetDisplay)} data-arrangement={arrangement}>
+export const ResourceSetDisplay = ({
+  resourceSet,
+  arrangement = "row",
+  background = "day",
+  ...baseProps
+}: ResourceSetDisplayProps) => (
+  <div
+    {...getStandardAttributes(baseProps, styles.ResourceSetDisplay)}
+    data-arrangement={arrangement}
+    data-background={background}
+  >
     {resourceSet === undefined ? (
       <VariableIcon className={styles.variableIcon} />
     ) : resourceSet.isNone() ? (

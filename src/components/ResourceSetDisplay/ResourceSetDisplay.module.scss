@@ -26,10 +26,14 @@
       order: 2;
     }
   }
-}
 
-.resource {
-  @include night-resource-color-code(--icon-color);
+  &[data-background="day"] .resource {
+    @include resource-color-code(--icon-color);
+  }
+
+  &[data-background="night"] .resource {
+    @include night-resource-color-code(--icon-color);
+  }
 }
 
 .amount {
