@@ -3,7 +3,7 @@ import type { JSXElementConstructor } from "react"
 import WarriorsIcon from "@/svg/archetypes/warriors.svg"
 import TradersIcon from "@/svg/archetypes/traders.svg"
 import { Action, Capability, CapabilityProps, Passive } from "./capabilities"
-import { Resolve } from "@/components/ResourceIcon"
+import { Glory, Gold, Ore, Resolve, Strife, Wood } from "@/components/ResourceIcon"
 
 export type ArchetypeId = "warriors" | "traders"
 
@@ -74,6 +74,86 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
           new Passive({ id: "repeat-attack-die", effect: <>Permet repetir un dau d'atac en resoldre un combat</> }),
         ],
       },
+      {
+        level: 1,
+        id: "expert-blacksmiths",
+        title: "Ferrers experts",
+        capabilities: [
+          new Passive({
+            id: "expert-blacksmiths",
+            effect: (
+              <>
+                Permet gastar <Strife /> en comptes de <Ore /> en reclutar soldats.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "siege-machines",
+        title: "Màquines de guerra",
+        capabilities: [
+          new Action({
+            id: "siege-machines",
+            stage: "manouver",
+            cost: { wood: "1+" },
+            effect: (
+              <>
+                Abans de començar un combat a una ciutat, gastar 1-3 <Wood />. Per cada
+                <Wood /> gastat es podrà repetir el resultat d'un dau d'atac.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "bloodlust",
+        title: "Sed de sang",
+        capabilities: [
+          new Action({
+            id: "bloodlust",
+            cost: {},
+            effect: (
+              <>
+                Guanyar <Strife />.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "subjugators",
+        title: "Subjugadors",
+        capabilities: [
+          new Passive({
+            id: "subjugators",
+            effect: (
+              <>
+                Guanyar <Glory /> i <Gold /> en conquerir una ciutat enemiga.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "military-theory",
+        title: "Teoria militar",
+        capabilities: [
+          new Action({
+            id: "military-theory",
+            cost: { strife: 2 },
+            effect: (
+              <>
+                Guanyar <Glory />.
+              </>
+            ),
+          }),
+        ],
+      },
     ],
   }),
   traders: new Archetype({
@@ -88,7 +168,6 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Action({
             id: "creative-economy",
-            title: "Economia creativa",
             cost: { anyDrive: 1, gold: 1 },
             effect: (
               <>
