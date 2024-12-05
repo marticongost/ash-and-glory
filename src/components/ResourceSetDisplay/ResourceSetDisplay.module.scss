@@ -1,9 +1,18 @@
 @import "/src/scss/common.scss";
 
 .ResourceSetDisplay {
-  @include row(sm);
+  &[data-arrangement="column"] {
+    @include column(0.5ch);
 
-  &[data-arrangement="vertical"] {
+    .resource {
+      @include row(0.5ch);
+      align-items: center;
+    }
+  }
+
+  &[data-arrangement="row"] {
+    @include row(sm);
+
     .resource {
       @include column;
       align-items: center;
@@ -17,12 +26,6 @@
       order: 2;
     }
   }
-
-  &[data-arrangement="horizontal"] {
-    .resource {
-      @include row(0.5ch);
-    }
-  }
 }
 
 .resource {
@@ -33,6 +36,8 @@
   font-weight: bold;
 }
 
+.noneIcon,
+.variableIcon,
 .icon {
   height: 2.2ch;
   width: auto;

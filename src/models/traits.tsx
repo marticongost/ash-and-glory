@@ -88,7 +88,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Action({
             id: "creative-economy",
-            title: "Arreglar els comptes",
+            title: "Economia creativa",
             cost: { anyDrive: 1, gold: 1 },
             effect: (
               <>

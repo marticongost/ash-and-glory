@@ -21,18 +21,22 @@
   flex: 1 1 auto;
 }
 
-.titlebar {
-  @include row;
+.title {
+  font-weight: bold;
+  font-size: 1.1em;
   margin-bottom: var(--spacing-xs);
 }
 
-.title {
-  flex: 1 1 auto;
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-right: auto;
+.cost {
+  flex: 0 0 1.5rem;
 }
 
-.cost {
-  flex: 0;
+.effect {
+  @include row(1ch);
+}
+
+.convertIcon {
+  flex: 0 0 auto;
+  width: auto;
+  height: 1.5em;
 }

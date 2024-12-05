@@ -26,12 +26,12 @@ export interface ActionProps extends CapabilityProps {
 }
 
 export class Action extends Capability {
-  readonly cost: ResourceSet
+  readonly cost?: ResourceSet
   readonly limit: number
 
   constructor({ cost, limit = 1, ...baseProps }: ActionProps) {
     super(baseProps)
-    this.cost = instantiate(cost ?? {}, ResourceSet)
+    this.cost = cost && instantiate(cost, ResourceSet)
     this.limit = limit ?? Infinity
   }
 }

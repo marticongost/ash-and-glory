@@ -3,6 +3,8 @@ import styles from "./CapabilityDisplay.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
+import ConvertIcon from "@/svg/convert.svg"
+import VariableIcon from "@/svg/variable.svg"
 import ActionIcon from "@/svg/capabilities/action.svg"
 import PassiveIcon from "@/svg/capabilities/passive.svg"
 import LimitationIcon from "@/svg/capabilities/limitation.svg"
@@ -38,15 +40,16 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
     <div {...getStandardAttributes(baseProps, styles.CapabilityDisplay)}>
       {createElement(typeIcon, { className: styles.capabilityTypeIcon })}
       <div className={styles.details}>
-        {capability.title && (
-          <div className={styles.titlebar}>
-            <div className={styles.title}>{capability.title}</div>
-            {capability instanceof Action ? (
-              <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} />
-            ) : null}
-          </div>
-        )}
-        <Content className={styles.effect}>{capability.effect}</Content>
+        {capability.title && <div className={styles.title}>{capability.title}</div>}
+        <div className={styles.effect}>
+          {capability instanceof Action ? (
+            <>
+              <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="column" />
+              <ConvertIcon className={styles.convertIcon} />
+            </>
+          ) : null}
+          <Content className={styles.content}>{capability.effect}</Content>
+        </div>
       </div>
     </div>
   )

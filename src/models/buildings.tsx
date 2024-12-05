@@ -481,7 +481,7 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: {},
+      cost: undefined,
       effect: <>Incrementar la devoció al déu.</>,
     }),
   ],
