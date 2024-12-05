@@ -301,9 +301,10 @@ declareBuilding({
   capabilities: [
     new Passive({
       id: "store-materials",
+      trigger: "at-turn-end",
       effect: (
         <>
-          Permet emmagatzemar <AnyMaterial /> al final del torn
+          Permet emmagatzemar un <AnyMaterial />
         </>
       ),
     }),
