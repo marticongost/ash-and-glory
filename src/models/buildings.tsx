@@ -319,9 +319,10 @@ declareBuilding({
   capabilities: [
     new Passive({
       id: "store-materials",
+      trigger: "at-turn-end",
       effect: (
         <>
-          Permet emmagatzemar <Food amount={3} /> al final del torn
+          Permet emmagatzemar un <Food /> per cada <em>Granja</em> adjacent
         </>
       ),
     }),
