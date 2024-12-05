@@ -22,6 +22,7 @@
   $food: rgb(140, 137, 122);
   $growth: rgb(101, 109, 90);
   $effort: rgb(102, 71, 71);
+  $strife: rgb(110, 32, 32);
   $curiosity: rgb(102, 71, 96);
   $resolve: rgb(71, 97, 102);
   $population: rgb(203, 140, 98);
@@ -60,6 +61,8 @@
   --night-resource-color-growth: #{$growth};
   --resource-color-effort: #{$effort};
   --night-resource-color-effort: #{$effort};
+  --resource-color-strife: #{$strife};
+  --night-resource-color-strife: #{$strife};
   --resource-color-curiosity: #{$curiosity};
   --night-resource-color-curiosity: #{$curiosity};
   --resource-color-resolve: #{$resolve};
