@@ -4,4 +4,8 @@
   @include resource-color-code(--icon-color);
   height: 2.2ch;
   width: auto;
+
+  & + & {
+    margin-left: 0.5ch;
+  }
 }
