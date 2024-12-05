@@ -1,0 +1,24 @@
+@import "/src/scss/common.scss";
+
+.TraitCardGrid {
+  @include column(xl);
+}
+
+.archetypeTitle {
+  font-family: var(--heading-font-family);
+  font-size: 2rem;
+}
+
+.levelTitle {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.levelTitle {
+  font-family: var(--heading-font-family);
+  font-size: 1.7rem;
+}
+
+.traits {
+  @include grid(md);
+}

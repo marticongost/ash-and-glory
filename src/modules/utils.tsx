@@ -12,3 +12,22 @@ export const repeat = <T,>(amount: number, supplier: (index: number) => T) => {
   }
   return items
 }
+
+export type Key = string | number | symbol
+
+export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): Record<K, T[]> => {
+  const record = {} as Record<K, T[]>
+  for (const item of items) {
+    const key = getKey(item)
+    let list = record[key]
+    if (list === undefined) {
+      list = []
+      record[key] = list
+    }
+    list.push(item)
+  }
+  return record
+}
+
+export const recordToList = <T, K extends Key, V>(record: Record<K, V>, mapper: (key: K, value: V) => T) =>
+  Object.entries(record).map(([key, value]) => mapper(key as K, value as V))

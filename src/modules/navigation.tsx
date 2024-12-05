@@ -1,8 +1,9 @@
 "use client"
 
 import RulesIcon from "@/svg/sections/rules.svg"
-import BuildingsIcon from "@/svg/sections/buildings.svg";
-import type { JSXElementConstructor } from "react";
+import BuildingsIcon from "@/svg/sections/buildings.svg"
+import TraitsIcon from "@/svg/sections/traits.svg"
+import type { JSXElementConstructor } from "react"
 
 export interface SectionProps {
   id: string
@@ -26,11 +27,10 @@ export class Section {
   }
 
   getSelectionState(pathName: string): SelectionState {
-
     // Normalise the path
     pathName = pathName.trim()
     if (!pathName.startsWith("/")) {
-      pathName = "/" + pathName;
+      pathName = "/" + pathName
     }
     if (!pathName.endsWith("/")) {
       pathName += "/"
@@ -49,5 +49,5 @@ export class Section {
 export const sections: Section[] = [
   new Section({ id: "rules", title: "Regles", icon: RulesIcon }),
   new Section({ id: "buildings", title: "Edificis", icon: BuildingsIcon }),
+  new Section({ id: "traits", title: "Trets", icon: TraitsIcon }),
 ]
-

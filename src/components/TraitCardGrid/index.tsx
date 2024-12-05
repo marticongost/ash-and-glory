@@ -1,0 +1,1 @@
+export { TraitCardGrid } from "./TraitCardGrid"

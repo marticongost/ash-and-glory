@@ -15,7 +15,7 @@
   $dull-gray: rgb(185, 177, 177);
   $black: #171717;
   $ashen-purple: #1e1214;
-  $resin: #301f22;
+  $resin: #403235;
   $gold: rgb(245, 198, 79);
   $wood: rgb(166, 143, 135);
   $ore: rgb(185, 198, 200);
@@ -25,6 +25,8 @@
   $curiosity: rgb(102, 71, 96);
   $resolve: rgb(71, 97, 102);
   $population: rgb(203, 140, 98);
+  $regal-purple: rgb(36, 31, 59);
+  $soft-purple: rgb(102 102 105);
 
   // Color assignments
   --page-background-color: #{$white};
@@ -64,6 +66,8 @@
   --night-resource-color-resolve: #{$resolve};
   --resource-color-population: #{$population};
   --night-resource-color-population: #{$population};
+  --treat-background-color: #{$regal-purple};
+  --treat-medium-background-color: #{$soft-purple};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$black}88;

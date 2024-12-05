@@ -1,0 +1,65 @@
+@import "/src/scss/common.scss";
+
+.TraitCard {
+  @include panel;
+  @include column;
+  @include card;
+  align-items: stretch;
+}
+
+.titleBar {
+  @include titlebar;
+  @include row(sm);
+  @include padding(sm);
+  background-color: var(--treat-background-color);
+  flex: 0 0 18%;
+}
+
+.classifiers {
+  @include row(0.5ch);
+}
+
+.archetypeIcon {
+  height: auto;
+  width: 3em;
+}
+
+.level {
+  --size: 1.2em;
+  position: relative;
+  text-align: center;
+  width: var(--size);
+
+  .levelLabel {
+    position: relative;
+    font-family: var(--heading-font-family);
+    font-size: 1.2em;
+    z-index: 2;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: calc(50% - var(--size) / 2);
+    top: calc(50% - var(--size) / 2);
+    height: var(--size);
+    width: var(--size);
+    transform: rotate(45deg);
+    background-color: var(--treat-medium-background-color);
+    z-index: 1;
+    box-shadow: var(--icon-shadow);
+  }
+}
+
+.title {
+  flex: 1 1 auto;
+  font-family: var(--heading-font-family);
+  font-size: 1.4em;
+}
+
+.capabilities {
+  @include column;
+  flex: 1 1 auto;
+  align-items: stretch;
+}
