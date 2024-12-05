@@ -4,8 +4,6 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
 import ConvertIcon from "@/svg/convert.svg"
-import VariableIcon from "@/svg/variable.svg"
-import ActionIcon from "@/svg/capabilities/action.svg"
 import PassiveIcon from "@/svg/capabilities/passive.svg"
 import LimitationIcon from "@/svg/capabilities/limitation.svg"
 import AtGameEndIcon from "@/svg/capabilities/at-game-end.svg"
@@ -30,7 +28,7 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
       typeIcon = PassiveIcon
     }
   } else if (capability instanceof Action) {
-    typeIcon = ActionIcon
+    typeIcon = capability.stage.icon
   } else if (capability instanceof Limitation) {
     typeIcon = LimitationIcon
   } else {

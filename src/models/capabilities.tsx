@@ -1,6 +1,7 @@
 import { instantiate } from "@/modules/utils"
 import { ResourceSet, ResourceSetProps } from "./resources"
 import type { ReactNode } from "react"
+import { stages, type Stage, type StageId } from "./stages"
 
 export interface CapabilityProps {
   id: string
@@ -21,16 +22,19 @@ export abstract class Capability {
 }
 
 export interface ActionProps extends CapabilityProps {
+  stage?: StageId | Stage
   cost?: ResourceSet | ResourceSetProps
   limit?: number
 }
 
 export class Action extends Capability {
+  readonly stage: Stage
   readonly cost?: ResourceSet
   readonly limit: number
 
-  constructor({ cost, limit = 1, ...baseProps }: ActionProps) {
+  constructor({ stage = "production", cost, limit = 1, ...baseProps }: ActionProps) {
     super(baseProps)
+    this.stage = typeof stage === "string" ? stages[stage] : stage
     this.cost = cost && instantiate(cost, ResourceSet)
     this.limit = limit ?? Infinity
   }

@@ -121,13 +121,6 @@ declareBuilding({
       effect: <>Límit de població 3. Mida màxima 6.</>,
     }),
     new Action({
-      id: "build",
-      title: "Construir edifici",
-      cost: { growth: 1, population: 1 },
-      limit: Infinity,
-      effect: <>Construeix un edifici a la ciutat, pagant el seu cost.</>,
-    }),
-    new Action({
       id: "increase-population",
       title: "Augmentar la població",
       cost: { food: 1 },
@@ -148,6 +141,14 @@ declareBuilding({
           Retira un <Population /> de la ciutat i desplega un colon a l'edifici
         </>
       ),
+    }),
+    new Action({
+      id: "build",
+      title: "Construir edifici",
+      stage: "construction",
+      cost: { growth: 1, population: 1 },
+      limit: Infinity,
+      effect: <>Construeix un edifici a la ciutat, pagant el seu cost</>,
     }),
   ],
 })
@@ -250,22 +251,23 @@ declareBuilding({
       effect: <>S'ha de construir a una casella adjacent a un o més mars</>,
     }),
     new Action({
-      id: "build-ship",
-      title: "Construir vaixell",
-      cost: { curiosity: 1, wood: 2 },
-      effect: (
-        <>
-          Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent
-        </>
-      ),
-    }),
-    new Action({
       id: "fish",
       title: "Pescar",
       cost: { effort: 1, population: "1+" },
       effect: (
         <>
           Guanyar <Food /> per cada <Population />, fins a un màxim igual al número de mars adjacents al port
+        </>
+      ),
+    }),
+    new Action({
+      id: "build-ship",
+      title: "Construir vaixell",
+      stage: "manouver",
+      cost: { curiosity: 1, wood: 2 },
+      effect: (
+        <>
+          Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent
         </>
       ),
     }),
@@ -417,6 +419,7 @@ declareBuilding({
       id: "recruit",
       title: "Reclutar",
       cost: { strife: 1, ore: 1 },
+      stage: "manouver",
       effect: (
         <>
           Retira 1 <Population />, desplega un soldat a l'edifici
