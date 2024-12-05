@@ -4,6 +4,7 @@
 /*global module*/
 /*eslint-disable @typescript-eslint/no-var-requires */
 const nextConfig = {
+  output: "export",
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   sassOptions: {
     logger: {
