@@ -6,7 +6,8 @@ import { Content } from "../Content"
 import ActionIcon from "@/svg/capabilities/action.svg"
 import PassiveIcon from "@/svg/capabilities/passive.svg"
 import LimitationIcon from "@/svg/capabilities/limitation.svg"
-import AtGameEndIcon from "@/svg/capabilities/game-end.svg"
+import AtGameEndIcon from "@/svg/capabilities/at-game-end.svg"
+import AtTurnEndIcon from "@/svg/capabilities/at-turn-end.svg"
 import WhenConstructedIcon from "@/svg/capabilities/when-constructed.svg"
 import { createElement, type JSXElementConstructor } from "react"
 
@@ -19,6 +20,8 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
   if (capability instanceof Passive) {
     if (capability.trigger === "at-game-end") {
       typeIcon = AtGameEndIcon
+    } else if (capability.trigger === "at-turn-end") {
+      typeIcon = AtTurnEndIcon
     } else if (capability.trigger === "when-constructed") {
       typeIcon = WhenConstructedIcon
     } else {

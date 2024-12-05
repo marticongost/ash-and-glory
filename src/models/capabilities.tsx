@@ -36,7 +36,7 @@ export class Action extends Capability {
   }
 }
 
-export type CapabilityTrigger = "when-constructed" | "at-game-end"
+export type CapabilityTrigger = "when-constructed" | "at-turn-end" | "at-game-end"
 
 export interface PassiveProps extends CapabilityProps {
   trigger?: CapabilityTrigger
