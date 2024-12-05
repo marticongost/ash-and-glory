@@ -376,12 +376,31 @@ declareBuilding({
   title: "Castell",
   icon: CastleIcon,
   types: ["government", "military"],
-  cost: { wood: 2, ore: 3 },
+  cost: { wood: 2, ore: 4 },
   capabilities: [
     unique,
     new Passive({
+      id: "glory-gain-when-constructed",
+      trigger: "when-constructed",
+      effect: (
+        <>
+          Guanyar <Glory />
+        </>
+      ),
+    }),
+    new Passive({
       id: "defense",
-      effect: <>Augmenta la defensa dels exèrcits defensors a la ciutat en 3.</>,
+      effect: <>Augmenta la defensa dels exèrcits defensors a la ciutat en 2.</>,
+    }),
+    new Action({
+      id: "rule",
+      title: "Regnar",
+      cost: { strife: 1 },
+      effect: (
+        <>
+          Guanyar <Resolve />
+        </>
+      ),
     }),
   ],
 })
@@ -430,10 +449,19 @@ declareBuilding({
   cost: { wood: 1, ore: 2, gold: 2 },
   capabilities: [
     unique,
+    new Passive({
+      id: "glory-gain-when-constructed",
+      trigger: "when-constructed",
+      effect: (
+        <>
+          Guanyar <Glory />
+        </>
+      ),
+    }),
     new Action({
       id: "oppulence",
       title: "Opulència",
-      cost: { strife: 1 },
+      cost: { gold: 1 },
       effect: (
         <>
           Guanyar <Resolve />
