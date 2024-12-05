@@ -15,6 +15,7 @@ import MarketIcon from "@/svg/buildings/market.svg"
 import BankIcon from "@/svg/buildings/bank.svg"
 import CastleIcon from "@/svg/buildings/castle.svg"
 import BarracksIcon from "@/svg/buildings/barracks.svg"
+import StablesIcon from "@/svg/buildings/stables.svg"
 import PalaceIcon from "@/svg/buildings/palace.svg"
 import TempleIcon from "@/svg/buildings/temple.svg"
 import UniversityIcon from "@/svg/buildings/university.svg"
@@ -400,6 +401,21 @@ declareBuilding({
           Retira 1 <Population />, desplega un soldat a l'edifici
         </>
       ),
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "stables",
+  title: "Estables",
+  icon: StablesIcon,
+  types: ["military"],
+  cost: { wood: 1, food: 1 },
+  capabilities: [
+    unique,
+    new Passive({
+      id: "horses",
+      effect: <>Els exèrcits i colons amics que comencin el torn a la ciutat guanyen un punt de maniobra</>,
     }),
   ],
 })
