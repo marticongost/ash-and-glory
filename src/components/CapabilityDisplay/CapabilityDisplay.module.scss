@@ -11,6 +11,10 @@
   }
 }
 
+.buildingEnhancementIntroduction {
+  @include padding(sm);
+}
+
 .capabilityTypeIcon {
   flex: 0 0 auto;
   width: 1.3em;

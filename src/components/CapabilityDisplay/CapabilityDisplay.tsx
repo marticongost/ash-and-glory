@@ -1,4 +1,4 @@
-import { Action, Limitation, Passive, type Capability } from "@/models/capabilities"
+import { Action, BuildingEnhancement, Limitation, Passive, type Capability } from "@/models/capabilities"
 import styles from "./CapabilityDisplay.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
@@ -16,6 +16,21 @@ export interface CapabilityDisplayProps extends StandardComponentProps {
 }
 
 export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDisplayProps) => {
+  if (capability instanceof BuildingEnhancement) {
+    // TODO: Add a BuildingDisplay that shows the building icon as well as the name
+    return (
+      <div {...getStandardAttributes(baseProps, styles.BuildingEnhancementCapabilityDisplay)}>
+        <div className={styles.buildingEnhancementIntroduction}>
+          Els edificis <em>{capability.target.title}</em> guanyen{" "}
+          {capability.capabilities.length > 1 ? "les següents capacitats" : "la capacitat següent"}:
+        </div>
+        {capability.capabilities.map((extraCapability) => (
+          <CapabilityDisplay key={extraCapability.id} capability={extraCapability} />
+        ))}
+      </div>
+    )
+  }
+
   let typeIcon: JSXElementConstructor<any>
   if (capability instanceof Passive) {
     if (capability.trigger === "at-game-end") {

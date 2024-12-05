@@ -2,8 +2,10 @@ import { groupBy, instantiateAll } from "@/modules/utils"
 import type { JSXElementConstructor } from "react"
 import WarriorsIcon from "@/svg/archetypes/warriors.svg"
 import TradersIcon from "@/svg/archetypes/traders.svg"
-import { Action, Capability, CapabilityProps, Passive } from "./capabilities"
-import { Glory, Gold, Ore, Resolve, Strife, Wood } from "@/components/ResourceIcon"
+import { Action, BuildingEnhancement, Capability, CapabilityProps, Passive } from "./capabilities"
+import { AnyMaterial, Glory, Gold, Ore, Resolve, Strife, Wood } from "@/components/ResourceIcon"
+import { Resource } from "./resources"
+import { buildings } from "./buildings"
 
 export type ArchetypeId = "warriors" | "traders"
 
@@ -161,6 +163,29 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
     title: "Comerciants",
     icon: TradersIcon,
     traits: [
+      {
+        level: 1,
+        id: "exporters",
+        title: "Exportadors",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "exporters",
+            target: buildings.harbour,
+            capabilities: [
+              new Action({
+                id: "export",
+                cost: { population: 1, curiosity: 1, anyMaterial: "1+" },
+                effect: (
+                  <>
+                    Guanyar <Gold /> per cada <AnyMaterial />, fins a un màxim igual al nombre de <em>mars</em>{" "}
+                    adjacents.
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
       {
         level: 1,
         id: "creative-economy",
