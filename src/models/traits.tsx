@@ -1,13 +1,14 @@
-import { groupBy, instantiateAll } from "@/modules/utils"
 import type { JSXElementConstructor } from "react"
 import WarriorsIcon from "@/svg/archetypes/warriors.svg"
 import TradersIcon from "@/svg/archetypes/traders.svg"
+import AcademicsIcon from "@/svg/archetypes/academics.svg"
+import ArchitectsIcon from "@/svg/archetypes/architects.svg"
+
 import { Action, BuildingEnhancement, Capability, CapabilityProps, Passive } from "./capabilities"
-import { AnyMaterial, Glory, Gold, Ore, Resolve, Strife, Wood } from "@/components/ResourceIcon"
-import { Resource } from "./resources"
+import { AnyMaterial, Curiosity, Glory, Gold, Ore, Population, Resolve, Strife, Wood } from "@/components/ResourceIcon"
 import { buildings } from "./buildings"
 
-export type ArchetypeId = "warriors" | "traders"
+export type ArchetypeId = "warriors" | "traders" | "academics" | "architects"
 
 export interface ArchetypeProps {
   id: ArchetypeId
@@ -85,7 +86,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             id: "expert-blacksmiths",
             effect: (
               <>
-                Permet gastar <Strife /> en comptes de <Ore /> en reclutar soldats.
+                Permet gastar <Strife /> en comptes de <Ore /> en reclutar soldats
               </>
             ),
           }),
@@ -103,7 +104,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Abans de començar un combat a una ciutat, gastar 1-3 <Wood />. Per cada
-                <Wood /> gastat es podrà repetir el resultat d'un dau d'atac.
+                <Wood /> gastat es podrà repetir el resultat d'un dau d'atac
               </>
             ),
           }),
@@ -119,7 +120,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             cost: {},
             effect: (
               <>
-                Guanyar <Strife />.
+                Guanyar <Strife />
               </>
             ),
           }),
@@ -134,7 +135,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             id: "subjugators",
             effect: (
               <>
-                Guanyar <Glory /> i <Gold /> en conquerir una ciutat enemiga.
+                Guanyar <Glory /> i <Gold /> en conquerir una ciutat enemiga
               </>
             ),
           }),
@@ -150,7 +151,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             cost: { strife: 2 },
             effect: (
               <>
-                Guanyar <Glory />.
+                Guanyar <Glory />
               </>
             ),
           }),
@@ -178,7 +179,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
                 effect: (
                   <>
                     Guanyar <Gold /> per cada <AnyMaterial />, fins a un màxim igual al nombre de <em>mars</em>{" "}
-                    adjacents.
+                    adjacents
                   </>
                 ),
               }),
@@ -197,6 +198,274 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Guanyar <Resolve />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "enterpreneurship",
+        title: "Emprenedoria",
+        capabilities: [
+          new Passive({
+            id: "enterpreneurship",
+            effect: (
+              <>
+                Permet gastar <Curiosity /> com a <AnyMaterial /> a l'hora de pagar el cost d'un edifici{" "}
+                <em>econòmic</em>
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "bankers",
+        title: "Banquers",
+        capabilities: [
+          new Action({
+            id: "bankers",
+            cost: {},
+            effect: (
+              <>
+                Guanyar <Gold />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "riches-from-beyond-the-sea",
+        title: "Riqueses de més enllà del mar",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "riches-from-beyond-the-sea",
+            target: buildings.harbour,
+            capabilities: [
+              new Action({
+                id: "riches-from-beyond-the-sea",
+                cost: { curiosity: "1+", population: 1 },
+                effect: (
+                  <>
+                    Guanyar <Gold /> per cada <Curiosity />, fins a un màxim igual al número de mars adjacents al port
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "commercial-empire",
+        title: "Imperi comercial",
+        capabilities: [
+          new Action({
+            id: "commercial-empire",
+            cost: { gold: 2 },
+            effect: (
+              <>
+                Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
+  academics: new Archetype({
+    id: "academics",
+    title: "Acadèmics",
+    icon: AcademicsIcon,
+    traits: [
+      {
+        level: 1,
+        id: "research",
+        title: "Recerca",
+        capabilities: [
+          new Passive({
+            id: "research",
+            trigger: "at-turn-end",
+            effect: (
+              <>
+                Cada <em>Universitat</em> pot emmagatzemar un <Curiosity />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "ingenuity",
+        title: "Enginy",
+        capabilities: [
+          new Action({
+            id: "ingenuity",
+            cost: { curiosity: 1 },
+            effect: (
+              <>
+                Guanyar <AnyMaterial />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "scientific-community",
+        title: "Comunitat científica",
+        capabilities: [
+          new Passive({
+            id: "scientific-community",
+            effect: (
+              <>
+                Permet gastar <Curiosity /> en comptes de <AnyMaterial /> en construir edificis <em>acadèmics</em>
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "innovation",
+        title: "Innovació",
+        capabilities: [
+          new Action({
+            id: "innovation",
+            cost: {},
+            effect: (
+              <>
+                Guanyar <Curiosity />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "march-of-progress",
+        title: "La marxa del progrés",
+        capabilities: [
+          new Passive({
+            id: "march-of-progress",
+            effect: (
+              <>
+                Es pot gastar <Curiosity /> en comptes de <Resolve /> per pagar trets
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "breakthrough",
+        title: "Descobriment revolucionari",
+        capabilities: [
+          new Action({
+            id: "breakthrough",
+            cost: { curiosity: 2 },
+            effect: (
+              <>
+                Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
+  architects: new Archetype({
+    id: "architects",
+    title: "Arquitectes",
+    icon: ArchitectsIcon,
+    traits: [
+      {
+        level: 1,
+        id: "architecture",
+        title: "Arquitectura",
+        capabilities: [
+          new Passive({
+            id: "architecture",
+            effect: (
+              <>
+                Permet utilitzar <Curiosity /> com a <Ore /> en pagar el cost d’un edifici.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "urban-planning",
+        title: "Planificació urbana",
+        capabilities: [
+          new Passive({
+            id: "urban-planning",
+            effect: <>Incrementa en 1 la mida màxima de les ciutats</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "sustainability",
+        title: "Sostenibilitat",
+        capabilities: [
+          new Passive({
+            id: "susteinability",
+            effect: <>Augmenta en 1 el límit de població de les ciutats</>,
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "monumental-splendor",
+        title: "Monuments esplendorosos",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "monumental-splendor",
+            target: buildings.statue,
+            capabilities: [
+              new Action({
+                id: "monumental-splendor",
+                cost: { anyDrive: 1 },
+                effect: (
+                  <>
+                    Guanyar <Resolve />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "efficient-construction",
+        title: "Construcció eficient",
+        capabilities: [
+          new Passive({
+            id: "efficient-construction",
+            effect: (
+              <>
+                Permet reduir en un <AnyMaterial /> el cost dels edificis amb un cost de 4+ <AnyMaterial />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "harmonious-cities",
+        title: "Ciutats harmonioses",
+        capabilities: [
+          new Passive({
+            id: "harmonious-cities",
+            trigger: "at-game-end",
+            effect: (
+              <>
+                Cada ciutat amb 5 o més edificis proporciona <Glory />
               </>
             ),
           }),
