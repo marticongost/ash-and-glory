@@ -3,12 +3,14 @@ import WarriorsIcon from "@/svg/archetypes/warriors.svg"
 import TradersIcon from "@/svg/archetypes/traders.svg"
 import AcademicsIcon from "@/svg/archetypes/academics.svg"
 import ArchitectsIcon from "@/svg/archetypes/architects.svg"
+import TyrantsIcon from "@/svg/archetypes/tyrants.svg"
 
-import { Action, BuildingEnhancement, Capability, CapabilityProps, Passive } from "./capabilities"
+import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
 import { AnyMaterial, Curiosity, Glory, Gold, Ore, Population, Resolve, Strife, Wood } from "@/components/ResourceIcon"
 import { buildings } from "./buildings"
+import { glory } from "./resources"
 
-export type ArchetypeId = "warriors" | "traders" | "academics" | "architects"
+export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants"
 
 export interface ArchetypeProps {
   id: ArchetypeId
@@ -466,6 +468,117 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Cada ciutat amb 5 o més edificis proporciona <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
+  tyrants: new Archetype({
+    id: "tyrants",
+    title: "Tirans",
+    icon: TyrantsIcon,
+    traits: [
+      {
+        level: 1,
+        id: "corruption",
+        title: "Corrupció",
+        capabilities: [
+          new Action({
+            id: "corruption",
+            title: "Corrupció",
+            cost: { glory: 1 },
+            effect: (
+              <>
+                Guanyar <Resolve />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "slavery",
+        title: "Esclavitud",
+        capabilities: [
+          new Action({
+            id: "slavery",
+            title: "Esclavisme",
+            cost: { strife: 1, population: "1+" },
+            effect: (
+              <>
+                Guanyar <Gold /> per cada <Population />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "bleed-the-people",
+        title: "Munyir el poble",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "bleed-the-people",
+            target: buildings["city-center"],
+            capabilities: [
+              new Action({
+                id: "bleed-the-people",
+                cost: { strife: "1+" },
+                effect: (
+                  <>
+                    Guanyar <Gold /> per cada <Strife />, fins a un màxim dels edificis
+                    <em>militars</em> a la ciutat
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "autocracy",
+        title: "Autocràcia",
+        capabilities: [
+          new Action({
+            id: "autocracy",
+            cost: { population: 1 },
+            effect: (
+              <>
+                Guanyar <Resolve />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "leader-cult",
+        title: "Culte al líder",
+        capabilities: [
+          new Passive({
+            id: "leader-cult",
+            effect: (
+              <>
+                Redueix en <AnyMaterial /> el cost dels edificis <em>governamentals</em>
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "absolute-power",
+        title: "Poder absolut",
+        capabilities: [
+          new Action({
+            id: "absolute-power",
+            cost: { population: 1, anyDrive: 2 },
+            effect: (
+              <>
+                Guanyar <Glory />
               </>
             ),
           }),
