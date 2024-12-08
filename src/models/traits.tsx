@@ -8,7 +8,6 @@ import TyrantsIcon from "@/svg/archetypes/tyrants.svg"
 import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
 import { AnyMaterial, Curiosity, Glory, Gold, Ore, Population, Resolve, Strife, Wood } from "@/components/ResourceIcon"
 import { buildings } from "./buildings"
-import { glory } from "./resources"
 
 export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants"
 
@@ -76,7 +75,11 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         id: "training",
         title: "Entrenament",
         capabilities: [
-          new Passive({ id: "repeat-attack-die", effect: <>Permet repetir un dau d'atac en resoldre un combat</> }),
+          new Passive({
+            id: "repeat-attack-die",
+            moment: "combat",
+            effect: <>Permet repetir un dau d'atac en resoldre un combat</>,
+          }),
         ],
       },
       {
@@ -86,9 +89,10 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "expert-blacksmiths",
+            moment: "recruitingSoldiers",
             effect: (
               <>
-                Permet gastar <Strife /> en comptes de <Ore /> en reclutar soldats
+                Permet gastar <Strife /> en comptes de <Ore />
               </>
             ),
           }),
@@ -101,7 +105,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Action({
             id: "siege-machines",
-            stage: "manouver",
+            moment: "manouverStage",
             cost: { wood: "1+" },
             effect: (
               <>
@@ -135,9 +139,10 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "subjugators",
+            moment: "afterCityConquered",
             effect: (
               <>
-                Guanyar <Glory /> i <Gold /> en conquerir una ciutat enemiga
+                Guanyar <Glory /> i <Gold />
               </>
             ),
           }),
@@ -212,6 +217,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "enterpreneurship",
+            moment: "whenBuilding",
             effect: (
               <>
                 Permet gastar <Curiosity /> com a <AnyMaterial /> a l'hora de pagar el cost d'un edifici{" "}
@@ -289,7 +295,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "research",
-            trigger: "at-turn-end",
+            moment: "turnEnd",
             effect: (
               <>
                 Cada <em>Universitat</em> pot emmagatzemar un <Curiosity />
@@ -321,6 +327,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "scientific-community",
+            moment: "whenBuilding",
             effect: (
               <>
                 Permet gastar <Curiosity /> en comptes de <AnyMaterial /> en construir edificis <em>acadèmics</em>
@@ -352,9 +359,10 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "march-of-progress",
+            moment: "whenAcquiringTraits",
             effect: (
               <>
-                Es pot gastar <Curiosity /> en comptes de <Resolve /> per pagar trets
+                Es pot gastar <Curiosity /> en comptes de <Resolve />
               </>
             ),
           }),
@@ -390,9 +398,10 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "architecture",
+            moment: "whenBuilding",
             effect: (
               <>
-                Permet utilitzar <Curiosity /> com a <Ore /> en pagar el cost d’un edifici.
+                Permet gastar <Curiosity /> en comptes de <Ore />
               </>
             ),
           }),
@@ -464,7 +473,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Passive({
             id: "harmonious-cities",
-            trigger: "at-game-end",
+            moment: "gameEnd",
             effect: (
               <>
                 Cada ciutat amb 5 o més edificis proporciona <Glory />
@@ -487,7 +496,6 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Action({
             id: "corruption",
-            title: "Corrupció",
             cost: { glory: 1 },
             effect: (
               <>
@@ -504,7 +512,6 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new Action({
             id: "slavery",
-            title: "Esclavisme",
             cost: { strife: 1, population: "1+" },
             effect: (
               <>

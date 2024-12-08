@@ -2,7 +2,7 @@ import { levelLabels, type Trait } from "@/models/traits"
 import styles from "./TraitCard.module.scss"
 import { createElement } from "react"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
-import { CapabilityDisplay } from "../CapabilityDisplay"
+import { CapabilityList } from "../CapabilityList"
 
 export interface TraitCardProps extends StandardComponentProps {
   trait: Trait
@@ -19,10 +19,6 @@ export const TraitCard = ({ trait, ...baseProps }: TraitCardProps) => (
       </div>
       <div className={styles.title}>{trait.title}</div>
     </div>
-    <div className={styles.capabilities}>
-      {trait.capabilities.map((capability) => (
-        <CapabilityDisplay key={capability.id} capability={capability} />
-      ))}
-    </div>
+    <CapabilityList className={styles.capabilities} capabilities={trait.capabilities} />
   </div>
 )

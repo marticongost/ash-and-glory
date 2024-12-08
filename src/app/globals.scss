@@ -12,8 +12,10 @@
   $pearl: #f1e9e1;
   $cream: #e0d1c2;
   $latte: #c0a78e;
-  $dull-gray: rgb(185, 177, 177);
+  $toffee: #8a6948;
+  $dull-gray: #b9b1b1;
   $black: #171717;
+  $dull-red: #722d2d;
   $ashen-purple: #1e1214;
   $resin: #403235;
   $gold: rgb(197, 150, 30);
@@ -44,13 +46,16 @@
   --dull-text-color: #{$dull-gray};
   --night-dull-text-color: #{$dull-gray};
   --site-header-color: #{$ashen-purple};
+  --section-heading-text-color: #{$toffee};
+  --warning-color: #{$dull-red};
   --icon-color: #{$dull-gray};
   --night-icon-color: #{$dull-gray};
   --night-selected-icon-color: #{$cream};
   --night-hover-icon-color: #{$latte};
   --light-line-color: #{$cream};
-  --subtle-separator-color: #{$dull-gray}15;
+  --subtle-separator-color: #{$dull-gray}30;
   --night-subtle-separator-color: #{$pearl}15;
+  --indent-color: #{$cream};
   --night-unselected-text-color: #{$dull-gray};
   --night-selected-text-color: #{$pearl};
   --night-hover-text-color: #{$cream};
@@ -89,6 +94,7 @@
   // Separators
   --subtle-line: 1px solid var(--subtle-separator-color);
   --night-subtle-line: 1px solid var(--night-subtle-separator-color);
+  --indent: 3px solid var(--indent-color);
 }
 
 svg,

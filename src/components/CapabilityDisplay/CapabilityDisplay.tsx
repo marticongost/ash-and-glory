@@ -4,12 +4,7 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
 import ConvertIcon from "@/svg/convert.svg"
-import PassiveIcon from "@/svg/capabilities/passive.svg"
-import LimitationIcon from "@/svg/capabilities/limitation.svg"
-import AtGameEndIcon from "@/svg/capabilities/at-game-end.svg"
-import AtTurnEndIcon from "@/svg/capabilities/at-turn-end.svg"
-import WhenConstructedIcon from "@/svg/capabilities/when-constructed.svg"
-import { createElement, type JSXElementConstructor } from "react"
+import { CapabilityList } from "../CapabilityList"
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -24,46 +19,24 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
           Els edificis <em>{capability.target.title}</em> guanyen{" "}
           {capability.capabilities.length > 1 ? "les següents capacitats" : "la capacitat següent"}:
         </div>
-        {capability.capabilities.map((extraCapability) => (
-          <CapabilityDisplay key={extraCapability.id} capability={extraCapability} />
-        ))}
+        <CapabilityList className={styles.buildingEnhancementCapabilities} capabilities={capability.capabilities} />
       </div>
     )
   }
 
-  let typeIcon: JSXElementConstructor<any>
-  if (capability instanceof Passive) {
-    if (capability.trigger === "at-game-end") {
-      typeIcon = AtGameEndIcon
-    } else if (capability.trigger === "at-turn-end") {
-      typeIcon = AtTurnEndIcon
-    } else if (capability.trigger === "when-constructed") {
-      typeIcon = WhenConstructedIcon
-    } else {
-      typeIcon = PassiveIcon
-    }
-  } else if (capability instanceof Action) {
-    typeIcon = capability.stage.icon
-  } else if (capability instanceof Limitation) {
-    typeIcon = LimitationIcon
-  } else {
+  if (!(capability instanceof Action || capability instanceof Limitation || capability instanceof Passive)) {
     return null
   }
+
   return (
-    <div {...getStandardAttributes(baseProps, styles.CapabilityDisplay)}>
-      {createElement(typeIcon, { className: styles.capabilityTypeIcon })}
-      <div className={styles.details}>
-        {capability.title && <div className={styles.title}>{capability.title}</div>}
-        <div className={styles.effect}>
-          {capability instanceof Action ? (
-            <>
-              <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="column" />
-              <ConvertIcon className={styles.convertIcon} />
-            </>
-          ) : null}
-          <Content className={styles.content}>{capability.effect}</Content>
-        </div>
-      </div>
+    <div {...getStandardAttributes(baseProps, styles.CapabilityDisplay)} data-type={capability.constructor.name}>
+      {capability instanceof Action ? (
+        <>
+          <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="column" />
+          <ConvertIcon className={styles.convertIcon} />
+        </>
+      ) : null}
+      <Content className={styles.content}>{capability.effect}</Content>
     </div>
   )
 }

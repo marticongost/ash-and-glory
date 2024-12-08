@@ -1,60 +1,55 @@
 import { instantiate } from "@/modules/utils"
 import { ResourceSet, ResourceSetProps } from "./resources"
 import type { ReactNode } from "react"
-import { stages, type Stage, type StageId } from "./stages"
-import { buildings, type Building } from "./buildings"
+import { type Building } from "./buildings"
+import { Moment, MomentId, moments } from "./moments"
 
 export interface CapabilityProps {
   id: string
   title?: string
+  moment?: MomentId | Moment
 }
 
 export abstract class Capability {
   readonly id: string
   readonly title: string
+  readonly moment: Moment
 
-  constructor({ id, title = "" }: CapabilityProps) {
+  constructor({ id, title = "", moment = "constant" }: CapabilityProps) {
     this.id = id
     this.title = title
+    this.moment = typeof moment === "string" ? moments[moment] : moment
   }
 }
 
 export interface ActionProps extends CapabilityProps {
-  stage?: StageId | Stage
   cost?: ResourceSet | ResourceSetProps
   limit?: number
   effect: ReactNode
 }
 
 export class Action extends Capability {
-  readonly stage: Stage
   readonly cost?: ResourceSet
   readonly limit: number
   readonly effect: ReactNode
 
-  constructor({ stage = "production", cost, limit = 1, effect, ...baseProps }: ActionProps) {
-    super(baseProps)
-    this.stage = typeof stage === "string" ? stages[stage] : stage
+  constructor({ moment = "productionStage", cost, limit = 1, effect, ...baseProps }: ActionProps) {
+    super({ moment, ...baseProps })
     this.cost = cost && instantiate(cost, ResourceSet)
     this.limit = limit ?? Infinity
     this.effect = effect
   }
 }
 
-export type CapabilityTrigger = "when-constructed" | "at-turn-end" | "at-game-end"
-
 export interface PassiveProps extends CapabilityProps {
-  trigger?: CapabilityTrigger
   effect: ReactNode
 }
 
 export class Passive extends Capability {
-  readonly trigger?: CapabilityTrigger
   readonly effect: ReactNode
 
-  constructor({ trigger, effect, ...baseProps }: PassiveProps) {
+  constructor({ effect, ...baseProps }: PassiveProps) {
     super(baseProps)
-    this.trigger = trigger
     this.effect = effect
   }
 }

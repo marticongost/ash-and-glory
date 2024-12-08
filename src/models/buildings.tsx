@@ -118,7 +118,11 @@ declareBuilding({
   capabilities: [
     new Passive({
       id: "population-limit",
-      effect: <>Límit de població 3. Mida màxima 6.</>,
+      effect: <>Límit de població 3</>,
+    }),
+    new Passive({
+      id: "city-size-limit",
+      effect: <>Mida màxima 6.</>,
     }),
     new Action({
       id: "increase-population",
@@ -145,7 +149,7 @@ declareBuilding({
     new Action({
       id: "build",
       title: "Construir edifici",
-      stage: "construction",
+      moment: "constructionStage",
       cost: { growth: 1, population: 1 },
       limit: Infinity,
       effect: <>Construeix un edifici a la ciutat, pagant el seu cost</>,
@@ -263,7 +267,7 @@ declareBuilding({
     new Action({
       id: "build-ship",
       title: "Construir vaixell",
-      stage: "manouver",
+      moment: "manouverStage",
       cost: { curiosity: 1, wood: 2 },
       effect: (
         <>
@@ -303,7 +307,7 @@ declareBuilding({
   capabilities: [
     new Passive({
       id: "store-materials",
-      trigger: "at-turn-end",
+      moment: "turnEnd",
       effect: (
         <>
           Permet emmagatzemar un <AnyMaterial />
@@ -322,7 +326,7 @@ declareBuilding({
   capabilities: [
     new Passive({
       id: "store-materials",
-      trigger: "at-turn-end",
+      moment: "turnEnd",
       effect: (
         <>
           Permet emmagatzemar un <Food /> per cada <em>Granja</em> adjacent
@@ -382,8 +386,8 @@ declareBuilding({
   capabilities: [
     unique,
     new Passive({
-      id: "glory-gain-when-constructed",
-      trigger: "when-constructed",
+      id: "glory-gain-whenBuilt",
+      moment: "whenBuilt",
       effect: (
         <>
           Guanyar <Glory />
@@ -419,7 +423,7 @@ declareBuilding({
       id: "recruit",
       title: "Reclutar",
       cost: { strife: 1, ore: 1 },
-      stage: "manouver",
+      moment: "manouverStage",
       effect: (
         <>
           Retira 1 <Population />, desplega un soldat a l'edifici
@@ -453,8 +457,8 @@ declareBuilding({
   capabilities: [
     unique,
     new Passive({
-      id: "glory-gain-when-constructed",
-      trigger: "when-constructed",
+      id: "glory-gain-whenBuilt",
+      moment: "whenBuilt",
       effect: (
         <>
           Guanyar <Glory />
@@ -540,8 +544,8 @@ declareBuilding({
   cost: { ore: 3 },
   capabilities: [
     new Passive({
-      id: "glory-gain-when-constructed",
-      trigger: "when-constructed",
+      id: "glory-gain-whenBuilt",
+      moment: "whenBuilt",
       effect: (
         <>
           Guanyar <Glory />
@@ -549,8 +553,8 @@ declareBuilding({
       ),
     }),
     new Passive({
-      id: "glory-gain-at-game-end",
-      trigger: "at-game-end",
+      id: "glory-gain-gameEnd",
+      moment: "gameEnd",
       effect: (
         <>
           Guanyar <Glory /> si l'estàtua no està <em>danyada</em>

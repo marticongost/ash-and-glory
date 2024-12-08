@@ -3,7 +3,7 @@ import styles from "./BuildingCard.module.scss"
 import { createElement } from "react"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
-import { CapabilityDisplay } from "../CapabilityDisplay"
+import { CapabilityList } from "../CapabilityList"
 
 export interface BuildingCardProps extends StandardComponentProps {
   building: Building
@@ -27,10 +27,6 @@ export const BuildingCard = ({ building, ...baseProps }: BuildingCardProps) => (
         <ResourceSetDisplay className={styles.cost} resourceSet={building.cost} arrangement="row" background="night" />
       )}
     </div>
-    <div className={styles.capabilities}>
-      {building.capabilities.map((capability) => (
-        <CapabilityDisplay key={capability.id} capability={capability} />
-      ))}
-    </div>
+    <CapabilityList className={styles.capabilities} capabilities={building.capabilities} />
   </div>
 )

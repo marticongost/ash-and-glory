@@ -1,0 +1,46 @@
+@import "/src/scss/common.scss";
+
+.CapabilityList {
+  @include horizontal-padding(xs);
+  @include column(xs);
+  align-items: stretch;
+  margin-top: var(--spacing-xs);
+}
+
+.moment {
+  @include column;
+
+  &:before {
+    content: "";
+    display: block;
+    position: relative;
+    z-index: 2;
+    top: 0.5rem;
+    height: 1px;
+    width: 100%;
+    background-color: var(--light-line-color);
+  }
+}
+
+.momentTitle {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  font-family: var(--heading-font-family);
+  color: var(--section-heading-text-color);
+  background-color: var(--page-background-color);
+  padding-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.momentCapabilities {
+  @include column;
+  align-self: stretch;
+  align-items: stretch;
+
+  & > * + * {
+    margin-top: 1ch;
+    padding-top: 1ch;
+    border-top: var(--subtle-line);
+  }
+}

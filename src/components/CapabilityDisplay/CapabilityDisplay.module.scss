@@ -1,46 +1,25 @@
 @import "/src/scss/common.scss";
 
 .CapabilityDisplay {
-  @include row(xs);
-  @include padding(sm);
+  @include row(1ch);
   align-items: flex-start;
   background-color: var(--page-background-color);
 
-  & + & {
-    border-top: 1px dashed var(--light-line-color);
+  &[data-type="Limitation"] {
+    color: var(--warning-color);
   }
 }
 
-.buildingEnhancementIntroduction {
-  @include padding(sm);
-}
-
-.capabilityTypeIcon {
-  flex: 0 0 auto;
-  width: 1.3em;
-  height: auto;
-}
-
-.details {
-  flex: 1 1 auto;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: var(--spacing-xs);
+.buildingEnhancementCapabilities {
+  border-left: var(--indent);
 }
 
 .cost {
   flex: 0 0 auto;
 }
 
-.effect {
-  @include row(1ch);
-}
-
 .convertIcon {
   flex: 0 0 auto;
   width: auto;
-  height: 1.5em;
+  height: 1.2em;
 }
