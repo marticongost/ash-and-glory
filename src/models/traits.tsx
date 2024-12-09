@@ -129,8 +129,8 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             cost: { growth: "1+" },
             effect: (
               <>
-                Eliminar un colon i fundar una ciutat a la seva ubicació. El cost és de un <Growth /> per cada ciutat
-                que el jugador ja controli.
+                Substituir un colon propi per una ciutat. El cost és de un <Growth /> per cada ciutat que el jugador ja
+                controli. Guanyar la mateixa quantitat en <Glory />.
               </>
             ),
           }),
