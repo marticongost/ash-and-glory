@@ -7,6 +7,7 @@ export type MomentId =
   | "recruitingSoldiers"
   | "whenAcquiringTraits"
   | "afterCityConquered"
+  | "afterDestroyingBarbarianCamp"
   | "afterActionExecuted"
   | "whenBuilding"
   | "whenBuilt"
@@ -36,6 +37,10 @@ export const moments: Record<MomentId, Moment> = {
   combat: new Moment({ id: "combat", title: "En combatre" }),
   recruitingSoldiers: new Moment({ id: "recruitingSoldiers", title: "En reclutar soldats" }),
   afterCityConquered: new Moment({ id: "afterCityConquered", title: "En conquerir una ciutat" }),
+  afterDestroyingBarbarianCamp: new Moment({
+    id: "afterDestroyingBarbarianCamp",
+    title: "En destruir un campament bàrbar",
+  }),
   afterActionExecuted: new Moment({ id: "afterActionExecuted", title: "Després d'executar una acció" }),
   whenAcquiringTraits: new Moment({ id: "whenAcquiringTraits", title: "En adquirir trets" }),
   whenBuilding: new Moment({ id: "whenBuilding", title: "En construir" }),

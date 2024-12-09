@@ -84,17 +84,35 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
       },
       {
         level: 1,
-        id: "expert-blacksmiths",
-        title: "Ferrers experts",
+        id: "draft",
+        title: "Lleva",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "draft",
+            target: buildings["city-center"],
+            capabilities: [
+              new Action({
+                id: "draft",
+                cost: { anyDrive: 1, population: 1 },
+                effect: (
+                  <>
+                    Eliminar un <Population /> i reclutar un soldat a la casella de l'edifici
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "advanced-logistics",
+        title: "Logística avançada",
         capabilities: [
           new Passive({
-            id: "expert-blacksmiths",
-            moment: "recruitingSoldiers",
-            effect: (
-              <>
-                Permet gastar <Strife /> en comptes de <Ore />
-              </>
-            ),
+            id: "advanced-logistics",
+            moment: "manouverStage",
+            effect: <>Guanyar +1 punt de maniobra per torn</>,
           }),
         ],
       },
@@ -118,17 +136,29 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
       },
       {
         level: 2,
-        id: "bloodlust",
-        title: "Sed de sang",
+        id: "warmongers",
+        title: "Bel·licosos",
         capabilities: [
           new Action({
-            id: "bloodlust",
+            id: "warmongers",
             cost: {},
             effect: (
               <>
                 Guanyar <Strife />
               </>
             ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "expert-blacksmiths",
+        title: "Ferrers experts",
+        capabilities: [
+          new Passive({
+            id: "expert-blacksmiths",
+            moment: "combat",
+            effect: <>+1 a l'atac i la defensa</>,
           }),
         ],
       },
@@ -159,6 +189,23 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "warlords",
+        title: "Senyors de la guerra",
+        capabilities: [
+          new Action({
+            id: "warlords",
+            cost: { growth: 1 },
+            moment: "afterDestroyingBarbarianCamp",
+            effect: (
+              <>
+                Guanyar <Glory />, un <em>colon</em> i un <em>soldat</em> a la ubicació del camp destruit
               </>
             ),
           }),
