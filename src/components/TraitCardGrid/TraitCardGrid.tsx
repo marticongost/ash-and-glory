@@ -14,10 +14,10 @@ export const TraitCardGrid = ({ archetypes }: TraitCardGridProps) => (
         <div className={styles.archetypeTitle}>{archetype.title}</div>
         <div className={styles.levels}>
           {recordToList(
-            groupBy(archetype.traits, (trait) => trait.level),
+            groupBy(archetype.traits, (trait) => trait.level ?? 0),
             (level, traits) => (
               <div key={level} className={styles.level}>
-                <div className={styles.levelTitle}>Nivell {levelLabels[level]}</div>
+                {level != 0 ? <div className={styles.levelTitle}>Nivell {levelLabels[level]}</div> : null}
                 <div className={styles.traits}>
                   {traits.map((trait) => (
                     <TraitCard key={trait.id} trait={trait} />
