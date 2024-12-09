@@ -243,6 +243,28 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
       },
       {
         level: 1,
+        id: "hagglers",
+        title: "Embaucadors",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "hagglers",
+            target: buildings.market,
+            capabilities: [
+              new Action({
+                id: "hagglers",
+                cost: { anyDrive: 2 },
+                effect: (
+                  <>
+                    Guanyar <Resolve />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 1,
         id: "creative-economy",
         title: "Economia creativa",
         capabilities: [
@@ -313,6 +335,28 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         ],
       },
       {
+        level: 2,
+        id: "reputed-artisans",
+        title: "Artesans reputats",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "reputed-artisans",
+            target: buildings.workshop,
+            capabilities: [
+              new Action({
+                id: "reputed-artisans",
+                cost: { gold: 1, effort: 1 },
+                effect: (
+                  <>
+                    Guanyar <Glory />. Màxim per torn d'un cop per edifici i ruta comercial oberta.
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
         level: 3,
         id: "commercial-empire",
         title: "Imperi comercial",
@@ -323,6 +367,22 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "cosmopolitan",
+        title: "Cosmopolites",
+        capabilities: [
+          new Action({
+            id: "cosmopolitan",
+            cost: { curiosity: "1+" },
+            effect: (
+              <>
+                Guanyar <Resolve />, fins a un màxim igual al nombre de rutes comercials obertes
               </>
             ),
           }),
