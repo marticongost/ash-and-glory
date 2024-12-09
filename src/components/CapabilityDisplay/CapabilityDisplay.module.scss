@@ -6,7 +6,7 @@
   background-color: var(--page-background-color);
 
   &[data-type="Limitation"] {
-    color: var(--warning-color);
+    font-style: italic;
   }
 }
 
