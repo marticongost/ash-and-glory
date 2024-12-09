@@ -562,6 +562,24 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
       },
       {
         level: 2,
+        id: "blind-obedience",
+        title: "Obediència cega",
+        capabilities: [
+          new Action({
+            id: "blind-obedience",
+            moment: "afterActionExecuted",
+            cost: { strife: 1 },
+            effect: (
+              <>
+                Permet tornar a executar l'acció una segona vegada durant el torn en curs. No pot aplicar-se a{" "}
+                <em>Obediència cega</em>.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
         id: "leader-cult",
         title: "Culte al líder",
         capabilities: [
