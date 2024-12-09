@@ -4,6 +4,7 @@ import TradersIcon from "@/svg/archetypes/traders.svg"
 import AcademicsIcon from "@/svg/archetypes/academics.svg"
 import ArchitectsIcon from "@/svg/archetypes/architects.svg"
 import TyrantsIcon from "@/svg/archetypes/tyrants.svg"
+import FarmersIcon from "@/svg/archetypes/farmers.svg"
 
 import { Action, BuildingEnhancement, BuildingWithMinCost, Capability, Passive } from "./capabilities"
 import {
@@ -11,8 +12,10 @@ import {
   AnyMaterial,
   Curiosity,
   Effort,
+  Food,
   Glory,
   Gold,
+  Growth,
   Ore,
   Population,
   Resolve,
@@ -21,7 +24,7 @@ import {
 } from "@/components/ResourceIcon"
 import { buildings, buildingTypes } from "./buildings"
 
-export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants"
+export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 
 export interface ArchetypeProps {
   id: ArchetypeId
@@ -903,6 +906,177 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Convertir els <Strife /> emmagatzemats en <Resolve />
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
+  farmers: new Archetype({
+    id: "farmers",
+    title: "Grangers",
+    icon: FarmersIcon,
+    traits: [
+      {
+        level: 1,
+        id: "shepherds",
+        title: "Ramaders",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "shepherds",
+            target: buildings.farm,
+            capabilities: [
+              new Passive({
+                id: "shepherds",
+                effect: <>Permet comptar les muntanyes com si fossin camps</>,
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "huners",
+        title: "Caçadors",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "hunters",
+            target: buildings.farm,
+            capabilities: [
+              new Passive({
+                id: "shepherds",
+                effect: <>Permet comptar els boscos com si fossin camps</>,
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "intensive-agriculture",
+        title: "Agricultura intensiva",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "intensive-agriculture",
+            target: buildings.farm,
+            capabilities: [
+              new Passive({
+                id: "shepherds",
+                moment: "whenBuilding",
+                effect: (
+                  <>
+                    Reduir el cost de construcció en <AnyMaterial />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "crop-rotation",
+        title: "Rotació de conreus",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "crop-rotation",
+            target: buildings.granary,
+            capabilities: [
+              new Passive({
+                id: "crop-rotation",
+                moment: "turnEnd",
+                effect: (
+                  <>
+                    Permet emmagatzemar un <Growth />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "fertility",
+        title: "Fertilitat",
+        capabilities: [
+          new Action({
+            id: "fertility",
+            cost: {},
+            effect: (
+              <>
+                Guanyar <Growth />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "festival",
+        title: "Festival",
+        capabilities: [
+          new Action({
+            id: "festival",
+            cost: { food: "2+" },
+            effect: (
+              <>
+                Guanyar <Resolve /> per cada <Food amount={2} />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "exceptional-chefs",
+        title: "Xefs excepcionals",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "exceptional-chefs",
+            target: buildings.workshop,
+            capabilities: [
+              new Action({
+                id: "exceptional-chefs",
+                cost: { food: 1, effort: 1 },
+                effect: (
+                  <>
+                    Guanyar <Glory />. Màxim per torn d'un cop per edifici i ruta comercial oberta.
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "abundance",
+        title: "Abundància",
+        capabilities: [
+          new Action({
+            id: "abundance",
+            cost: { growth: 2 },
+            effect: (
+              <>
+                Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "sustained-growth",
+        title: "Creixement sostingut",
+        capabilities: [
+          new Passive({
+            id: "sustained-growth",
+            moment: "turnStart",
+            effect: (
+              <>
+                Convertir els <Growth /> emmagatzemats en <Resolve />
               </>
             ),
           }),
