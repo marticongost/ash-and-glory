@@ -2,7 +2,7 @@
 
 .CapabilityList {
   @include horizontal-padding(xs);
-  @include column(xs);
+  @include column(sm);
   align-items: stretch;
   margin-top: var(--spacing-xs);
 }
