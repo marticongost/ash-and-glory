@@ -55,7 +55,8 @@ interface BuildingEnhancementTargetDisplayProps {
 
 const BuildingEnhancementTargetDisplay = ({ target }: BuildingEnhancementTargetDisplayProps) => (
   <span className={styles.BuildingEnhancementTarget}>
-    {target instanceof Building || target instanceof BuildingType ? target.title : null}
+    {target instanceof Building ? target.title : null}
+    {target instanceof BuildingType ? `de tipus ${target.title}` : null}
     {target instanceof BuildingWithMinCost ? `amb un cost de ${target.minCost}+ recursos` : null}
   </span>
 )
