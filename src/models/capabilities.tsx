@@ -1,7 +1,7 @@
 import { instantiate } from "@/modules/utils"
 import { ResourceSet, ResourceSetProps } from "./resources"
 import type { ReactNode } from "react"
-import { type Building } from "./buildings"
+import { BuildingType, type Building } from "./buildings"
 import { Moment, MomentId, moments } from "./moments"
 
 export interface CapabilityProps {
@@ -72,13 +72,27 @@ export const unique = new Limitation({
   effect: <>Màxim d'una còpia per ciutat</>,
 })
 
+export type BuildingEnhancementTarget = Building | BuildingType | BuildingWithMinCost
+
+export interface BuildingWithMinCostProps {
+  minCost: number
+}
+
+export class BuildingWithMinCost {
+  minCost: number
+
+  constructor({ minCost }: BuildingWithMinCostProps) {
+    this.minCost = minCost
+  }
+}
+
 export interface BuildingEnhancementProps extends CapabilityProps {
-  target: Building
+  target: BuildingEnhancementTarget
   capabilities: Capability[]
 }
 
 export class BuildingEnhancement extends Capability {
-  readonly target: Building
+  readonly target: BuildingEnhancementTarget
   readonly capabilities: Capability[]
 
   constructor({ target, capabilities, ...baseProps }: BuildingEnhancementProps) {

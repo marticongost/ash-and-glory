@@ -1,10 +1,19 @@
-import { Action, BuildingEnhancement, Limitation, Passive, type Capability } from "@/models/capabilities"
+import {
+  Action,
+  BuildingEnhancement,
+  BuildingEnhancementTarget,
+  BuildingWithMinCost,
+  Limitation,
+  Passive,
+  type Capability,
+} from "@/models/capabilities"
 import styles from "./CapabilityDisplay.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
 import ConvertIcon from "@/svg/convert.svg"
 import { CapabilityList } from "../CapabilityList"
+import { Building, BuildingType } from "@/models/buildings"
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -12,11 +21,10 @@ export interface CapabilityDisplayProps extends StandardComponentProps {
 
 export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDisplayProps) => {
   if (capability instanceof BuildingEnhancement) {
-    // TODO: Add a BuildingDisplay that shows the building icon as well as the name
     return (
       <div {...getStandardAttributes(baseProps, styles.BuildingEnhancementCapabilityDisplay)}>
         <div className={styles.buildingEnhancementIntroduction}>
-          Els edificis <em>{capability.target.title}</em> guanyen{" "}
+          Els edificis <BuildingEnhancementTargetDisplay target={capability.target} /> guanyen{" "}
           {capability.capabilities.length > 1 ? "les següents capacitats" : "la capacitat següent"}:
         </div>
         <CapabilityList className={styles.buildingEnhancementCapabilities} capabilities={capability.capabilities} />
@@ -40,3 +48,14 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
     </div>
   )
 }
+
+interface BuildingEnhancementTargetDisplayProps {
+  target: BuildingEnhancementTarget
+}
+
+const BuildingEnhancementTargetDisplay = ({ target }: BuildingEnhancementTargetDisplayProps) => (
+  <span className={styles.BuildingEnhancementTarget}>
+    {target instanceof Building || target instanceof BuildingType ? target.title : null}
+    {target instanceof BuildingWithMinCost ? `amb un cost de ${target.minCost}+ recursos` : null}
+  </span>
+)

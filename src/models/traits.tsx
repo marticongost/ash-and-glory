@@ -5,7 +5,7 @@ import AcademicsIcon from "@/svg/archetypes/academics.svg"
 import ArchitectsIcon from "@/svg/archetypes/architects.svg"
 import TyrantsIcon from "@/svg/archetypes/tyrants.svg"
 
-import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
+import { Action, BuildingEnhancement, BuildingWithMinCost, Capability, Passive } from "./capabilities"
 import {
   AnyDrive,
   AnyMaterial,
@@ -19,7 +19,7 @@ import {
   Strife,
   Wood,
 } from "@/components/ResourceIcon"
-import { buildings } from "./buildings"
+import { buildings, buildingTypes } from "./buildings"
 
 export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants"
 
@@ -642,6 +642,17 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         ],
       },
       {
+        level: 1,
+        id: "walls",
+        title: "Muralles",
+        capabilities: [
+          new Passive({
+            id: "walls",
+            effect: <>+1 a la defensa als setges contra les ciutats del jugador</>,
+          }),
+        ],
+      },
+      {
         level: 2,
         id: "monumental-splendor",
         title: "Monuments esplendorosos",
@@ -679,6 +690,22 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         ],
       },
       {
+        level: 2,
+        id: "roads",
+        title: "Carreteres",
+        capabilities: [
+          new Passive({
+            id: "roads",
+            moment: "manouverStage",
+            effect: (
+              <>
+                Els exèrcits i colons que comencin el seu moviment a una ciutat del jugador guanyen 2 punts de maniobra.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         level: 3,
         id: "harmonious-cities",
         title: "Ciutats harmonioses",
@@ -691,6 +718,28 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
                 Cada ciutat amb 5 o més edificis proporciona <Glory />
               </>
             ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "distant-visitors",
+        title: "Visitants de terres llunyanes",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "distant-visitors",
+            target: new BuildingWithMinCost({ minCost: 5 }),
+            capabilities: [
+              new Action({
+                id: "distant-visitors",
+                cost: { growth: 1 },
+                effect: (
+                  <>
+                    Guanyar <Gold /> i <Resolve />. Màxim un cop per torn per edifici i ruta comercial oberta.
+                  </>
+                ),
+              }),
+            ],
           }),
         ],
       },
