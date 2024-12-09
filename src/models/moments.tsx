@@ -11,6 +11,7 @@ export type MomentId =
   | "afterActionExecuted"
   | "whenBuilding"
   | "whenBuilt"
+  | "turnStart"
   | "turnEnd"
   | "gameEnd"
 
@@ -45,6 +46,10 @@ export const moments: Record<MomentId, Moment> = {
   whenAcquiringTraits: new Moment({ id: "whenAcquiringTraits", title: "En adquirir trets" }),
   whenBuilding: new Moment({ id: "whenBuilding", title: "En construir" }),
   whenBuilt: new Moment({ id: "whenBuilt", title: "Després de ser construit" }),
+  turnStart: new Moment({
+    id: "turnStart",
+    title: "A l'inici del torn",
+  }),
   turnEnd: new Moment({
     id: "turnEnd",
     title: "En finalitzar el torn",

@@ -7,4 +7,24 @@
   li {
     margin-top: var(--spacing-xs);
   }
+  table {
+    border-collapse: collapse;
+  }
+  tr:not(:last-of-type) {
+    th,
+    td {
+      padding-bottom: var(--spacing-xs);
+    }
+  }
+  th {
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+    &:not(:last-child) {
+      padding-right: var(--spacing-xs);
+    }
+  }
+  td {
+    vertical-align: top;
+  }
 }

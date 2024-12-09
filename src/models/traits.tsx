@@ -6,7 +6,19 @@ import ArchitectsIcon from "@/svg/archetypes/architects.svg"
 import TyrantsIcon from "@/svg/archetypes/tyrants.svg"
 
 import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
-import { AnyMaterial, Curiosity, Glory, Gold, Ore, Population, Resolve, Strife, Wood } from "@/components/ResourceIcon"
+import {
+  AnyDrive,
+  AnyMaterial,
+  Curiosity,
+  Effort,
+  Glory,
+  Gold,
+  Ore,
+  Population,
+  Resolve,
+  Strife,
+  Wood,
+} from "@/components/ResourceIcon"
 import { buildings } from "./buildings"
 
 export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants"
@@ -413,6 +425,59 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
       },
       {
         level: 1,
+        id: "experimentation",
+        title: "Experimentació",
+        capabilities: [
+          new Action({
+            id: "experimentation",
+            cost: { curiosity: 1 },
+            effect: (
+              <>
+                Llançar 1d10 i aplicar el resultat indicat:
+                <table>
+                  <tr>
+                    <th>1</th>
+                    <td>
+                      <h4>Catàstrofe</h4>
+                      Perdre un <Population /> a una ciutat
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>2-4</th>
+                    <td>
+                      <h4>Resultat decebedor</h4>
+                      Sense efecte
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>5-8</th>
+                    <td>
+                      <h4>Resultat prometedor</h4>
+                      Guanyar <AnyDrive /> (qualsevol impuls excepte <Resolve />)
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>9</th>
+                    <td>
+                      <h4>Resultat excepcional</h4>
+                      Guanyar <Resolve />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>10</th>
+                    <td>
+                      <h4>Descobriment inesperat</h4>
+                      Guanyar <Glory />
+                    </td>
+                  </tr>
+                </table>
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
         id: "ingenuity",
         title: "Enginy",
         capabilities: [
@@ -476,6 +541,28 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         ],
       },
       {
+        level: 2,
+        id: "advanced-materials",
+        title: "Materials avançats",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "advanced-materials",
+            target: buildings.university,
+            capabilities: [
+              new Action({
+                id: "advanced-materials",
+                cost: { curiosity: 1 },
+                effect: (
+                  <>
+                    Guanyar <Gold /> i <Effort />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
         level: 3,
         id: "breakthrough",
         title: "Descobriment revolucionari",
@@ -486,6 +573,22 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "volumes-of-knowledge",
+        title: "Volums de coneixement",
+        capabilities: [
+          new Passive({
+            id: "volumes-of-knowledge",
+            moment: "turnStart",
+            effect: (
+              <>
+                Convertir els <Curiosity /> emmagatzemats en <Resolve />
               </>
             ),
           }),
