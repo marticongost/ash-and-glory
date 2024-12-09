@@ -806,6 +806,28 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         ],
       },
       {
+        level: 1,
+        id: "strike-fear",
+        title: "Infondre por",
+        capabilities: [
+          new BuildingEnhancement({
+            id: "strike-fear",
+            target: buildingTypes.government,
+            capabilities: [
+              new Passive({
+                id: "strike-fear",
+                moment: "turnEnd",
+                effect: (
+                  <>
+                    Emmgatzemar un <Strife />
+                  </>
+                ),
+              }),
+            ],
+          }),
+        ],
+      },
+      {
         level: 2,
         id: "autocracy",
         title: "Autocràcia",
@@ -865,6 +887,22 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
             effect: (
               <>
                 Guanyar <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "reign-of-terror",
+        title: "Regnat de terror",
+        capabilities: [
+          new Passive({
+            id: "reign-of-terror",
+            moment: "turnStart",
+            effect: (
+              <>
+                Convertir els <Strife /> emmagatzemats en <Resolve />
               </>
             ),
           }),
