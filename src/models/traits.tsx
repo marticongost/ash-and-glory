@@ -212,9 +212,9 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         id: "warmongers",
         title: "Bel·licosos",
         capabilities: [
-          new Action({
+          new Passive({
             id: "warmongers",
-            cost: {},
+            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Strife />
@@ -374,9 +374,9 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         id: "bankers",
         title: "Banquers",
         capabilities: [
-          new Action({
+          new Passive({
             id: "bankers",
-            cost: {},
+            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Gold />
@@ -576,9 +576,9 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         id: "innovation",
         title: "Innovació",
         capabilities: [
-          new Action({
+          new Passive({
             id: "innovation",
-            cost: {},
+            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Curiosity />
@@ -1059,9 +1059,9 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         id: "fertility",
         title: "Fertilitat",
         capabilities: [
-          new Action({
+          new Passive({
             id: "fertility",
-            cost: {},
+            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Growth />
