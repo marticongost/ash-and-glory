@@ -9,27 +9,15 @@
 
 .moment {
   @include column;
-
-  &:before {
-    content: "";
-    display: block;
-    position: relative;
-    z-index: 2;
-    top: 0.5rem;
-    height: 1px;
-    width: 100%;
-    background-color: var(--light-line-color);
-  }
+  align-items: stretch;
 }
 
 .momentTitle {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
   font-family: var(--heading-font-family);
   color: var(--section-heading-text-color);
-  background-color: var(--page-background-color);
+  border-bottom: var(--light-line);
   padding-right: var(--spacing-xs);
+  padding-bottom: 0.5ch;
   margin-bottom: var(--spacing-xs);
 }
 
