@@ -11,12 +11,16 @@ export interface TraitCardProps extends StandardComponentProps {
 export const TraitCard = ({ trait, ...baseProps }: TraitCardProps) => (
   <div {...getStandardAttributes(baseProps, styles.TraitCard)}>
     <div className={styles.titleBar}>
-      <div className={styles.classifiers}>
-        {createElement(trait.archetype.icon, { className: styles.archetypeIcon })}
-        <div className={styles.level}>
-          <div className={styles.levelLabel}>{levelLabels[trait.level]}</div>
+      {trait.archetype.icon || trait.level ? (
+        <div className={styles.classifiers}>
+          {trait.archetype.icon ? createElement(trait.archetype.icon, { className: styles.archetypeIcon }) : null}
+          {trait.level ? (
+            <div className={styles.level}>
+              <div className={styles.levelLabel}>{levelLabels[trait.level]}</div>
+            </div>
+          ) : null}
         </div>
-      </div>
+      ) : null}
       <div className={styles.title}>{trait.title}</div>
     </div>
     <CapabilityList className={styles.capabilities} capabilities={trait.capabilities} />

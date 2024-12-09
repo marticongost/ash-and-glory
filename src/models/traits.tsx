@@ -24,19 +24,19 @@ import {
 } from "@/components/ResourceIcon"
 import { buildings, buildingTypes } from "./buildings"
 
-export type ArchetypeId = "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
+export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 
 export interface ArchetypeProps {
   id: ArchetypeId
   title: string
-  icon: JSXElementConstructor<any>
+  icon?: JSXElementConstructor<any>
   traits: Omit<TraitProps, "archetype">[]
 }
 
 export class Archetype {
   readonly id: ArchetypeId
   readonly title: string
-  readonly icon: JSXElementConstructor<any>
+  readonly icon?: JSXElementConstructor<any>
   readonly traits: Trait[]
 
   constructor({ id, title, icon, traits }: ArchetypeProps) {
@@ -57,7 +57,7 @@ export const levelLabels: Record<TraitLevel, string> = {
 
 export interface TraitProps {
   archetype: Archetype
-  level: TraitLevel
+  level?: TraitLevel
   id: string
   title: string
   capabilities: Array<Capability>
@@ -65,7 +65,7 @@ export interface TraitProps {
 
 export class Trait {
   readonly archetype: Archetype
-  readonly level: TraitLevel
+  readonly level?: TraitLevel
   readonly id: string
   readonly title: string
   readonly capabilities: Capability[]
@@ -80,6 +80,64 @@ export class Trait {
 }
 
 export const archetypes: Record<ArchetypeId, Archetype> = {
+  standard: new Archetype({
+    id: "standard",
+    title: "Estàndard",
+    traits: [
+      {
+        id: "basic-capabilities",
+        title: "Capacitats estàndard",
+        capabilities: [
+          new Passive({
+            id: "storage",
+            moment: "turnEnd",
+            effect: (
+              <>
+                Emmagetzemar un <AnyDrive /> i/o un <AnyMaterial />
+              </>
+            ),
+          }),
+          new Action({
+            id: "acquire-trait",
+            cost: { resolve: "1+" },
+            effect: (
+              <>
+                Adquirir un tret. Els primers 3 trets costen <Resolve />; els posteriors, <Resolve amount={2} />.
+              </>
+            ),
+          }),
+          new Action({
+            id: "flexibility",
+            cost: { anyDrive: 2 },
+            effect: (
+              <>
+                Guanyar <Resolve />
+              </>
+            ),
+          }),
+          new Action({
+            id: "catch-up",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Guanyar <Resolve />. Només pel(s) jugador(s) amb menys <Glory /> a l'inici del torn.
+              </>
+            ),
+          }),
+          new Action({
+            id: "found-city",
+            cost: { growth: "1+" },
+            effect: (
+              <>
+                Eliminar un colon i fundar una ciutat a la seva ubicació. El cost és de un <Growth /> per cada ciutat
+                que el jugador ja controli.
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
   warriors: new Archetype({
     id: "warriors",
     title: "Guerrers",
