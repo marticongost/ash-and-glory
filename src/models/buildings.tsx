@@ -36,6 +36,11 @@ import {
   Glory,
   Growth,
   Resolve,
+  WarDevotion,
+  FertilityDevotion,
+  JusticeDevotion,
+  DarknessDevotion,
+  InspirationDevotion,
 } from "@/components/ResourceIcon/ResourceIcon"
 
 export type BuildingTypeId =
@@ -492,8 +497,12 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: undefined,
-      effect: <>Incrementar la devoció al déu de la guerra.</>,
+      cost: { strife: 1 },
+      effect: (
+        <>
+          Guanyar <WarDevotion />
+        </>
+      ),
     }),
   ],
 })
@@ -508,8 +517,12 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: undefined,
-      effect: <>Incrementar la devoció al déu de la fertilitat.</>,
+      cost: { growth: 1 },
+      effect: (
+        <>
+          Guanyar <FertilityDevotion />
+        </>
+      ),
     }),
   ],
 })
@@ -524,8 +537,12 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: undefined,
-      effect: <>Incrementar la devoció al déu de la inspiració.</>,
+      cost: { curiosity: 1 },
+      effect: (
+        <>
+          Guanyar <InspirationDevotion />
+        </>
+      ),
     }),
   ],
 })
@@ -540,8 +557,12 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: undefined,
-      effect: <>Incrementar la devoció al déu de la justícia.</>,
+      cost: { effort: 1 },
+      effect: (
+        <>
+          Guanyar <JusticeDevotion />
+        </>
+      ),
     }),
   ],
 })
@@ -556,8 +577,12 @@ declareBuilding({
     new Action({
       id: "offer",
       title: "Ofrena",
-      cost: undefined,
-      effect: <>Incrementar la devoció al déu de la foscor.</>,
+      cost: { population: 1 },
+      effect: (
+        <>
+          Guanyar <DarknessDevotion />
+        </>
+      ),
     }),
   ],
 })

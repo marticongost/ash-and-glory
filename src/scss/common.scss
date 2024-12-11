@@ -68,7 +68,8 @@
   @include padding(xs);
 }
 
-$resources: gold, wood, ore, food, population, strife, effort, growth, curiosity, resolve;
+$resources: gold, wood, ore, food, population, strife, effort, growth, curiosity, resolve, warDevotion,
+  fertilityDevotion, inspirationDevotion, justiceDevotion, darknessDevotion;
 
 @mixin resource-color-code($property) {
   @each $resource in $resources {

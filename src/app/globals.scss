@@ -35,6 +35,7 @@
   $population: rgb(203, 140, 98);
   $regal-purple: rgb(36, 31, 59);
   $soft-purple: rgb(102 102 105);
+  $devotion: #32716c;
 
   // Color assignments
   --page-background-color: #{$white};
@@ -79,6 +80,16 @@
   --night-resource-color-resolve: #{$resolve-night};
   --resource-color-population: #{$population};
   --night-resource-color-population: #{$population};
+  --resource-color-warDevotion: #{$devotion};
+  --night-resource-color-warDevotion: #{$devotion};
+  --resource-color-fertilityDevotion: #{$devotion};
+  --night-resource-color-fertilityDevotion: #{$devotion};
+  --resource-color-inspirationDevotion: #{$devotion};
+  --night-resource-color-inspirationDevotion: #{$devotion};
+  --resource-color-justiceDevotion: #{$devotion};
+  --night-resource-color-justiceDevotion: #{$devotion};
+  --resource-color-darknessDevotion: #{$devotion};
+  --night-resource-color-darknessDevotion: #{$devotion};
   --treat-background-color: #{$regal-purple};
   --treat-medium-background-color: #{$soft-purple};
 

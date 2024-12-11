@@ -33,3 +33,12 @@ export const Curiosity = (props: ResourceIconWrapperProps) => <ResourceIcon {...
 export const Resolve = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="resolve" />
 export const Population = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="population" />
 export const Glory = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="glory" />
+export const WarDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="warDevotion" />
+export const FertilityDevotion = (props: ResourceIconWrapperProps) => (
+  <ResourceIcon {...props} type="fertilityDevotion" />
+)
+export const InspirationDevotion = (props: ResourceIconWrapperProps) => (
+  <ResourceIcon {...props} type="inspirationDevotion" />
+)
+export const JusticeDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="justiceDevotion" />
+export const DarknessDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="darknessDevotion" />

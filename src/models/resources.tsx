@@ -10,12 +10,23 @@ import GrowthIcon from "@/svg/drives/growth.svg"
 import CuriosityIcon from "@/svg/drives/curiosity.svg"
 import StrifeIcon from "@/svg/drives/strife.svg"
 import ResolveIcon from "@/svg/drives/resolve.svg"
+import WarDevotionIcon from "@/svg/deities/war.svg"
+import FertilityDevotionIcon from "@/svg/deities/fertility.svg"
+import InspirationDevotionIcon from "@/svg/deities/inspiration.svg"
+import JusticeDevotionIcon from "@/svg/deities/justice.svg"
+import DarknessDevotionIcon from "@/svg/deities/darkness.svg"
 import PopulationIcon from "@/svg/population.svg"
 import GloryIcon from "@/svg/glory.svg"
 
 export type DriveId = "anyDrive" | "effort" | "growth" | "curiosity" | "strife" | "resolve"
 export type MaterialId = "anyMaterial" | "gold" | "wood" | "ore" | "food"
-export type ResourceId = DriveId | MaterialId | "population" | "glory"
+export type DevotionId =
+  | "warDevotion"
+  | "fertilityDevotion"
+  | "inspirationDevotion"
+  | "justiceDevotion"
+  | "darknessDevotion"
+export type ResourceId = DriveId | MaterialId | DevotionId | "population" | "glory"
 
 export interface ResourceProps {
   id: ResourceId
@@ -71,6 +82,8 @@ export class Glory extends Resource {
   }
 }
 
+export class Devotion extends Resource {}
+
 export const materials: Record<MaterialId, Material> = {
   anyMaterial: new Material({ id: "anyMaterial", title: "Qualsevol material", icon: AnyMaterialIcon }),
   gold: new Material({ id: "gold", title: "Or", icon: GoldIcon }),
@@ -88,9 +101,33 @@ export const drives: Record<DriveId, Drive> = {
   resolve: new Drive({ id: "resolve", title: "Esforç", icon: ResolveIcon }),
 }
 
+export const devotion: Record<DevotionId, Devotion> = {
+  warDevotion: new Devotion({ id: "warDevotion", title: "Devoció al déu de la guerra", icon: WarDevotionIcon }),
+  fertilityDevotion: new Devotion({
+    id: "fertilityDevotion",
+    title: "Devoció al déu de la fertilitat",
+    icon: FertilityDevotionIcon,
+  }),
+  inspirationDevotion: new Devotion({
+    id: "inspirationDevotion",
+    title: "Devoció al déu de la inspiració",
+    icon: InspirationDevotionIcon,
+  }),
+  justiceDevotion: new Devotion({
+    id: "justiceDevotion",
+    title: "Devoció al déu de la justícia",
+    icon: JusticeDevotionIcon,
+  }),
+  darknessDevotion: new Devotion({
+    id: "darknessDevotion",
+    title: "Devoció al déu de la foscor",
+    icon: DarknessDevotionIcon,
+  }),
+}
+
 export const population = new Population({ title: "Població", icon: PopulationIcon })
 export const glory = new Glory({ title: "Glòria", icon: GloryIcon })
-export const resources: Record<ResourceId, Resource> = Object.assign({ population, glory }, materials, drives)
+export const resources: Record<ResourceId, Resource> = Object.assign({ population, glory }, devotion, materials, drives)
 
 export type ResourceAmount = number | `${number}+` | "*"
 
@@ -110,6 +147,11 @@ export class ResourceSet implements ResourceSetProps {
   readonly resolve: ResourceAmount
   readonly population: ResourceAmount
   readonly glory: ResourceAmount
+  readonly warDevotion: ResourceAmount
+  readonly fertilityDevotion: ResourceAmount
+  readonly inspirationDevotion: ResourceAmount
+  readonly justiceDevotion: ResourceAmount
+  readonly darknessDevotion: ResourceAmount
 
   constructor(cost: ResourceSetProps) {
     this.anyMaterial = cost.anyMaterial ?? 0
@@ -125,6 +167,11 @@ export class ResourceSet implements ResourceSetProps {
     this.resolve = cost.resolve ?? 0
     this.population = cost.population ?? 0
     this.glory = cost.glory ?? 0
+    this.warDevotion = cost.warDevotion ?? 0
+    this.fertilityDevotion = cost.fertilityDevotion ?? 0
+    this.inspirationDevotion = cost.inspirationDevotion ?? 0
+    this.justiceDevotion = cost.justiceDevotion ?? 0
+    this.darknessDevotion = cost.darknessDevotion ?? 0
   }
 
   isNone(): boolean {
@@ -141,7 +188,12 @@ export class ResourceSet implements ResourceSetProps {
       !this.strife &&
       !this.resolve &&
       !this.population &&
-      !this.glory
+      !this.glory &&
+      !this.warDevotion &&
+      !this.fertilityDevotion &&
+      !this.inspirationDevotion &&
+      !this.justiceDevotion &&
+      !this.darknessDevotion
     )
   }
 }
