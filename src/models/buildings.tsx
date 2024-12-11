@@ -17,7 +17,11 @@ import CastleIcon from "@/svg/buildings/castle.svg"
 import BarracksIcon from "@/svg/buildings/barracks.svg"
 import StablesIcon from "@/svg/buildings/stables.svg"
 import PalaceIcon from "@/svg/buildings/palace.svg"
-import TempleIcon from "@/svg/buildings/temple.svg"
+import FertilityTempleIcon from "@/svg/buildings/temple-fertility.svg"
+import WarTempleIcon from "@/svg/buildings/temple-war.svg"
+import InspirationTempleIcon from "@/svg/buildings/temple-inspiration.svg"
+import JusticeTempleIcon from "@/svg/buildings/temple-justice.svg"
+import DarknessTempleIcon from "@/svg/buildings/temple-darkness.svg"
 import UniversityIcon from "@/svg/buildings/university.svg"
 import MageTowerIcon from "@/svg/buildings/mage-tower.svg"
 import StatueIcon from "@/svg/buildings/statue.svg"
@@ -479,9 +483,9 @@ declareBuilding({
 })
 
 declareBuilding({
-  id: "temple",
-  title: "Temple",
-  icon: TempleIcon,
+  id: "warTemple",
+  title: "Temple de la guerra",
+  icon: WarTempleIcon,
   types: ["religious"],
   cost: { wood: 1, ore: 1, gold: 1 },
   capabilities: [
@@ -489,7 +493,71 @@ declareBuilding({
       id: "offer",
       title: "Ofrena",
       cost: undefined,
-      effect: <>Incrementar la devoció al déu.</>,
+      effect: <>Incrementar la devoció al déu de la guerra.</>,
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "fertilityTemple",
+  title: "Temple de la fertilitat",
+  icon: FertilityTempleIcon,
+  types: ["religious"],
+  cost: { wood: 1, ore: 1, gold: 1 },
+  capabilities: [
+    new Action({
+      id: "offer",
+      title: "Ofrena",
+      cost: undefined,
+      effect: <>Incrementar la devoció al déu de la fertilitat.</>,
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "inspirationTemple",
+  title: "Temple de la inspiració",
+  icon: InspirationTempleIcon,
+  types: ["religious"],
+  cost: { wood: 1, ore: 1, gold: 1 },
+  capabilities: [
+    new Action({
+      id: "offer",
+      title: "Ofrena",
+      cost: undefined,
+      effect: <>Incrementar la devoció al déu de la inspiració.</>,
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "justiceTemple",
+  title: "Temple de la justícia",
+  icon: JusticeTempleIcon,
+  types: ["religious"],
+  cost: { wood: 1, ore: 1, gold: 1 },
+  capabilities: [
+    new Action({
+      id: "offer",
+      title: "Ofrena",
+      cost: undefined,
+      effect: <>Incrementar la devoció al déu de la justícia.</>,
+    }),
+  ],
+})
+
+declareBuilding({
+  id: "darknessTemple",
+  title: "Temple de la foscor",
+  icon: DarknessTempleIcon,
+  types: ["religious"],
+  cost: { wood: 1, ore: 1, gold: 1 },
+  capabilities: [
+    new Action({
+      id: "offer",
+      title: "Ofrena",
+      cost: undefined,
+      effect: <>Incrementar la devoció al déu de la foscor.</>,
     }),
   ],
 })
