@@ -1,5 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200pt" height="1200pt" version="1.1" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
- <path d="m779.87 554.7c42.852-44.758 69.328-105.32 69.328-172.18 0-137.63-178.8-175.22-249.2-262.51-70.395 87.289-249.2 124.88-249.2 262.51 0 66.855 26.473 127.43 69.328 172.18z"/>
- <path d="m913.05 743.58-119.05-90.598v-62.285h-388.01v62.285l-119.05 90.598h-166.95v336.42h340.84l-0.003907-218.75c0-76.863 139.17-139.17 139.17-139.17s139.17 62.309 139.17 139.17v218.75h340.83v-336.42z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1200pt"
+   height="1200pt"
+   version="1.1"
+   viewBox="0 0 1200 1200"
+   id="svg1035"
+   sodipodi:docname="palace.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1039" />
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     showgrid="false"
+     inkscape:zoom="0.540625"
+     inkscape:cx="643.69942"
+     inkscape:cy="800.92486"
+     inkscape:window-width="2560"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1035" />
+  <path
+     id="path1031"
+     d="M 599.99854 120.01025 C 529.60361 207.29917 350.79785 244.89065 350.79785 382.52051 C 350.79785 449.37544 377.27102 509.94975 420.12598 554.69971 L 779.86963 554.69971 C 822.72159 509.94175 849.19775 449.38044 849.19775 382.52051 C 849.19775 244.89065 670.39846 207.30017 599.99854 120.01025 z M 405.99023 590.69678 L 405.99023 652.98193 L 286.93945 743.57959 L 119.98975 743.57959 L 119.98975 1080 L 460.82959 1080 L 460.82666 861.25049 C 460.82666 784.38757 599.99561 722.08008 599.99561 722.08008 C 599.99561 722.08008 739.16602 784.38957 739.16602 861.25049 L 739.16602 1080 L 1079.9956 1080 L 1079.9956 743.57959 L 913.05029 743.57959 L 793.99951 652.98193 L 793.99951 590.69678 L 405.99023 590.69678 z " />
 </svg>
