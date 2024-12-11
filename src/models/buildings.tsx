@@ -24,7 +24,7 @@ import JusticeTempleIcon from "@/svg/buildings/temple-justice.svg"
 import DarknessTempleIcon from "@/svg/buildings/temple-darkness.svg"
 import UniversityIcon from "@/svg/buildings/university.svg"
 import MageTowerIcon from "@/svg/buildings/mage-tower.svg"
-import StatueIcon from "@/svg/buildings/statue.svg"
+import MonumentIcon from "@/svg/buildings/monument.svg"
 import PortalIcon from "@/svg/buildings/portal.svg"
 import {
   Food,
@@ -605,9 +605,9 @@ declareBuilding({
 })
 
 declareBuilding({
-  id: "statue",
-  title: "Estàtua",
-  icon: StatueIcon,
+  id: "monument",
+  title: "Monument",
+  icon: MonumentIcon,
   types: ["monumental"],
   cost: { ore: 3 },
   capabilities: [
