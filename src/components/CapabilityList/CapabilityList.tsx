@@ -27,7 +27,7 @@ export const CapabilityList = ({ capabilities, ...baseProps }: CapabilityListPro
       {recordToList(capabilitiesByMoment, (momentId, momentCapabilities) => {
         const moment = moments[momentId]
         return (
-          <div className={styles.moment}>
+          <div className={styles.moment} key={momentId}>
             <div className={styles.momentTitle}>{moment.title}</div>
             <div className={styles.momentCapabilities}>
               {momentCapabilities.map((capability) => (
