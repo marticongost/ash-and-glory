@@ -2,12 +2,11 @@ import { Content } from "@/components/Content"
 import { Section } from "../../components/Section"
 import { Introduction } from "@/content/rules/Introduction"
 import { BasicConcepts } from "@/content/rules/BasicConcepts"
+import { Article } from "@/components/Article"
 
 export default function Rules() {
   return (
-    <Content>
-      <h1>Reglament</h1>
-
+    <Article title="Reglament">
       <Introduction />
       <BasicConcepts />
 
@@ -36,6 +35,6 @@ export default function Rules() {
       <Section title="Maniobra"></Section>
 
       <Section title="Trets i arquetips"></Section>
-    </Content>
+    </Article>
   )
 }
