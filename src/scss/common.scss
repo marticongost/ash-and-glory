@@ -73,7 +73,7 @@
   background-color: var(--night-background-color);
   color: var(--night-text-color);
   --icon-color: var(--night-icon-color);
-  @include padding(xs);
+  @include common.padding(xs);
 }
 
 $resources: gold, wood, ore, food, population, strife, effort, growth, curiosity, resolve, warDevotion,

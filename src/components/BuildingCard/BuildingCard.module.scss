@@ -1,16 +1,16 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .BuildingCard {
-  @include panel;
-  @include column;
-  @include card;
+  @include common.panel;
+  @include common.column;
+  @include common.card;
   align-items: stretch;
 }
 
 .titleBar {
-  @include titlebar;
-  @include row(sm);
-  @include padding(sm);
+  @include common.titlebar;
+  @include common.row(sm);
+  @include common.padding(sm);
   flex: 0 0 23%;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .taxonomy {
-  @include column(0.5ch);
+  @include common.column(0.5ch);
 }
 
 .title {
@@ -30,7 +30,7 @@
 }
 
 .types {
-  @include row;
+  @include common.row;
   font-weight: 300;
   font-size: 0.9em;
 }
@@ -44,7 +44,7 @@
 }
 
 .capabilities {
-  @include column;
+  @include common.column;
   flex: 1 1 auto;
   align-items: stretch;
 }

@@ -1,5 +1,5 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .DefinitionList {
-  @include column(sm);
+  @include common.column(sm);
 }

@@ -1,12 +1,12 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .Navigation {
-  @include row;
+  @include common.row;
 }
 
 .link {
-  @include column(xs);
-  @include padding(md);
+  @include common.column(xs);
+  @include common.padding(md);
   --icon-color: var(--night-icon-color);
   --icon-filter: ;
   --icon-transform: ;

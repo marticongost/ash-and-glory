@@ -1,7 +1,7 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .CapabilityDisplay {
-  @include row(1ch);
+  @include common.row(1ch);
   align-items: flex-start;
   background-color: var(--page-background-color);
 

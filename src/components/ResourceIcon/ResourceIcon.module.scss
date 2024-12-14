@@ -1,7 +1,7 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .ResourceIcon {
-  @include resource-color-code(--icon-color);
+  @include common.resource-color-code(--icon-color);
   height: 2.2ch;
   width: auto;
 

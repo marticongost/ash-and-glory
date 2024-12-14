@@ -1,22 +1,22 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .TraitCard {
-  @include panel;
-  @include column;
-  @include card;
+  @include common.panel;
+  @include common.column;
+  @include common.card;
   align-items: stretch;
 }
 
 .titleBar {
-  @include titlebar;
-  @include row(sm);
-  @include padding(sm);
+  @include common.titlebar;
+  @include common.row(sm);
+  @include common.padding(sm);
   background-color: var(--treat-background-color);
   flex: 0 0 18%;
 }
 
 .classifiers {
-  @include row(0.5ch);
+  @include common.row(0.5ch);
 }
 
 .archetypeIcon {
@@ -60,7 +60,7 @@
 }
 
 .capabilities {
-  @include column;
+  @include common.column;
   flex: 1 1 auto;
   align-items: stretch;
 }

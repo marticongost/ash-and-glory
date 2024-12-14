@@ -1,7 +1,7 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .TraitCardGrid {
-  @include column(xl);
+  @include common.column(xl);
 }
 
 .archetypeTitle {
@@ -20,5 +20,5 @@
 }
 
 .traits {
-  @include grid(md);
+  @include common.grid(md);
 }

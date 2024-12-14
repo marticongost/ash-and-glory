@@ -1,20 +1,20 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .ResourceSetDisplay {
   &[data-arrangement="column"] {
-    @include column(0.5ch);
+    @include common.column(0.5ch);
 
     .resource {
-      @include row(0.5ch);
+      @include common.row(0.5ch);
       align-items: center;
     }
   }
 
   &[data-arrangement="row"] {
-    @include row(sm);
+    @include common.row(sm);
 
     .resource {
-      @include column;
+      @include common.column;
       align-items: center;
     }
 
@@ -28,11 +28,11 @@
   }
 
   &[data-background="day"] .resource {
-    @include resource-color-code(--icon-color);
+    @include common.resource-color-code(--icon-color);
   }
 
   &[data-background="night"] .resource {
-    @include night-resource-color-code(--icon-color);
+    @include common.night-resource-color-code(--icon-color);
   }
 }
 

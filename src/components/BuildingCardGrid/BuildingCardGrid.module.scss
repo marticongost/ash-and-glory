@@ -1,5 +1,5 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .BuildingCardGrid {
-  @include grid(md);
+  @include common.grid(md);
 }

@@ -1,14 +1,14 @@
-@import "/src/scss/common.scss";
+@use "common.scss";
 
 .CapabilityList {
-  @include horizontal-padding(xs);
-  @include column(sm);
+  @include common.horizontal-padding(xs);
+  @include common.column(sm);
   align-items: stretch;
   margin-top: var(--spacing-xs);
 }
 
 .moment {
-  @include column;
+  @include common.column;
   align-items: stretch;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .momentCapabilities {
-  @include column;
+  @include common.column;
   align-self: stretch;
   align-items: stretch;
 
