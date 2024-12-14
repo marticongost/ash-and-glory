@@ -1,22 +1,20 @@
 @use "common.scss";
 
+$hexHeight: var(--hex-height, 3rem);
+$hexWidth: var(--hex-width, calc(#{$hexHeight} * var(--hex-aspect-ratio, 1.1547)));
+
 .HexGrid {
   position: relative;
-  width: calc(var(--w) * var(--hex-width) * 0.75 + var(--hex-width) * 0.25);
-  height: calc(var(--h) * var(--hex-height));
-  --hex-stroke-color: var(--light-line-color);
-  --hex-stroke-width: 2px;
-  --hex-height: 3rem;
-  --hex-aspect-ratio: 1.1547;
-  --hex-width: calc(var(--hex-height) * var(--hex-aspect-ratio));
+  width: calc(var(--w) * #{$hexWidth} * 0.75 + #{$hexWidth} * 0.25);
+  height: calc(var(--h) * #{$hexHeight});
 }
 
 .hex {
   position: absolute;
-  width: var(--hex-width);
-  height: var(--hex-height);
-  left: calc(50% - (var(--hex-width) / 2) + (var(--column) * var(--hex-width) * 0.75));
-  top: calc(50% - var(--hex-height) / 2 + (var(--row) * var(--hex-height) + var(--offset) * var(--hex-height)));
+  width: $hexWidth;
+  height: $hexHeight;
+  left: calc(50% - (#{$hexWidth} / 2) + (var(--column) * #{$hexWidth} * 0.75));
+  top: calc(50% - #{$hexHeight} / 2 + (var(--row) * #{$hexHeight} + var(--offset) * #{$hexHeight}));
 
   svg {
     position: absolute;
@@ -28,8 +26,8 @@
   }
 
   path {
-    stroke: var(--hex-stroke-color);
-    stroke-width: var(--hex-stroke-width);
+    stroke: var(--hex-stroke-color, var(--light-line-color));
+    stroke-width: var(--hex-stroke-width, 2px);
     fill: transparent;
   }
 }
