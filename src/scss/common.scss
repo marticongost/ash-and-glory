@@ -1,5 +1,5 @@
 @function isSpacingSpec($x) {
-  @return ($x == "xs" or $x == "sm" or $x == "md" or $x == "lg" or $x == "xl");
+  @return ($x == "xs" or $x == "sm" or $x == "md" or $x == "lg" or $x == "xl" or $x == "xxl");
 }
 
 @function spacing($value) {
@@ -26,6 +26,20 @@
   padding-bottom: #{spacing($value)};
 }
 
+@mixin margin($value) {
+  margin: #{spacing($value)};
+}
+
+@mixin horizontal-margin($value) {
+  margin-left: #{spacing($value)};
+  margin-right: #{spacing($value)};
+}
+
+@mixin vertical-margin($value) {
+  margin-top: #{spacing($value)};
+  margin-bottom: #{spacing($value)};
+}
+
 @mixin row($gap: null) {
   display: flex;
   flex-direction: row;
@@ -45,13 +59,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: stretch;
-  @if $gap == "sm" or $gap == "md" or $gap == "lg" or $gap == "xl" {
-    gap: var(--spacing-#{$gap});
-  } @else if $gap {
-    gap: $gap;
-  } @else {
-    gap: 0;
-  }
+  @include spacing($gap);
 }
 
 @mixin panel {

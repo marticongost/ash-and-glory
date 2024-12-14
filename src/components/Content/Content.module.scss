@@ -13,7 +13,7 @@
   tr:not(:last-of-type) {
     th,
     td {
-      padding-bottom: var(--spacing-xs);
+      padding-top: var(--spacing-xs);
     }
   }
   th {
@@ -26,5 +26,45 @@
   }
   td {
     vertical-align: top;
+  }
+
+  h1 {
+    font-family: var(--heading-font-family);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  & > h1 {
+    font-size: 3.5em;
+    margin-top: var(--spacing-xxl);
+  }
+
+  section > h1 {
+    font-size: 2.5em;
+    margin-top: var(--spacing-xl);
+  }
+
+  section > section > h1 {
+    font-size: 2em;
+    margin-top: var(--spacing-lg);
+  }
+
+  section > section > section > h1 {
+    font-size: 1.7em;
+    margin-top: var(--spacing-md);
+  }
+
+  p {
+    @include vertical-margin(sm);
+  }
+
+  dt {
+    @include row(xs);
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 0.5ch;
+  }
+
+  dd {
+    margin-left: 1.6em;
   }
 }
