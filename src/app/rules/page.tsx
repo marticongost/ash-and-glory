@@ -3,14 +3,14 @@ import { Section } from "../../components/Section"
 import { Introduction } from "@/content/rules/Introduction"
 import { BasicConcepts } from "@/content/rules/BasicConcepts"
 import { Article } from "@/components/Article"
+import { Preparation } from "@/content/rules/Preparation"
 
 export default function Rules() {
   return (
     <Article title="Reglament">
       <Introduction />
       <BasicConcepts />
-
-      <Section title="Preparació"></Section>
+      <Preparation />
 
       <Section title="La seqüència del joc">
         <Section title="Fase de destí"></Section>

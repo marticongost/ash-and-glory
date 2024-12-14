@@ -50,6 +50,7 @@
   --site-header-color: #{$palette-ashen-purple};
   --section-heading-text-color: #{$palette-toffee};
   --warning-color: #{$palette-dull-red};
+  --selected-background-color: #{$palette-pearl};
   --icon-color: #{$palette-dull-gray};
   --night-icon-color: #{$palette-dull-gray};
   --night-selected-icon-color: #{$palette-cream};
@@ -112,7 +113,7 @@
 
 svg,
 svg * {
-  fill: var(--icon-color) !important;
+  fill: var(--icon-color);
 }
 
 html,

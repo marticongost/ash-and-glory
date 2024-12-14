@@ -1,0 +1,12 @@
+@use "common.scss";
+
+.Preparation {
+}
+
+.startPosition path {
+  fill: var(--selected-background-color) !important;
+}
+
+.mapDistributionHexGrid {
+  --hex-height: 1.5rem;
+}
