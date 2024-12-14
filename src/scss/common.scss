@@ -59,7 +59,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: stretch;
-  @include spacing($gap);
+  gap: #{spacing($gap)};
 }
 
 @mixin panel {
