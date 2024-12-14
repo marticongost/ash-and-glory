@@ -9,6 +9,7 @@ const nextConfig = {
   trailingSlash: true,
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   sassOptions: {
+    silenceDeprecations: ["legacy-js-api"],
     includePaths: [path.join(__dirname, "src/scss/")],
     logger: {
       warn: function (message) {
