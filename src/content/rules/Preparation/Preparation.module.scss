@@ -7,6 +7,15 @@
   fill: var(--selected-background-color) !important;
 }
 
+.mapDistributions {
+  @include common.grid(lg);
+}
+
+.mapDistributionSection {
+  @include common.column;
+}
+
 .mapDistributionHexGrid {
   --hex-height: 1.5rem;
+  align-self: center;
 }
