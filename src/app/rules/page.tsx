@@ -1,7 +1,5 @@
 import { Content } from "@/components/Content"
 import { Section } from "../../components/Section"
-import { DefinitionList } from "@/components/DefinitionList"
-import { AnyDrive, Curiosity, Effort, Growth, Resolve, Strife } from "@/components/ResourceIcon"
 import { Introduction } from "@/content/rules/Introduction"
 import { BasicConcepts } from "@/content/rules/BasicConcepts"
 
