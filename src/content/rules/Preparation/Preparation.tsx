@@ -4,6 +4,8 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 import { HexGrid } from "@/components/HexGrid"
 import { Hex } from "@/modules/hex"
 import { Population } from "@/components/ResourceIcon"
+import { Reference } from "@/components/Reference"
+import { buildings } from "@/models/buildings"
 
 export interface PreparationProps extends StandardComponentProps {}
 
@@ -37,14 +39,15 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
       </p>
       <ul>
         <li>
-          Un <em>centre de ciutat</em>, a l'espai central de la seva àrea de desplegament
+          Un <Reference item={buildings.cityCenter} />, a l'espai central de la seva àrea de desplegament
         </li>
         <li>Un soldat, sobre el centre de ciutat</li>
         <li>
           2 <Population /> a la ciutat
         </li>
         <li>
-          Una <em>Granja</em>, <em>Mina</em> i <em>Serradora</em> a la ciutat
+          Una <Reference item={buildings.farm} />, <Reference item={buildings.mine} /> i{" "}
+          <Reference item={buildings.sawmill} /> a la ciutat
         </li>
       </ul>
       <div className={styles.mapDistributions}>

@@ -162,7 +162,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new BuildingEnhancement({
             id: "draft",
-            target: buildings["city-center"],
+            target: buildings["cityCenter"],
             capabilities: [
               new Action({
                 id: "draft",
@@ -850,7 +850,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new BuildingEnhancement({
             id: "bleed-the-people",
-            target: buildings["city-center"],
+            target: buildings["cityCenter"],
             capabilities: [
               new Action({
                 id: "bleed-the-people",

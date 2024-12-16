@@ -1,0 +1,19 @@
+@use "common.scss";
+
+.Reference {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2ch;
+}
+
+.icon {
+  position: relative;
+  top: 0.5ch;
+  height: 2.5ch;
+  width: auto;
+}
+
+.title {
+  font-weight: bold;
+  color: var(--reference-text-color);
+}

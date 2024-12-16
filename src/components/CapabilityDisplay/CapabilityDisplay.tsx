@@ -14,6 +14,7 @@ import { Content } from "../Content"
 import ConvertIcon from "@/svg/convert.svg"
 import { CapabilityList } from "../CapabilityList"
 import { Building, BuildingType } from "@/models/buildings"
+import { Reference } from "../Reference"
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -55,7 +56,7 @@ interface BuildingEnhancementTargetDisplayProps {
 
 const BuildingEnhancementTargetDisplay = ({ target }: BuildingEnhancementTargetDisplayProps) => (
   <span className={styles.BuildingEnhancementTarget}>
-    {target instanceof Building ? target.title : null}
+    {target instanceof Building ? <Reference item={target} /> : null}
     {target instanceof BuildingType ? `de tipus ${target.title}` : null}
     {target instanceof BuildingWithMinCost ? `amb un cost de ${target.minCost}+ recursos` : null}
   </span>
