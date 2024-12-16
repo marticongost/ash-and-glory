@@ -114,7 +114,7 @@
 
 svg,
 svg * {
-  fill: var(--icon-color);
+  fill: var(--icon-color) !important;
 }
 
 html,

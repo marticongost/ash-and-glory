@@ -4,11 +4,11 @@
 }
 
 .startPosition path {
-  fill: var(--selected-background-color) !important;
+  --icon-color: var(--selected-background-color);
 }
 
 .exploredLocation path {
-  fill: var(--selected-background-light-color) !important;
+  --icon-color: var(--selected-background-light-color);
 }
 
 .mapDistributions {
