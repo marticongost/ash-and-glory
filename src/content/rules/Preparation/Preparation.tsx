@@ -3,6 +3,7 @@ import styles from "./Preparation.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { HexGrid } from "@/components/HexGrid"
 import { Hex } from "@/modules/hex"
+import { Population } from "@/components/ResourceIcon"
 
 export interface PreparationProps extends StandardComponentProps {}
 
@@ -23,6 +24,29 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
       </p>
     </Section>
     <Section title="3. Preparar el mapa">
+      <p>
+        Consultar la distribució corresponent al número de jugadors a la secció següent, i assignar a cada jugador un
+        dels punts d'inici indicats, aleatòriament. A continuació, cada jugador roba 7 caselles de territori: 3 amb 2
+        espais de construcció, 4 amb 1 espai de construcció. Els jugadors poden escollir el tipus dels territoris
+        lliurement, però com a mínim hauran de tenir un camp, un bosc i una muntanya.
+      </p>
+      <p>
+        Els jugadors col·loquen els territoris als espais indicats al seu punt d'inici, en l'ordre i posició que
+        vulguin, però emplenant cada un dels espais especificats. A continuació, els jugadors despleguen els següents
+        elements:
+      </p>
+      <ul>
+        <li>
+          Un <em>centre de ciutat</em>, a l'espai central de la seva àrea de desplegament
+        </li>
+        <li>Un soldat, sobre el centre de ciutat</li>
+        <li>
+          2 <Population /> a la ciutat
+        </li>
+        <li>
+          Una <em>Granja</em>, <em>Mina</em> i <em>Serradora</em> a la ciutat
+        </li>
+      </ul>
       <div className={styles.mapDistributions}>
         <MapDistribution
           playerCount={2}
