@@ -13,10 +13,14 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
       corresponents
     </Section>
     <Section title="2. Escollir avantatges i desavantatges">
-      Repartir 5 <em>avantatges</em> i 5 <em>desavantatges</em> a cada jugador. Cada jugador ha d'escollir avantatges
-      per valor de 3 punts, i desavantatges per valor de 3 punts. La selecció es fa simultàniament, esperant a revel·lar
-      les cartes escullides conjuntament amb la resta de jugadors. Posar les cartes seleccionades a l'àrea de joc del
-      jugador, de manera que tots els jugadors puguin veure-les. Les cartes no utilitzades es retiren del joc.
+      <p>
+        Repartir 5 <em>avantatges</em> i 5 <em>desavantatges</em> a cada jugador. D'entre les cartes obtingudes, cada
+        jugador ha de quedar-se amb desavantatges amb un valor agregat d'entre 2 i 3 punts; i avantatges amb un valor
+        agregat que no excedeixi el de les desavantatges. La selecció es fa simultàniament, esperant a revel·lar les
+        cartes escullides conjuntament amb la resta de jugadors. Posar les cartes seleccionades a l'àrea de joc del
+        jugador, de manera que tots els jugadors puguin veure-les. Les cartes no utilitzades es retiren del joc - no
+        s'utilitzaran durant la partida.
+      </p>
     </Section>
     <Section title="3. Preparar el mapa">
       <div className={styles.mapDistributions}>
