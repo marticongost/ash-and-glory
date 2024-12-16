@@ -2,6 +2,7 @@ import { Section } from "@/components/Section"
 import styles from "./Preparation.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { HexGrid } from "@/components/HexGrid"
+import { Hex } from "@/modules/hex"
 
 export interface PreparationProps extends StandardComponentProps {}
 
@@ -107,18 +108,23 @@ interface MapDistributionProps {
   startPositions: Array<[number, number]>
 }
 
-const MapDistribution = ({ playerCount, mapSize, startPositions }: MapDistributionProps) => (
-  <Section title={`Distribució per ${playerCount} jugadors`} className={styles.mapDistributionSection}>
-    <HexGrid
-      className={styles.mapDistributionHexGrid}
-      size={mapSize}
-      hexDecorator={(hex) => {
-        for (const startPosition of startPositions) {
-          if (hex.is(...startPosition)) {
-            return { className: styles.startPosition }
+const MapDistribution = ({ playerCount, mapSize, startPositions }: MapDistributionProps) => {
+  const startHexes = startPositions.map((coords) => Hex.at(...coords))
+  return (
+    <Section title={`Distribució per ${playerCount} jugadors`} className={styles.mapDistributionSection}>
+      <HexGrid
+        className={styles.mapDistributionHexGrid}
+        size={mapSize}
+        hexDecorator={(hex) => {
+          for (const startingHex of startHexes) {
+            if (hex.is(startingHex)) {
+              return { className: styles.startPosition }
+            } else if (hex.distanceTo(startingHex) === 1) {
+              return { className: styles.exploredLocation }
+            }
           }
-        }
-      }}
-    />
-  </Section>
-)
+        }}
+      />
+    </Section>
+  )
+}

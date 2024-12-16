@@ -22,12 +22,16 @@ export class Hex {
     this.row = row
   }
 
+  static at(column: number, row: number) {
+    return new this({ column, row })
+  }
+
   toString(): string {
     return `Hex({column: ${this.column}, row: ${this.row}})`
   }
 
-  is(column: number, row: number): boolean {
-    return this.column === column && this.row === row
+  is(position: OffsetCoordinates): boolean {
+    return this.column === position.column && this.row === position.row
   }
 
   distanceTo(target: OffsetCoordinates): number {

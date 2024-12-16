@@ -7,6 +7,10 @@
   fill: var(--selected-background-color) !important;
 }
 
+.exploredLocation path {
+  fill: var(--selected-background-light-color) !important;
+}
+
 .mapDistributions {
   @include common.grid(lg);
 }
@@ -16,6 +20,6 @@
 }
 
 .mapDistributionHexGrid {
-  --hex-height: 1.5rem;
+  --hex-height: 1rem;
   align-self: center;
 }
