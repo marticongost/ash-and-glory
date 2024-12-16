@@ -1,4 +1,6 @@
 import type { JSXElementConstructor } from "react"
+import AdvantageIcon from "@/svg/advantage.svg"
+import DisadvantageIcon from "@/svg/disadvantage.svg"
 import WarriorsIcon from "@/svg/archetypes/warriors.svg"
 import TradersIcon from "@/svg/archetypes/traders.svg"
 import AcademicsIcon from "@/svg/archetypes/academics.svg"
@@ -25,25 +27,59 @@ import {
 import { buildings, buildingTypes } from "./buildings"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
+export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
 
-export interface ArchetypeProps {
-  id: ArchetypeId
+export interface TraitsCategoryProps {
+  id: TraitCategoryId
   title: string
-  icon?: JSXElementConstructor<any>
-  traits: Omit<TraitProps, "archetype">[]
+  traits: Omit<TraitProps, "category">[]
 }
 
-export class Archetype {
-  readonly id: ArchetypeId
+export abstract class TraitsCategory {
+  readonly id: TraitCategoryId
   readonly title: string
-  readonly icon?: JSXElementConstructor<any>
   readonly traits: Trait[]
 
-  constructor({ id, title, icon, traits }: ArchetypeProps) {
+  constructor({ id, title, traits }: TraitsCategoryProps) {
     this.id = id
     this.title = title
+    this.traits = traits.map((props) => new Trait({ ...props, category: this }))
+  }
+
+  abstract readonly icon?: JSXElementConstructor<any>
+}
+
+export interface ArchetypeProps extends TraitsCategoryProps {
+  id: ArchetypeId
+  icon: JSXElementConstructor<any>
+}
+
+export class Archetype extends TraitsCategory {
+  readonly icon: JSXElementConstructor<any>
+
+  constructor({ icon, ...baseProps }: ArchetypeProps) {
+    super(baseProps)
     this.icon = icon
-    this.traits = traits.map((traitProps) => new Trait({ ...traitProps, archetype: this }))
+  }
+}
+
+export interface InnateTraitsCategoryProps extends TraitsCategoryProps {
+  id: "advantages" | "disadvantages"
+  icon: JSXElementConstructor<any>
+}
+
+export class InnateTraitsCategory extends TraitsCategory {
+  readonly icon: JSXElementConstructor<any>
+
+  constructor({ icon, ...baseProps }: InnateTraitsCategoryProps) {
+    super(baseProps)
+    this.icon = icon
+  }
+}
+
+export class StandardTraitsCategory extends TraitsCategory {
+  get icon(): JSXElementConstructor<any> | undefined {
+    return undefined
   }
 }
 
@@ -56,7 +92,7 @@ export const levelLabels: Record<TraitLevel, string> = {
 }
 
 export interface TraitProps {
-  archetype: Archetype
+  category: TraitsCategory
   level?: TraitLevel
   id: string
   title: string
@@ -64,14 +100,14 @@ export interface TraitProps {
 }
 
 export class Trait {
-  readonly archetype: Archetype
+  readonly category: TraitsCategory
   readonly level?: TraitLevel
   readonly id: string
   readonly title: string
   readonly capabilities: Capability[]
 
-  constructor({ archetype, level, id, title, capabilities }: TraitProps) {
-    this.archetype = archetype
+  constructor({ category, level, id, title, capabilities }: TraitProps) {
+    this.category = category
     this.level = level
     this.id = id
     this.title = title
@@ -79,8 +115,8 @@ export class Trait {
   }
 }
 
-export const archetypes: Record<ArchetypeId, Archetype> = {
-  standard: new Archetype({
+export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
+  standard: new StandardTraitsCategory({
     id: "standard",
     title: "Estàndard",
     traits: [
@@ -133,6 +169,48 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
                 controli. Guanyar la mateixa quantitat en <Glory />.
               </>
             ),
+          }),
+        ],
+      },
+    ],
+  }),
+  advantages: new InnateTraitsCategory({
+    id: "advantages",
+    title: "Avantatges",
+    icon: AdvantageIcon,
+    traits: [
+      {
+        level: 1,
+        id: "rich",
+        title: "Rics",
+        capabilities: [
+          new Passive({
+            id: "rich",
+            moment: "gameStart",
+            effect: (
+              <>
+                Guanyar <Gold amount={2} />
+              </>
+            ),
+          }),
+        ],
+      },
+    ],
+  }),
+  disadvantages: new InnateTraitsCategory({
+    id: "disadvantages",
+    title: "Desavantatges",
+    icon: DisadvantageIcon,
+    traits: [
+      {
+        id: "feeble",
+        level: 2,
+        title: "Febles",
+        capabilities: [
+          new Passive({
+            id: "feeble",
+            moment: "combat",
+            effect: "-1 a l'atac i la defensa",
           }),
         ],
       },
@@ -720,7 +798,7 @@ export const archetypes: Record<ArchetypeId, Archetype> = {
         capabilities: [
           new BuildingEnhancement({
             id: "monumental-splendor",
-            target: buildings.statue,
+            target: buildings.monument,
             capabilities: [
               new Action({
                 id: "monumental-splendor",

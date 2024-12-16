@@ -1,6 +1,6 @@
 import { TraitCardGrid } from "@/components/TraitCardGrid"
-import { archetypes } from "@/models/traits"
+import { traitCategories } from "@/models/traits"
 
 export default function Traits() {
-  return <TraitCardGrid archetypes={Object.values(archetypes)} />
+  return <TraitCardGrid categories={Object.values(traitCategories)} />
 }

@@ -5,13 +5,29 @@
   @include common.column;
   @include common.card;
   align-items: stretch;
+  --titlebar-color: var(--archetype-trait-background-color);
+  --level-background-color: var(--archetype-trait-medium-background-color);
+
+  &[data-category="standard"] {
+    --titlebar-color: var(--standard-trait-background-color);
+  }
+
+  &[data-category="advantages"] {
+    --titlebar-color: var(--advantage-background-color);
+    --level-background-color: var(--advantage-medium-background-color);
+  }
+
+  &[data-category="disadvantages"] {
+    --titlebar-color: var(--disadvantage-background-color);
+    --level-background-color: var(--disadvantage-medium-background-color);
+  }
 }
 
 .titleBar {
   @include common.titlebar;
   @include common.row(sm);
   @include common.padding(sm);
-  background-color: var(--treat-background-color);
+  background-color: var(--titlebar-color);
   flex: 0 0 18%;
 }
 
@@ -19,10 +35,11 @@
   @include common.row(0.5ch);
 }
 
-.archetypeIcon {
+.categoryIcon {
   height: auto;
   width: 3em;
   flex: 0 0 auto;
+  --icon-color: var(--night-overlay-color);
 }
 
 .level {
@@ -47,7 +64,7 @@
     height: var(--size);
     width: var(--size);
     transform: rotate(45deg);
-    background-color: var(--treat-medium-background-color);
+    background-color: var(--level-background-color);
     z-index: 1;
     box-shadow: var(--icon-shadow);
   }

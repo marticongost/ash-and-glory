@@ -1,20 +1,20 @@
-import { levelLabels, type Archetype, type Trait } from "@/models/traits"
+import { levelLabels, type TraitsCategory } from "@/models/traits"
 import styles from "./TraitCardGrid.module.scss"
 import { TraitCard } from "../TraitCard"
 import { groupBy, recordToList } from "@/modules/utils"
 
 export interface TraitCardGridProps {
-  archetypes: Archetype[]
+  categories: TraitsCategory[]
 }
 
-export const TraitCardGrid = ({ archetypes }: TraitCardGridProps) => (
+export const TraitCardGrid = ({ categories }: TraitCardGridProps) => (
   <div className={styles.TraitCardGrid}>
-    {archetypes.map((archetype) => (
-      <div key={archetype.id} className={styles.archetype}>
-        <div className={styles.archetypeTitle}>{archetype.title}</div>
+    {categories.map((category) => (
+      <div key={category.id} className={styles.category}>
+        <div className={styles.categoryTitle}>{category.title}</div>
         <div className={styles.levels}>
           {recordToList(
-            groupBy(archetype.traits, (trait) => trait.level ?? 0),
+            groupBy(category.traits, (trait) => trait.level ?? 0),
             (level, traits) => (
               <div key={level} className={styles.level}>
                 {level != 0 ? <div className={styles.levelTitle}>Nivell {levelLabels[level]}</div> : null}

@@ -13,6 +13,7 @@ export type MomentId =
   | "whenBuilt"
   | "turnStart"
   | "turnEnd"
+  | "gameStart"
   | "gameEnd"
 
 export interface MomentProps {
@@ -54,5 +55,6 @@ export const moments: Record<MomentId, Moment> = {
     id: "turnEnd",
     title: "En finalitzar el torn",
   }),
+  gameStart: new Moment({ id: "gameStart", title: "En començar la partida" }),
   gameEnd: new Moment({ id: "gameEnd", title: "En finalitzar la partida" }),
 }

@@ -8,13 +8,15 @@
   --spacing-xs: calc(var(--spacing-sm) / 2);
 
   // Color palette
-  $palette-white: #fff;
+  $palette-white: #ffffff;
   $palette-mist: #eee;
   $palette-pearl: #f1e9e1;
   $palette-cream: #e0d1c2;
   $palette-latte: #c0a78e;
   $palette-toffee: #8a6948;
   $palette-dull-gray: #b9b1b1;
+  $palette-medium-dark-gray: #403d3d;
+  $palette-dark-gray: #2e2c2c;
   $palette-black: #171717;
   $palette-dull-red: #722d2d;
   $palette-ashen-purple: #1e1214;
@@ -30,6 +32,7 @@
   $palette-green-night: rgb(110, 128, 86);
   $palette-brown: rgb(102, 71, 71);
   $palette-red: rgb(110, 32, 32);
+  $palette-dull-pink: rgb(166, 100, 100);
   $palette-curiosity: rgb(102, 71, 96);
   $palette-blue: rgb(45, 102, 138);
   $palette-blue-night: rgb(68, 124, 159);
@@ -57,6 +60,7 @@
   --night-icon-color: #{$palette-dull-gray};
   --night-selected-icon-color: #{$palette-cream};
   --night-hover-icon-color: #{$palette-latte};
+  --night-overlay-color: #{$palette-white}aa;
   --light-line-color: #{$palette-cream};
   --subtle-separator-color: #{$palette-dull-gray}30;
   --night-subtle-separator-color: #{$palette-pearl}15;
@@ -94,8 +98,14 @@
   --night-resource-color-justiceDevotion: #{$palette-turquoise};
   --resource-color-darknessDevotion: #{$palette-turquoise};
   --night-resource-color-darknessDevotion: #{$palette-turquoise};
-  --treat-background-color: #{$palette-regal-purple};
-  --treat-medium-background-color: #{$palette-soft-purple};
+  --standard-trait-background-color: #{$palette-dark-gray};
+  --standard-medium-background-color: #{$palette-medium-dark-gray};
+  --advantage-background-color: #{$palette-green};
+  --advantage-medium-background-color: #{$palette-green-night};
+  --disadvantage-background-color: #{$palette-red};
+  --disadvantage-medium-background-color: #{$palette-dull-pink};
+  --archetype-trait-background-color: #{$palette-regal-purple};
+  --archetype-trait-medium-background-color: #{$palette-soft-purple};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$palette-black}88;

@@ -9,11 +9,11 @@ export interface TraitCardProps extends StandardComponentProps {
 }
 
 export const TraitCard = ({ trait, ...baseProps }: TraitCardProps) => (
-  <div {...getStandardAttributes(baseProps, styles.TraitCard)}>
+  <div {...getStandardAttributes(baseProps, styles.TraitCard)} data-category={trait.category.id}>
     <div className={styles.titleBar}>
-      {trait.archetype.icon || trait.level ? (
+      {trait.category.icon || trait.level ? (
         <div className={styles.classifiers}>
-          {trait.archetype.icon ? createElement(trait.archetype.icon, { className: styles.archetypeIcon }) : null}
+          {trait.category.icon ? createElement(trait.category.icon, { className: styles.categoryIcon }) : null}
           {trait.level ? (
             <div className={styles.level}>
               <div className={styles.levelLabel}>{levelLabels[trait.level]}</div>
