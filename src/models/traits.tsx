@@ -25,6 +25,7 @@ import {
   Wood,
 } from "@/components/ResourceIcon"
 import { buildings, buildingTypes } from "./buildings"
+import { Reference } from "@/components/Reference"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -195,6 +196,58 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           }),
         ],
       },
+      {
+        level: 2,
+        id: "berserkers",
+        title: "Berserkers",
+        capabilities: [
+          new Passive({
+            id: "berserkers",
+            moment: "combat",
+            effect: <>+2 a l'atac, -1 a la defensa</>,
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "born-warriors",
+        title: "Guerrers innats",
+        capabilities: [
+          new Passive({
+            id: "born-warriors",
+            moment: "combat",
+            effect: <>Guanyar +1 a l'atac i la defensa</>,
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "powerful-army",
+        title: "Exèrcit poderós",
+        capabilities: [
+          new Passive({
+            id: "powerful-army",
+            moment: "gameStart",
+            effect: <>Desplegar un soldat addicional a la ciutat inicial.</>,
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "well-stocked",
+        title: "Previsors",
+        capabilities: [
+          new Passive({
+            id: "well-stocked",
+            moment: "gameStart",
+            effect: (
+              <>
+                Guanyar <Food /> i afegir un <Reference item={buildings.granary} /> a la ciutat inicial.
+              </>
+            ),
+          }),
+        ],
+      },
     ],
   }),
   disadvantages: new InnateTraitsCategory({
@@ -211,6 +264,21 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             id: "feeble",
             moment: "combat",
             effect: "-1 a l'atac i la defensa",
+          }),
+        ],
+      },
+      {
+        id: "atheist",
+        level: 3,
+        title: "Ateus",
+        capabilities: [
+          new Passive({
+            id: "atheist",
+            effect: (
+              <>
+                El jugador no pot construir ni utilitzar edificis <em>religiosos</em>
+              </>
+            ),
           }),
         ],
       },
