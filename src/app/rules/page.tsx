@@ -4,6 +4,7 @@ import { Introduction } from "@/content/rules/Introduction"
 import { BasicConcepts } from "@/content/rules/BasicConcepts"
 import { Article } from "@/components/Article"
 import { Preparation } from "@/content/rules/Preparation"
+import { GameSequence } from "@/content/rules/GameSequence"
 
 export default function Rules() {
   return (
@@ -11,20 +12,7 @@ export default function Rules() {
       <Introduction />
       <BasicConcepts />
       <Preparation />
-
-      <Section title="La seqüència del joc">
-        <Section title="Fase de destí"></Section>
-
-        <Section title="Fase de producció"></Section>
-
-        <Section title="Fase de construcció"></Section>
-
-        <Section title="Fase de producció"></Section>
-
-        <Section title="Fase de maniobra"></Section>
-
-        <Section title="Fase de neteja"></Section>
-      </Section>
+      <GameSequence />
 
       <Section title="Construir edificis"></Section>
 
