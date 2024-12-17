@@ -10,18 +10,23 @@
   table {
     border-collapse: collapse;
   }
-  tr:not(:last-of-type) {
-    th,
-    td {
-      padding-top: var(--spacing-xs);
-    }
+  th,
+  td {
+    padding: var(--spacing-xs);
+  }
+  tr:nth-child(2n) {
+    background-color: var(--even-row-background-color);
+  }
+  tr:nth-child(2n + 1) {
+    background-color: var(--odd-row-background-color);
   }
   th {
     text-align: left;
     vertical-align: top;
     white-space: nowrap;
+    border-bottom: var(--light-line);
     &:not(:last-child) {
-      padding-right: var(--spacing-xs);
+      padding-right: var(--spacing-md);
     }
   }
   td {
