@@ -233,6 +233,74 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        level: 1,
+        id: "canibals",
+        title: "Caníbals",
+        capabilities: [
+          new Passive({
+            id: "canibals",
+            moment: "afterWinningBattle",
+            effect: (
+              <>
+                Guanyar <Food />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "tough",
+        title: "Durs",
+        capabilities: [
+          new Passive({
+            id: "tough",
+            moment: "combat",
+            effect: <>+1 a la defensa</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "skilled",
+        title: "Hàbils",
+        capabilities: [
+          new Passive({
+            id: "skilled",
+            moment: "gameStart",
+            effect: <>Adquirir un tret</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "devote",
+        title: "Devots",
+        capabilities: [
+          new Passive({
+            id: "devote",
+            moment: "gameStart",
+            effect: <>Començar amb 2 punts de devoció del déu escollit</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "prepared",
+        title: "Preparats",
+        capabilities: [
+          new Passive({
+            id: "prepared",
+            moment: "gameStart",
+            effect: (
+              <>
+                Guanyar <AnyDrive />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         level: 2,
         id: "numerous",
         title: "Numerosos",
@@ -249,6 +317,41 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Passive({
             id: "city-size-limit",
             effect: <>Augmentar la població màxima de les ciutats en 1</>,
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "seers",
+        title: "Clarividents",
+        capabilities: [
+          new Action({
+            id: "peek-combat-cards",
+            moment: "beforeCombat",
+            cost: { curiosity: 1 },
+            effect: <>Veure la meitat (arrodonint cap a baix) de la ma de cartes de combat del rival.</>,
+          }),
+          new Passive({
+            id: "peek-event-cards",
+            moment: "afterEventResolved",
+            effect: (
+              <>
+                Veure les següents dues cartes d'esdeveniment. Barrejar-les, i deixar-ne una sobre el piló i una a sota.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "resolute",
+        title: "Estoics",
+        capabilities: [
+          new Action({
+            id: "resolute",
+            moment: "afterEventRevealed",
+            cost: { effort: 1 },
+            effect: <>Ignorar l'efecte de l'esdeveniment sobre el jugador.</>,
           }),
         ],
       },
@@ -276,6 +379,86 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
               <>
                 Permet que els colons i soldats entrin a territoris costers (caselles de mar adjacents a una casella de
                 terra), amb un cost de 3 punts de maniobra.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "expansive",
+        title: "Expansius",
+        capabilities: [
+          new Action({
+            id: "expansive",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Guanyar <Growth />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "hard-working",
+        title: "Treballadors",
+        capabilities: [
+          new Action({
+            id: "hard-working",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Guanyar <Effort />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "curious",
+        title: "Curiosos",
+        capabilities: [
+          new Action({
+            id: "curious",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Guanyar <Curiosity />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "combative",
+        title: "Combatius",
+        capabilities: [
+          new Action({
+            id: "combative",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Guanyar <Strife />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "versatile",
+        title: "Versàtils",
+        capabilities: [
+          new Action({
+            id: "versatile",
+            cost: { anyDrive: 2 },
+            effect: (
+              <>
+                Guanyar <Resolve />
               </>
             ),
           }),

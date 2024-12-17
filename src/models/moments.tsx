@@ -3,7 +3,11 @@ export type MomentId =
   | "productionStage"
   | "constructionStage"
   | "manouverStage"
+  | "afterEventRevealed"
+  | "afterEventResolved"
+  | "beforeCombat"
   | "combat"
+  | "afterWinningBattle"
   | "recruitingSoldiers"
   | "whenAcquiringTraits"
   | "afterCityConquered"
@@ -36,8 +40,12 @@ export const moments: Record<MomentId, Moment> = {
   constant: new Moment({ id: "constant", title: "Efecte constant" }),
   productionStage: new Moment({ id: "productionStage", title: "Fase de producció" }),
   constructionStage: new Moment({ id: "constructionStage", title: "Fase de construcció" }),
+  afterEventRevealed: new Moment({ id: "afterEventRevealed", title: "Després de revelar un esdeveniment" }),
+  afterEventResolved: new Moment({ id: "afterEventResolved", title: "Després de resoldre un esdeveniment" }),
   manouverStage: new Moment({ id: "manouverStage", title: "Fase de maniobra" }),
-  combat: new Moment({ id: "combat", title: "En combatre" }),
+  beforeCombat: new Moment({ id: "beforeCombat", title: "Abans del combat" }),
+  combat: new Moment({ id: "combat", title: "En combat" }),
+  afterWinningBattle: new Moment({ id: "afterWinningBattle", title: "En guanyar una batalla" }),
   recruitingSoldiers: new Moment({ id: "recruitingSoldiers", title: "En reclutar soldats" }),
   afterCityConquered: new Moment({ id: "afterCityConquered", title: "En conquerir una ciutat" }),
   afterDestroyingBarbarianCamp: new Moment({
