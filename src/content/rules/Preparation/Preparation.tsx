@@ -47,7 +47,8 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
         </li>
         <li>
           Una <Reference item={buildings.farm} />, <Reference item={buildings.mine} /> i{" "}
-          <Reference item={buildings.sawmill} /> a la ciutat
+          <Reference item={buildings.sawmill} />, al centre de la ciutat o a qualsevol dels territoris adjacents,
+          seguint les restriccions normals de desplegament d'edificis
         </li>
       </ul>
       <div className={styles.mapDistributions}>
