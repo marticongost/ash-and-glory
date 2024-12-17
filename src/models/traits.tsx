@@ -197,6 +197,62 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        level: 1,
+        id: "rugged",
+        title: "Soferts",
+        capabilities: [
+          new Passive({
+            id: "rugged",
+            moment: "whenSupportingPopulation",
+            effect: <>Permet ignorar la primera penalització del torn per fam.</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "mountaineers",
+        title: "Muntanyers",
+        capabilities: [
+          new Passive({
+            id: "mountaineers",
+            moment: "manouverStage",
+            effect: <>El moviment per muntanyes costa un punt de maniobra menys del normal.</>,
+          }),
+        ],
+      },
+      {
+        level: 1,
+        id: "sylvan",
+        title: "Silvans",
+        capabilities: [
+          new Passive({
+            id: "sylvan",
+            moment: "manouverStage",
+            effect: <>El moviment per boscos costa un punt de maniobra menys del normal.</>,
+          }),
+        ],
+      },
+      {
+        level: 2,
+        id: "numerous",
+        title: "Numerosos",
+        capabilities: [
+          new Passive({
+            id: "population-gain",
+            moment: "gameStart",
+            effect: (
+              <>
+                Guanyar <Population />
+              </>
+            ),
+          }),
+          new Passive({
+            id: "city-size-limit",
+            effect: <>Augmentar la població màxima de les ciutats en 1</>,
+          }),
+        ],
+      },
+      {
         level: 2,
         id: "berserkers",
         title: "Berserkers",
@@ -209,6 +265,23 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        level: 2,
+        id: "amphibious",
+        title: "Amfibis",
+        capabilities: [
+          new Passive({
+            id: "amphibious",
+            moment: "manouverStage",
+            effect: (
+              <>
+                Permet que els colons i soldats entrin a territoris costers (caselles de mar adjacents a una casella de
+                terra), amb un cost de 3 punts de maniobra.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         level: 3,
         id: "born-warriors",
         title: "Guerrers innats",
@@ -216,7 +289,12 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Passive({
             id: "born-warriors",
             moment: "combat",
-            effect: <>Guanyar +1 a l'atac i la defensa</>,
+            effect: (
+              <>
+                +1 a l'atac i la defensa. En robar cartes de combat, robar-ne una addicional i descartar una de les
+                cartes robades.
+              </>
+            ),
           }),
         ],
       },
@@ -243,6 +321,23 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             effect: (
               <>
                 Guanyar <Food /> i afegir un <Reference item={buildings.granary} /> a la ciutat inicial.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "winged",
+        title: "Alats",
+        capabilities: [
+          new Passive({
+            id: "winged",
+            moment: "manouverStage",
+            effect: (
+              <>
+                Ignorar les penalitzacions al moviment de boscos i muntanyes. +1 a l'atac i la defensa contra enemics
+                que no tinguin aquest avantatge.
               </>
             ),
           }),
