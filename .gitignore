@@ -11,6 +11,7 @@
 !.yarn/versions
 *.blend1
 *.stl
+*.3mf
 
 # testing
 /coverage
