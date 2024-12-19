@@ -22,7 +22,7 @@ export const CapabilityList = ({ capabilities, ...baseProps }: CapabilityListPro
   return (
     <div {...getStandardAttributes(baseProps, styles.CapabilityList)}>
       {timelessCapabilities.map((capability) => (
-        <CapabilityDisplay capability={capability} />
+        <CapabilityDisplay key={capability.id} capability={capability} />
       ))}
       {recordToList(capabilitiesByMoment, (momentId, momentCapabilities) => {
         const moment = moments[momentId]
