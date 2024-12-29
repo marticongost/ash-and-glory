@@ -12,7 +12,7 @@ export interface PreparationProps extends StandardComponentProps {}
 export const Preparation = ({ ...baseProps }: PreparationProps) => (
   <Section title="Preparació" {...getStandardAttributes(baseProps, styles.Preparation)}>
     <Section title="1. Escollir colors">
-      Cada jugador escull un dels colors disponibles i pren els soldats, vaixells, colons i centres de ciutat
+      Cada jugador escull un dels colors disponibles i pren els soldats, vaixells, exploradors i centres de ciutat
       corresponents
     </Section>
     <Section title="2. Escollir avantatges i desavantatges">

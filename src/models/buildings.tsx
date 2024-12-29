@@ -138,13 +138,13 @@ export const buildings = {
         ),
       }),
       new Action({
-        id: "create-colonizer",
+        id: "create-explorer",
         title: "Emigrar",
         cost: { curiosity: 1, population: 1 },
         limit: Infinity,
         effect: (
           <>
-            Retira un <Population /> de la ciutat i desplega un colon a l'edifici
+            Retira un <Population /> de la ciutat i desplega un explorador a l'edifici
           </>
         ),
       }),
@@ -432,7 +432,7 @@ export const buildings = {
       unique,
       new Passive({
         id: "horses",
-        effect: <>Els exèrcits i colons amics que comencin el torn a la ciutat guanyen un punt de maniobra</>,
+        effect: <>Els exèrcits i exploradors amics que comencin el torn a la ciutat guanyen un punt de maniobra</>,
       }),
     ],
   }),

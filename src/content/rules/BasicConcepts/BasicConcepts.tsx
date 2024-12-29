@@ -78,7 +78,7 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
               description: (
                 <>
                   Representa la inventiva, ingenuïtat i vocació de recerca i descobriment d'un imperi. Utilitzat per
-                  crear colons.
+                  crear exploradors.
                 </>
               ),
             },
@@ -164,7 +164,7 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
         </p>
         <ul>
           <li>Treballar als edificis de la ciutat</li>
-          <li>Ser desplegats sobre el mapa com a colons</li>
+          <li>Ser desplegats sobre el mapa com a exploradors</li>
           <li>Ser desplegats sobre el mapa com a soldats</li>
         </ul>
       </Section>

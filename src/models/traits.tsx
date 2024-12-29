@@ -166,8 +166,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { growth: "1+" },
             effect: (
               <>
-                Substituir un colon propi per una ciutat. El cost és de un <Growth /> per cada ciutat que el jugador ja
-                controli. Guanyar la mateixa quantitat en <Glory />.
+                Substituir un explorador propi per una ciutat. El cost és de un <Growth /> per cada ciutat que el
+                jugador ja controli. Guanyar la mateixa quantitat en <Glory />.
               </>
             ),
           }),
@@ -377,8 +377,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "manouverStage",
             effect: (
               <>
-                Permet que els colons i soldats entrin a territoris costers (caselles de mar adjacents a una casella de
-                terra), amb un cost de 3 punts de maniobra.
+                Permet que els exploradors i soldats entrin a territoris costers (caselles de mar adjacents a una
+                casella de terra), amb un cost de 3 punts de maniobra.
               </>
             ),
           }),
@@ -702,7 +702,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "afterDestroyingBarbarianCamp",
             effect: (
               <>
-                Guanyar <Glory />, un <em>colon</em> i un <em>soldat</em> a la ubicació del camp destruit
+                Guanyar <Glory />, un <em>explorador</em> i un <em>soldat</em> a la ubicació del camp destruit
               </>
             ),
           }),
@@ -1184,7 +1184,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "manouverStage",
             effect: (
               <>
-                Els exèrcits i colons que comencin el seu moviment a una ciutat del jugador guanyen 2 punts de maniobra.
+                Els exèrcits i exploradors que comencin el seu moviment a una ciutat del jugador guanyen 2 punts de
+                maniobra.
               </>
             ),
           }),
