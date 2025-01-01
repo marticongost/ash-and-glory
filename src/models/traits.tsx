@@ -130,7 +130,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "turnEnd",
             effect: (
               <>
-                Emmagetzemar un <AnyDrive /> i/o un <AnyMaterial />
+                Emmagetzemar un <AnyDrive /> i/o fins a <AnyMaterial amount={2} />
               </>
             ),
           }),
