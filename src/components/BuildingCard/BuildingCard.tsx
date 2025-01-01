@@ -23,10 +23,10 @@ export const BuildingCard = ({ building, ...baseProps }: BuildingCardProps) => (
           ))}
         </div>
       </div>
-      {building.cost.isNone() ? null : (
-        <ResourceSetDisplay className={styles.cost} resourceSet={building.cost} arrangement="row" background="night" />
-      )}
     </div>
+    {building.cost.isNone() ? null : (
+      <ResourceSetDisplay className={styles.cost} resourceSet={building.cost} arrangement="row" background="night" />
+    )}
     <CapabilityList className={styles.capabilities} capabilities={building.capabilities} />
   </div>
 )

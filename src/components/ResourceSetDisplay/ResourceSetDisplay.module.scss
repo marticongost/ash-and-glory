@@ -14,6 +14,14 @@
     @include common.row(sm);
 
     .resource {
+      @include common.row(1ch);
+    }
+  }
+
+  &[data-arrangement="multi-column"] {
+    @include common.row(sm);
+
+    .resource {
       @include common.column;
       align-items: center;
     }
@@ -33,6 +41,7 @@
 
   &[data-background="night"] .resource {
     @include common.night-resource-color-code(--icon-color);
+    color: var(--night-text-color);
   }
 }
 

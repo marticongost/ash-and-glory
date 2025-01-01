@@ -40,7 +40,8 @@
 }
 
 .cost {
-  margin-left: auto;
+  @include common.padding(sm);
+  background-color: var(--night-medium-background-color);
 }
 
 .capabilities {
