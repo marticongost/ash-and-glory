@@ -621,7 +621,7 @@ export const buildings = {
         moment: "gameEnd",
         effect: (
           <>
-            Guanyar <Glory /> si l'estàtua no està <em>danyada</em>
+            Guanyar <Glory /> si no està <em>danyat</em>
           </>
         ),
       }),
