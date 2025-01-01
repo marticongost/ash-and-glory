@@ -134,7 +134,7 @@ export const buildings = {
         limit: Infinity,
         effect: (
           <>
-            Afegeix <Population /> a la ciutat
+            Afegir <Population /> a la ciutat
           </>
         ),
       }),
@@ -145,7 +145,7 @@ export const buildings = {
         limit: Infinity,
         effect: (
           <>
-            Retira un <Population /> de la ciutat i desplega un explorador a l'edifici
+            Retirar un <Population /> de la ciutat i desplegar un explorador a l'edifici
           </>
         ),
       }),
@@ -155,7 +155,7 @@ export const buildings = {
         moment: "constructionStage",
         cost: { growth: 1, population: 1 },
         limit: Infinity,
-        effect: <>Construeix un edifici a la ciutat, pagant el seu cost</>,
+        effect: <>Construir un edifici a la ciutat, pagant el seu cost</>,
       }),
     ],
   }),
@@ -265,11 +265,11 @@ export const buildings = {
       new Action({
         id: "build-ship",
         title: "Construir vaixell",
-        moment: "manouverStage",
+        moment: "recruitingSoldiers",
         cost: { curiosity: 1, wood: 2 },
         effect: (
           <>
-            Retira un <Population /> de la ciutat i desplega un vaixell a un mar adjacent
+            Retirar un <Population /> de la ciutat i desplegar un vaixell a un mar adjacent
           </>
         ),
       }),
@@ -463,7 +463,7 @@ export const buildings = {
         moment: "manouverStage",
         effect: (
           <>
-            Retira 1 <Population />, desplega un soldat a l'edifici
+            Retirar 1 <Population />, desplegar un soldat a l'edifici
           </>
         ),
       }),
