@@ -153,7 +153,7 @@ export const buildings = {
         id: "build",
         title: "Construir edifici",
         moment: "constructionStage",
-        cost: { growth: 1, population: 1 },
+        cost: { growth: 1, population: "*", anyMaterial: "*" },
         limit: Infinity,
         effect: <>Construir un edifici a la ciutat, pagant el seu cost</>,
       }),
@@ -164,7 +164,7 @@ export const buildings = {
     title: "Allotjaments",
     icon: HousingIcon,
     types: ["housing"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "increase-max-population",
@@ -177,7 +177,7 @@ export const buildings = {
     title: "Granja",
     icon: FarmIcon,
     types: ["production"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       new Limitation({
         id: "must-be-adjacent-to-sea",
@@ -200,7 +200,7 @@ export const buildings = {
     title: "Serradora",
     icon: SawmillIcon,
     types: ["production"],
-    cost: { wood: 1, ore: 1 },
+    cost: { population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Limitation({
         id: "must-be-adjacent-to-sea",
@@ -223,7 +223,7 @@ export const buildings = {
     title: "Mina",
     icon: MineIcon,
     types: ["production"],
-    cost: { wood: 1, ore: 1 },
+    cost: { population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Limitation({
         id: "must-be-adjacent-to-sea",
@@ -246,7 +246,7 @@ export const buildings = {
     title: "Port",
     icon: HarbourIcon,
     types: ["production"],
-    cost: { wood: 2, ore: 1 },
+    cost: { population: 1, wood: 2, ore: 1 },
     capabilities: [
       new Limitation({
         id: "must-be-adjacent-to-sea",
@@ -266,7 +266,7 @@ export const buildings = {
         id: "build-ship",
         title: "Construir vaixell",
         moment: "recruitingSoldiers",
-        cost: { curiosity: 1, wood: 2 },
+        cost: { population: 1, curiosity: 1, wood: 2 },
         effect: (
           <>
             Retirar un <Population /> de la ciutat i desplegar un vaixell a un mar adjacent
@@ -280,7 +280,7 @@ export const buildings = {
     title: "Taller",
     icon: WorkshopIcon,
     types: ["production"],
-    cost: { wood: 1, ore: 1 },
+    cost: { population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Action({
         id: "fish",
@@ -299,7 +299,7 @@ export const buildings = {
     title: "Magatzem",
     icon: StorageIcon,
     types: ["storage", "economic"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "store-materials",
@@ -318,7 +318,7 @@ export const buildings = {
     title: "Graner",
     icon: GranaryIcon,
     types: ["storage", "economic"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "store-materials",
@@ -336,7 +336,7 @@ export const buildings = {
     title: "Mercat",
     icon: MarketIcon,
     types: ["economic"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       new Action({
         id: "exchange-goods",
@@ -348,38 +348,12 @@ export const buildings = {
               Convertir <Food />, <Wood /> i/o <Ore /> en <Gold />, a raó d'un <Gold /> per cada recurs.
             </p>
             <p>
-              La quantitat màxima intercanviable de cada recurs depèn del nombre d'edificis productius del tipus indicat
-              adjacents al mercat:
+              La quantitat màxima de cada recurs depèn del nombre d'edificis adjacents del tipus indicat:
+              <Reference item={() => buildings.farm} /> o
+              <Reference item={() => buildings.harbour} /> per <Food />,
+              <Reference item={() => buildings.sawmill} /> per <Wood />,
+              <Reference item={() => buildings.mine} /> per <Ore />.
             </p>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <Food />
-                  </td>
-                  <td>
-                    <Reference item={() => buildings.farm} /> o
-                    <Reference item={() => buildings.harbour} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Wood />
-                  </td>
-                  <td>
-                    <Reference item={() => buildings.sawmill} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Ore />
-                  </td>
-                  <td>
-                    <Reference item={() => buildings.mine} />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </>
         ),
       }),
@@ -390,7 +364,7 @@ export const buildings = {
     title: "Banc",
     icon: BankIcon,
     types: ["economic"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 1, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       unique,
       new Passive({
@@ -420,7 +394,7 @@ export const buildings = {
     title: "Castell",
     icon: CastleIcon,
     types: ["government", "military"],
-    cost: { wood: 2, ore: 4 },
+    cost: { population: 2, wood: 2, ore: 4 },
     capabilities: [
       unique,
       new Passive({
@@ -453,7 +427,7 @@ export const buildings = {
     title: "Barraques",
     icon: BarracksIcon,
     types: ["military"],
-    cost: { wood: 2 },
+    cost: { population: 1, wood: 2 },
     capabilities: [
       unique,
       new Action({
@@ -474,7 +448,7 @@ export const buildings = {
     title: "Estables",
     icon: StablesIcon,
     types: ["military"],
-    cost: { wood: 1, food: 1 },
+    cost: { population: 1, wood: 1, food: 1 },
     capabilities: [
       unique,
       new Passive({
@@ -488,7 +462,7 @@ export const buildings = {
     title: "Palau",
     icon: PalaceIcon,
     types: ["government"],
-    cost: { wood: 1, ore: 2, gold: 2 },
+    cost: { population: 2, wood: 1, ore: 2, gold: 2 },
     capabilities: [
       unique,
       new Passive({
@@ -517,7 +491,7 @@ export const buildings = {
     title: "Temple de la guerra",
     icon: WarTempleIcon,
     types: ["religious"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -536,7 +510,7 @@ export const buildings = {
     title: "Temple de la fertilitat",
     icon: FertilityTempleIcon,
     types: ["religious"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -555,7 +529,7 @@ export const buildings = {
     title: "Temple de la inspiració",
     icon: InspirationTempleIcon,
     types: ["religious"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -574,7 +548,7 @@ export const buildings = {
     title: "Temple de la justícia",
     icon: JusticeTempleIcon,
     types: ["religious"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -593,7 +567,7 @@ export const buildings = {
     title: "Temple de la foscor",
     icon: DarknessTempleIcon,
     types: ["religious"],
-    cost: { wood: 1, ore: 1, gold: 1 },
+    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -612,7 +586,7 @@ export const buildings = {
     title: "Universitat",
     icon: UniversityIcon,
     types: ["academic"],
-    cost: { wood: 1, ore: 2 },
+    cost: { population: 2, wood: 1, ore: 2 },
     capabilities: [
       unique,
       new Action({
@@ -632,7 +606,7 @@ export const buildings = {
     title: "Torre de màgia",
     icon: MageTowerIcon,
     types: ["academic", "magic"],
-    cost: { resolve: 1, wood: 1, ore: 2 },
+    cost: { population: 2, resolve: 1, wood: 1, ore: 2 },
     capabilities: [
       unique,
       new Action({
@@ -652,7 +626,7 @@ export const buildings = {
     title: "Monument",
     icon: MonumentIcon,
     types: ["monumental"],
-    cost: { ore: 3 },
+    cost: { population: 2, ore: 3 },
     capabilities: [
       new Passive({
         id: "glory-gain-whenBuilt",
@@ -679,7 +653,7 @@ export const buildings = {
     title: "Portal",
     icon: PortalIcon,
     types: ["magic"],
-    cost: { resolve: 1, ore: 2, gold: 2 },
+    cost: { population: 1, resolve: 1, ore: 2, gold: 2 },
     capabilities: [
       unique,
       new Passive({
