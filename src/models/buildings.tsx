@@ -42,6 +42,7 @@ import {
   DarknessDevotion,
   InspirationDevotion,
 } from "@/components/ResourceIcon/ResourceIcon"
+import { Reference } from "@/components/Reference"
 
 export type BuildingTypeId =
   | "government"
@@ -305,7 +306,8 @@ export const buildings = {
         moment: "turnEnd",
         effect: (
           <>
-            Permet emmagatzemar un <AnyMaterial />
+            Permet emmagatzemar un <Wood /> o <Ore /> per cada <Reference item={() => buildings.sawmill} /> o{" "}
+            <Reference item={() => buildings.mine} /> adjacents, respectivament
           </>
         ),
       }),
@@ -339,10 +341,45 @@ export const buildings = {
       new Action({
         id: "exchange-goods",
         title: "Comerciar",
-        cost: { growth: "1+" },
+        cost: { growth: 1, anyMaterial: "1+" },
         effect: (
           <>
-            Guanyar <Gold /> per cada <Growth /> invertit, fins a un màxim d'1 per edifici <em>productiu</em> adjacent
+            <p>
+              Convertir <Food />, <Wood /> i/o <Ore /> en <Gold />, a raó d'un <Gold /> per cada recurs.
+            </p>
+            <p>
+              La quantitat màxima intercanviable de cada recurs depèn del nombre d'edificis productius del tipus indicat
+              adjacents al mercat:
+            </p>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <Food />
+                  </td>
+                  <td>
+                    <Reference item={() => buildings.farm} /> o
+                    <Reference item={() => buildings.harbour} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Wood />
+                  </td>
+                  <td>
+                    <Reference item={() => buildings.sawmill} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Ore />
+                  </td>
+                  <td>
+                    <Reference item={() => buildings.mine} />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </>
         ),
       }),
@@ -356,13 +393,23 @@ export const buildings = {
     cost: { wood: 1, ore: 1, gold: 1 },
     capabilities: [
       unique,
-      new Action({
-        id: "finance",
-        title: "Finançament",
-        cost: { growth: 1 },
+      new Passive({
+        id: "vault",
+        title: "Estalvi",
+        moment: "turnEnd",
         effect: (
           <>
-            Guanyar 1 <Gold /> per cada edifici <em>econòmic</em> a la ciutat
+            Permet emmagatzemar un <Gold /> per cada edifici <em>econòmic</em> a la ciutat
+          </>
+        ),
+      }),
+      new Passive({
+        id: "finance",
+        title: "Interessos",
+        moment: "turnStart",
+        effect: (
+          <>
+            Si el banc conté 1+ <Gold /> emmagatzemat, guanyar un <Gold /> adicional
           </>
         ),
       }),
