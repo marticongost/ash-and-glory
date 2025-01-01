@@ -60,6 +60,10 @@
 
   p {
     @include common.vertical-margin(sm);
+
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 
   dt {
