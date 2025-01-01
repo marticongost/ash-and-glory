@@ -125,7 +125,7 @@ export const buildings = {
       }),
       new Passive({
         id: "city-size-limit",
-        effect: <>Mida màxima 6.</>,
+        effect: <>Mida màxima 6</>,
       }),
       new Action({
         id: "increase-population",
@@ -153,7 +153,7 @@ export const buildings = {
         id: "build",
         title: "Construir edifici",
         moment: "constructionStage",
-        cost: { growth: 1, population: "*", anyMaterial: "*" },
+        cost: { growth: 1 },
         limit: Infinity,
         effect: <>Construir un edifici a la ciutat, pagant el seu cost</>,
       }),
