@@ -34,7 +34,6 @@ import {
   Wood,
   AnyMaterial,
   Glory,
-  Growth,
   Resolve,
   WarDevotion,
   FertilityDevotion,
@@ -153,7 +152,7 @@ export const buildings = {
         id: "build",
         title: "Construir edifici",
         moment: "constructionStage",
-        cost: { growth: 1 },
+        cost: undefined,
         limit: Infinity,
         effect: <>Construir un edifici a la ciutat, pagant el seu cost</>,
       }),
@@ -164,7 +163,7 @@ export const buildings = {
     title: "Allotjaments",
     icon: HousingIcon,
     types: ["housing"],
-    cost: { population: 1, wood: 2 },
+    cost: { growth: 1, population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "increase-max-population",
@@ -177,10 +176,10 @@ export const buildings = {
     title: "Granja",
     icon: FarmIcon,
     types: ["production"],
-    cost: { population: 1, wood: 2 },
+    cost: { growth: 1, population: 1, wood: 2 },
     capabilities: [
       new Limitation({
-        id: "must-be-adjacent-to-sea",
+        id: "location-requirement",
         effect: <>S'ha de construir a una casella en contacte amb un o més camps</>,
       }),
       new Action({
@@ -200,10 +199,10 @@ export const buildings = {
     title: "Serradora",
     icon: SawmillIcon,
     types: ["production"],
-    cost: { population: 1, wood: 1, ore: 1 },
+    cost: { growth: 1, population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Limitation({
-        id: "must-be-adjacent-to-sea",
+        id: "location-requirement",
         effect: <>S'ha de construir a una casella en contacte amb un o més boscos</>,
       }),
       new Action({
@@ -223,10 +222,10 @@ export const buildings = {
     title: "Mina",
     icon: MineIcon,
     types: ["production"],
-    cost: { population: 1, wood: 1, ore: 1 },
+    cost: { growth: 1, population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Limitation({
-        id: "must-be-adjacent-to-sea",
+        id: "location-requirement",
         effect: <>S'ha de construir a una casella en contacte amb una o més muntanyes</>,
       }),
       new Action({
@@ -246,10 +245,10 @@ export const buildings = {
     title: "Port",
     icon: HarbourIcon,
     types: ["production"],
-    cost: { population: 1, wood: 2, ore: 1 },
+    cost: { growth: 1, population: 1, wood: 2, ore: 1 },
     capabilities: [
       new Limitation({
-        id: "must-be-adjacent-to-sea",
+        id: "location-requirement",
         effect: <>S'ha de construir a una casella adjacent a un o més mars</>,
       }),
       new Action({
@@ -280,7 +279,7 @@ export const buildings = {
     title: "Taller",
     icon: WorkshopIcon,
     types: ["production"],
-    cost: { population: 1, wood: 1, ore: 1 },
+    cost: { growth: 1, population: 1, wood: 1, ore: 1 },
     capabilities: [
       new Action({
         id: "fish",
@@ -299,7 +298,7 @@ export const buildings = {
     title: "Magatzem",
     icon: StorageIcon,
     types: ["storage", "economic"],
-    cost: { population: 1, wood: 2 },
+    cost: { growth: 1, population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "store-materials",
@@ -318,7 +317,7 @@ export const buildings = {
     title: "Graner",
     icon: GranaryIcon,
     types: ["storage", "economic"],
-    cost: { population: 1, wood: 2 },
+    cost: { growth: 1, population: 1, wood: 2 },
     capabilities: [
       new Passive({
         id: "store-materials",
@@ -336,7 +335,7 @@ export const buildings = {
     title: "Mercat",
     icon: MarketIcon,
     types: ["economic"],
-    cost: { population: 1, wood: 2 },
+    cost: { growth: 1, population: 1, wood: 2 },
     capabilities: [
       new Action({
         id: "exchange-goods",
@@ -364,7 +363,7 @@ export const buildings = {
     title: "Banc",
     icon: BankIcon,
     types: ["economic"],
-    cost: { population: 1, wood: 1, ore: 1, gold: 1 },
+    cost: { growth: 1, population: 1, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       unique,
       new Passive({
@@ -394,7 +393,7 @@ export const buildings = {
     title: "Castell",
     icon: CastleIcon,
     types: ["government", "military"],
-    cost: { population: 2, wood: 2, ore: 4 },
+    cost: { strife: 1, population: 2, wood: 2, ore: 4 },
     capabilities: [
       unique,
       new Passive({
@@ -427,7 +426,7 @@ export const buildings = {
     title: "Barraques",
     icon: BarracksIcon,
     types: ["military"],
-    cost: { population: 1, wood: 2 },
+    cost: { strife: 1, population: 1, wood: 2 },
     capabilities: [
       unique,
       new Action({
@@ -448,7 +447,7 @@ export const buildings = {
     title: "Estables",
     icon: StablesIcon,
     types: ["military"],
-    cost: { population: 1, wood: 1, food: 1 },
+    cost: { strife: 1, population: 1, wood: 1, food: 1 },
     capabilities: [
       unique,
       new Passive({
@@ -462,7 +461,7 @@ export const buildings = {
     title: "Palau",
     icon: PalaceIcon,
     types: ["government"],
-    cost: { population: 2, wood: 1, ore: 2, gold: 2 },
+    cost: { growth: 1, population: 2, wood: 1, ore: 2, gold: 2 },
     capabilities: [
       unique,
       new Passive({
@@ -491,7 +490,7 @@ export const buildings = {
     title: "Temple de la guerra",
     icon: WarTempleIcon,
     types: ["religious"],
-    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
+    cost: { strife: 1, population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -510,7 +509,7 @@ export const buildings = {
     title: "Temple de la fertilitat",
     icon: FertilityTempleIcon,
     types: ["religious"],
-    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
+    cost: { growth: 1, population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -529,7 +528,7 @@ export const buildings = {
     title: "Temple de la inspiració",
     icon: InspirationTempleIcon,
     types: ["religious"],
-    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
+    cost: { curiosity: 1, population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -548,7 +547,7 @@ export const buildings = {
     title: "Temple de la justícia",
     icon: JusticeTempleIcon,
     types: ["religious"],
-    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
+    cost: { effort: 1, population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -567,7 +566,7 @@ export const buildings = {
     title: "Temple de la foscor",
     icon: DarknessTempleIcon,
     types: ["religious"],
-    cost: { population: 2, wood: 1, ore: 1, gold: 1 },
+    cost: { anyDrive: 1, population: 2, wood: 1, ore: 1, gold: 1 },
     capabilities: [
       new Action({
         id: "offer",
@@ -586,7 +585,7 @@ export const buildings = {
     title: "Universitat",
     icon: UniversityIcon,
     types: ["academic"],
-    cost: { population: 2, wood: 1, ore: 2 },
+    cost: { curiosity: 1, population: 2, wood: 1, ore: 2 },
     capabilities: [
       unique,
       new Action({
@@ -626,7 +625,7 @@ export const buildings = {
     title: "Monument",
     icon: MonumentIcon,
     types: ["monumental"],
-    cost: { population: 2, ore: 3 },
+    cost: { resolve: 1, population: 2, ore: 3 },
     capabilities: [
       new Passive({
         id: "glory-gain-whenBuilt",
