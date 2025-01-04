@@ -1,0 +1,74 @@
+@use "common.scss";
+
+.BoonCard {
+  @include common.panel;
+  @include common.column;
+  @include common.card;
+  align-items: stretch;
+  --titlebar-color: var(--boon-background-color);
+  --level-background-color: var(--boon-medium-background-color);
+}
+
+.titleBar {
+  @include common.titlebar;
+  @include common.row(sm);
+  @include common.padding(sm);
+  background-color: var(--titlebar-color);
+  flex: 0 0 18%;
+}
+
+.era {
+  --size: 1.2em;
+  position: relative;
+  text-align: center;
+  width: var(--size);
+
+  .eraLabel {
+    position: relative;
+    font-family: var(--heading-font-family);
+    font-size: 1.2em;
+    z-index: 2;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: calc(50% - var(--size) / 2);
+    top: calc(50% - var(--size) / 2);
+    height: var(--size);
+    width: var(--size);
+    transform: rotate(45deg);
+    background-color: var(--level-background-color);
+    z-index: 1;
+    box-shadow: var(--icon-shadow);
+  }
+}
+
+.title {
+  flex: 1 1 auto;
+  font-family: var(--heading-font-family);
+  font-size: 1.4em;
+}
+
+.resourceSets {
+  @include common.column;
+  padding: var(--spacing-md);
+  flex: 1 1 auto;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.resources {
+  @include common.column;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+
+  & + & {
+    border-top: var(--thick-separator);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+  }
+}

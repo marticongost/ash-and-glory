@@ -15,6 +15,7 @@
   $palette-latte: #c0a78e;
   $palette-toffee: #8a6948;
   $palette-dull-gray: #b9b1b1;
+  $palette-medium-gray: #797474;
   $palette-medium-dark-gray: #403d3d;
   $palette-dark-gray: #2e2c2c;
   $palette-black: #171717;
@@ -109,6 +110,8 @@
   --disadvantage-medium-background-color: #{$palette-dull-pink};
   --archetype-trait-background-color: #{$palette-regal-purple};
   --archetype-trait-medium-background-color: #{$palette-soft-purple};
+  --boon-background-color: #{$palette-dark-gray};
+  --boon-medium-background-color: #{$palette-medium-gray};
   --even-row-background-color: #{$palette-mist};
   --odd-row-background-color: #{$palette-white};
 
@@ -126,6 +129,7 @@
   --night-subtle-line: 1px solid var(--night-subtle-separator-color);
   --light-line: 1px solid var(--light-line-color);
   --indent: 3px solid var(--indent-color);
+  --thick-separator: 3px solid #{$palette-pearl};
 }
 
 svg,

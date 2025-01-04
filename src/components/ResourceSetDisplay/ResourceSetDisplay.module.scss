@@ -3,6 +3,7 @@
 .ResourceSetDisplay {
   &[data-arrangement="column"] {
     @include common.column(0.5ch);
+    align-items: center;
 
     .resource {
       @include common.row(0.5ch);
