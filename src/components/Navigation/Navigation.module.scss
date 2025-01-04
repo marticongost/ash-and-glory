@@ -11,6 +11,7 @@
   --icon-filter: ;
   --icon-transform: ;
   --label-color: var(--night-unselected-text-color);
+  align-items: center;
   $border: 1px solid var(--night-subtle-separator-color);
   border-right: $border;
   &:nth-of-type(1) {
