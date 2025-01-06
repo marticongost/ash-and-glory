@@ -1,6 +1,6 @@
 // Start position
 export const startingCityPopulation = 3
 
-// Fate cards
-export const revealedDriveCards = 6
-export const eligibleFateCards = 4
+// Boon cards
+export const revealedBoonCards = 6
+export const eligibleBoonCards = 4

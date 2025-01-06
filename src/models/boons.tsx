@@ -10,55 +10,30 @@ export const eraLabels: Record<Era, String> = {
   3: "III",
 }
 
-export interface FateProps {
+export interface BoonProps {
   era: Era
   id: string
   title: string
   copies?: number
+  resources: ResourceSet | ResourceSetProps | ResourceSet[] | ResourceSetProps[]
 }
 
-export class Fate {
+export class Boon {
   readonly era: Era
   readonly id: string
   readonly title: string
   readonly copies: number
+  readonly resourceSets: ResourceSet[]
 
-  constructor({ id, title, era, copies = 1 }: FateProps) {
+  constructor({ id, title, era, resources, copies = 1 }: BoonProps) {
     this.era = era
     this.id = id
     this.title = title
     this.copies = copies
-  }
-}
-
-export interface EventProps extends FateProps {
-  effect: ReactNode
-}
-
-export class Event extends Fate {
-  readonly effect: ReactNode
-
-  constructor({ effect, ...baseProps }: EventProps) {
-    super(baseProps)
-    this.effect = effect
-  }
-}
-
-export interface BoonProps extends FateProps {
-  resources: ResourceSet | ResourceSetProps | ResourceSet[] | ResourceSetProps[]
-}
-
-export class Boon extends Fate {
-  readonly resourceSets: ResourceSet[]
-
-  constructor({ resources, ...baseProps }: BoonProps) {
-    super(baseProps)
     this.resourceSets =
       resources instanceof Array ? instantiateAll(resources, ResourceSet) : [instantiate(resources, ResourceSet)]
   }
 }
-
-export const events: Record<string, Event> = {}
 
 export const boons: Record<string, Boon> = {
   // Era 1
@@ -137,5 +112,3 @@ export const boons: Record<string, Boon> = {
   enlightenment: new Boon({ era: 3, id: "enlightenment", title: "Recerca", resources: { curiosity: 2, resolve: 1 } }),
   hegemony: new Boon({ era: 3, id: "hegemony", title: "Hegemonia", resources: { strife: 2, resolve: 1 } }),
 }
-
-export const fates: Record<string, Fate> = { ...events, ...boons }

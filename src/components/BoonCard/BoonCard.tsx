@@ -1,4 +1,4 @@
-import { eraLabels, type Boon } from "@/models/fate"
+import { eraLabels, type Boon } from "@/models/boons"
 import styles from "./BoonCard.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"

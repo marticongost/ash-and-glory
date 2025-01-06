@@ -2,7 +2,7 @@ import { Section } from "@/components/Section"
 import styles from "./GameSequence.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { AnyDrive } from "@/components/ResourceIcon"
-import { eligibleFateCards, revealedDriveCards } from "@/models/values"
+import { eligibleBoonCards, revealedBoonCards } from "@/models/values"
 import { Example } from "@/components/Example"
 
 export interface GameSequenceProps extends StandardComponentProps {}
@@ -35,7 +35,7 @@ export const GameSequence = ({ ...baseProps }: GameSequenceProps) => (
       <Section title="Revelar cartes d'impuls">
         <p>
           A continuació cal determinar els impulsos als que els jugadors podran optar durant el torn. Per fer-ho, es
-          revelaran {revealedDriveCards} cartes d'impuls del nivell adequat, situades en una fila visible per a tots els
+          revelaran {revealedBoonCards} cartes d'impuls del nivell adequat, situades en una fila visible per a tots els
           jugadors.
         </p>
         <p>
@@ -50,24 +50,24 @@ export const GameSequence = ({ ...baseProps }: GameSequenceProps) => (
         </p>
         <Example>
           <ul>
-            <li>Al torn 1, els jugadors revelen {revealedDriveCards} cartes de nivell 1</li>
-            <li>Al torn 2, els jugadors revelen {revealedDriveCards - 1} cartes de nivell 1, i una de nivell 2</li>
-            <li>Al torn 3, els jugadors revelen {revealedDriveCards - 2} cartes de nivell 1, i dues de nivell 2</li>
+            <li>Al torn 1, els jugadors revelen {revealedBoonCards} cartes de nivell 1</li>
+            <li>Al torn 2, els jugadors revelen {revealedBoonCards - 1} cartes de nivell 1, i una de nivell 2</li>
+            <li>Al torn 3, els jugadors revelen {revealedBoonCards - 2} cartes de nivell 1, i dues de nivell 2</li>
             <li>...</li>
             <li>
-              Al torn {revealedDriveCards + 1}, els jugadors revelen {revealedDriveCards} cartes de nivell 2
+              Al torn {revealedBoonCards + 1}, els jugadors revelen {revealedBoonCards} cartes de nivell 2
             </li>
             <li>
-              Al torn {revealedDriveCards + 2}, els jugadors revelen {revealedDriveCards - 1} cartes de nivell 2 i una
-              de nivell 3
+              Al torn {revealedBoonCards + 2}, els jugadors revelen {revealedBoonCards - 1} cartes de nivell 2 i una de
+              nivell 3
             </li>
             <li>
-              Al torn {revealedDriveCards + 3}, els jugadors revelen {revealedDriveCards - 2} cartes de nivell 2 i dues
-              de nivell 3
+              Al torn {revealedBoonCards + 3}, els jugadors revelen {revealedBoonCards - 2} cartes de nivell 2 i dues de
+              nivell 3
             </li>
             <li>...</li>
             <li>
-              Al torn {revealedDriveCards * 2 + 1} i posteriors, els jugadors revelen {revealedDriveCards} cartes de
+              Al torn {revealedBoonCards * 2 + 1} i posteriors, els jugadors revelen {revealedBoonCards} cartes de
               nivell 3
             </li>
           </ul>
@@ -76,7 +76,7 @@ export const GameSequence = ({ ...baseProps }: GameSequenceProps) => (
       <Section title="Escollir cartes d'impuls">
         <p>
           En aquest punt, els jugadors decidiran quines de les cartes d'impuls revelades voldran utilitzar durant el
-          torn. Cada jugador fa la seva tria per separat, escollint {eligibleFateCards} de les cartes i obtenint els
+          torn. Cada jugador fa la seva tria per separat, escollint {eligibleBoonCards} de les cartes i obtenint els
           recursos indicats. Aquesta tria serà fonamental per determinar la varietat i efectivitat de les accions a les
           que podrà optar cada jugador durant la resta del torn, i permetrà que el destí dels jugadors divergeixi segons
           les seves decisions.

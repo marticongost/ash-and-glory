@@ -3,7 +3,7 @@
 import RulesIcon from "@/svg/sections/rules.svg"
 import BuildingsIcon from "@/svg/sections/buildings.svg"
 import TraitsIcon from "@/svg/sections/traits.svg"
-import FateIcon from "@/svg/sections/fate.svg"
+import BoonsIcon from "@/svg/sections/boons.svg"
 import type { JSXElementConstructor } from "react"
 
 export interface SectionProps {
@@ -51,5 +51,5 @@ export const sections: Section[] = [
   new Section({ id: "rules", title: "Regles", icon: RulesIcon }),
   new Section({ id: "buildings", title: "Edificis", icon: BuildingsIcon }),
   new Section({ id: "traits", title: "Trets", icon: TraitsIcon }),
-  new Section({ id: "fate", title: "Destí", icon: FateIcon }),
+  new Section({ id: "boons", title: "Cartes d'impuls", icon: BoonsIcon }),
 ]
