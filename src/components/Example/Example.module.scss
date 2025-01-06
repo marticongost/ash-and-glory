@@ -1,0 +1,22 @@
+@use "common.scss";
+
+.Example {
+  @include common.row(xs);
+  @include common.vertical-padding(sm);
+  @include common.horizontal-padding(xs);
+  border: 1px solid var(--example-border-color);
+  border-left: var(--spacing-sm) solid var(--example-border-color);
+  box-shadow: var(--block-shadow);
+  align-items: flex-start;
+  background-color: var(--example-background-color);
+  color: var(--example-text-color);
+  --icon-color: var(--example-icon-color);
+}
+
+.icon {
+  height: 3rem;
+  width: auto;
+}
+
+.content {
+}

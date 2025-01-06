@@ -114,12 +114,17 @@
   --boon-medium-background-color: #{$palette-medium-gray};
   --even-row-background-color: #{$palette-mist};
   --odd-row-background-color: #{$palette-white};
+  --example-background-color: #{$palette-pearl};
+  --example-text-color: var(--text-color);
+  --example-icon-color: #{$palette-latte};
+  --example-border-color: #{$palette-cream};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$palette-black}88;
   --panel-shadow: #{$shadow};
   --icon-shadow: drop-shadow(#{$shadow});
   --text-shadow: #{$shadow};
+  --block-shadow: 0 0 var(--spacing-sm) #{$palette-dull-gray}88;
   $glow: 0 0 var(--spacing-xs) #{$palette-pearl}50;
   --icon-glow: drop-shadow(#{$glow});
   --text-glow: #{$glow};
