@@ -78,7 +78,7 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
               description: (
                 <>
                   Representa la inventiva, ingenuïtat i vocació de recerca i descobriment d'un imperi. Utilitzat per
-                  crear exploradors.
+                  explorar el mapa.
                 </>
               ),
             },
@@ -90,8 +90,8 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
               ),
               description: (
                 <>
-                  Representa la força, voluntat de dominació i capacitat per canalitzar l'agressivitat i el caos de
-                  l'imperi. Utilitzar per reclutar soldats i naus, i moure-les sobre el mapa.
+                  Representa la força, voluntat de dominació i capacitat per canalitzar l'agressivitat i les tensions de
+                  l'imperi. Utilitzat per reclutar soldats i naus, i moure-les sobre el mapa.
                 </>
               ),
             },
@@ -166,6 +166,7 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
           <li>Treballar als edificis de la ciutat</li>
           <li>Ser desplegats sobre el mapa com a exploradors</li>
           <li>Ser desplegats sobre el mapa com a soldats</li>
+          <li>Ser desplegats sobre el mapa com a vaixells</li>
         </ul>
       </Section>
 
@@ -198,18 +199,19 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
         particularitats de la seva cultura i fortaleses i debilitats que els fan únics.
       </p>
       <p>
-        Cada imperi comença amb un conjunt de trets, que els proporcionen certs avantatges i desavantatges. Per exemple,
-        un imperi podria ser ric, i començar amb més or que els demés; però per contra, els seus habitants podrien
-        tendir a ser golafres, invertint més recursos dels que caldria en proveïr-se de grans quantitats de menjar.
+        Els imperis comencen la partida amb un conjunt inicial de trets, dividits entre <em>avantatges</em> i{" "}
+        <em>desavantatges</em>. Per exemple, un imperi podria ser ric, i començar amb més or que els demés; però per
+        contra, els seus habitants podrien tendir a ser golafres, invertint més recursos dels que caldria en proveïr-se
+        de grans quantitats de menjar.
       </p>
       <p>
         Al llarg de la partida els jugadors poden optar a obtenir nous trets, per guanyar noves habilitats i capacitats
-        especials. Aquests trets s'organitzen en <em>arquetips</em>, que representen conjunts temàtics relacionats en
-        que els imperis poden aprofundir. Per exemple, un imperi podria tenir especial interès en comerciar amb els
-        demés jugadors, i podria adquirir trets de l'arquetip <em>Comerciants</em> per guanyar capacitats relacionades
-        amb l'establiment de rutes comercials; un altre imperi podria preferir una estratègia més agressiva, adquirint
-        trets de l'arquetip <em>Guerrers</em> per millorar les seves capacitats ofensives. Els jugadors poden combinar
-        aquests arquetips lliurement per personalitzar i modelar el seu imperi.
+        especials. Aquests trets adquirits s'organitzen en <em>arquetips</em>, que representen conjunts temàtics
+        relacionats en que els imperis poden aprofundir. Per exemple, un imperi podria tenir especial interès en
+        comerciar amb els demés jugadors, i podria adquirir trets de l'arquetip <em>Comerciants</em> per guanyar
+        capacitats relacionades amb l'establiment de rutes comercials; un altre imperi podria preferir una estratègia
+        més agressiva, adquirint trets de l'arquetip <em>Guerrers</em> per millorar les seves capacitats ofensives. Els
+        jugadors poden combinar aquests arquetips lliurement per personalitzar i modelar el seu imperi.
       </p>
     </Section>
   </Section>
