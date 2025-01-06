@@ -6,6 +6,7 @@ import { Hex } from "@/modules/hex"
 import { Population } from "@/components/ResourceIcon"
 import { Reference } from "@/components/Reference"
 import { buildings } from "@/models/buildings"
+import { startingCityPopulation } from "@/models/values"
 
 export interface PreparationProps extends StandardComponentProps {}
 
@@ -43,7 +44,7 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
         </li>
         <li>Un soldat, sobre el centre de ciutat</li>
         <li>
-          2 <Population /> a la ciutat
+          <Population amount={startingCityPopulation} /> a la ciutat
         </li>
         <li>
           Una <Reference item={buildings.farm} />, <Reference item={buildings.mine} /> i{" "}
