@@ -1,21 +1,20 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.scss";
-import styles from "./layout.module.scss";
-import { Navigation } from "@/components/Navigation";
-import { sections } from "@/modules/navigation";
+import type { Metadata } from "next"
+import localFont from "next/font/local"
+import "./globals.scss"
+import styles from "./layout.module.scss"
+import { Navigation } from "@/components/Navigation"
 
 const headingFont = localFont({
   src: "./fonts/AveriaSerifLibre-Bold.ttf",
   variable: "--heading-font-family",
   weight: "400",
-});
+})
 
 const logoFont = localFont({
   src: "./fonts/PirataOne-Regular.ttf",
   variable: "--logo-font-family",
   weight: "400",
-});
+})
 
 const regularFont = localFont({
   src: [
@@ -26,18 +25,17 @@ const regularFont = localFont({
   variable: "--regular-font-family",
 })
 
-const fonts = [headingFont, logoFont, regularFont];
+const fonts = [headingFont, logoFont, regularFont]
 
 export const metadata: Metadata = {
   title: "Ash & Glory",
-  description:
-    "Un joc d'expansió i conquesta en un món de déus ambiciosos i imperis trencats",
-};
+  description: "Un joc d'expansió i conquesta en un món de déus ambiciosos i imperis trencats",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -46,12 +44,10 @@ export default function RootLayout({
           <div className={styles.heading}>
             <span>Ash</span> <span>&amp;</span> <span>Glory</span>
           </div>
-          <Navigation sections={sections} />
+          <Navigation />
         </header>
-        <main className={styles.main}>
-          {children}
-        </main>
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
-  );
+  )
 }

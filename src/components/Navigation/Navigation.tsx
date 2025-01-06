@@ -3,14 +3,12 @@
 import { createElement } from "react"
 import styles from "./Navigation.module.scss"
 import Link from "next/link"
-import type { Section } from "@/modules/navigation"
+import { sections } from "@/modules/navigation"
 import { usePathname } from "next/navigation"
 
-export interface NavigationProps {
-  sections: Section[]
-}
+export interface NavigationProps {}
 
-export const Navigation = ({ sections }: NavigationProps) => {
+export const Navigation = ({}: NavigationProps) => {
   const pathName = usePathname()
   return (
     <nav className={styles.Navigation}>

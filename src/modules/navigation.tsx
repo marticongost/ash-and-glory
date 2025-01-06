@@ -1,5 +1,3 @@
-"use client"
-
 import RulesIcon from "@/svg/sections/rules.svg"
 import BuildingsIcon from "@/svg/sections/buildings.svg"
 import TraitsIcon from "@/svg/sections/traits.svg"
@@ -53,3 +51,20 @@ export const sections: Section[] = [
   new Section({ id: "traits", title: "Trets", icon: TraitsIcon }),
   new Section({ id: "focuses", title: "Cartes de focus", icon: FocusesIcon }),
 ]
+
+export const getSection = (id: string): Section | undefined => {
+  for (let section of sections) {
+    if (section.id === id) {
+      return section
+    }
+  }
+  return undefined
+}
+
+export const requireSection = (id: string): Section => {
+  const section = getSection(id)
+  if (!section) {
+    throw new Error(`Unknown section: ${id}`)
+  }
+  return section
+}

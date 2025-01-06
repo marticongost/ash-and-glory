@@ -5,6 +5,10 @@ import { BasicConcepts } from "@/content/rules/BasicConcepts"
 import { Article } from "@/components/Article"
 import { Preparation } from "@/content/rules/Preparation"
 import { GameSequence } from "@/content/rules/GameSequence"
+import { makeMetadata } from "../metadata"
+import { requireSection } from "@/modules/navigation"
+
+export const metadata = makeMetadata({ title: requireSection("rules").title })
 
 export default function Rules() {
   return (
