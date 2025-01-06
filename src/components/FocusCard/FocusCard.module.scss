@@ -1,12 +1,12 @@
 @use "common.scss";
 
-.BoonCard {
+.FocusCard {
   @include common.panel;
   @include common.column;
   @include common.card;
   align-items: stretch;
-  --titlebar-color: var(--boon-background-color);
-  --level-background-color: var(--boon-medium-background-color);
+  --titlebar-color: var(--focus-background-color);
+  --level-background-color: var(--focus-medium-background-color);
 }
 
 .titleBar {

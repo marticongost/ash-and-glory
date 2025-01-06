@@ -1,1 +1,0 @@
-export { BoonCard } from "./BoonCard"
