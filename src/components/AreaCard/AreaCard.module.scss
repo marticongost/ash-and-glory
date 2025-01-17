@@ -1,0 +1,91 @@
+@use "common.scss";
+
+.AreaCard {
+  @include common.panel;
+  @include common.column(sm);
+  @include common.card;
+  @include common.padding(xs);
+  align-items: stretch;
+}
+
+.properties {
+  @include common.row;
+  justify-content: space-evenly;
+}
+
+.property {
+  @include common.column(0.5ch);
+  align-items: center;
+
+  &[data-property="grassland"] {
+    --icon-color: var(--terrain-color-grassland);
+  }
+
+  &[data-property="forest"] {
+    --icon-color: var(--terrain-color-forest);
+  }
+
+  &[data-property="mountain"] {
+    --icon-color: var(--terrain-color-mountain);
+  }
+
+  &[data-property="sea"] {
+    --icon-color: var(--terrain-color-sea);
+  }
+}
+
+.propertyIcon {
+  height: 2.5em;
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.propertyValue {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.feature {
+  @include common.column(sm);
+  @include common.vertical-padding(xs);
+  flex: 1;
+  border: var(--dashed-line);
+}
+
+.featureTitleBar {
+  @include common.row(xs);
+  flex: 0;
+  padding-left: var(--spacing-xs);
+}
+
+.featureIcon {
+  height: 2.5em;
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.featureTaxonomy {
+  @include common.column(0.5ch);
+  flex: 1 1 auto;
+}
+
+.featureTitle {
+  font-family: var(--heading-font-family);
+  font-size: 1.2em;
+}
+
+.featureTypes {
+  @include common.row;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.featureType + .featureType:before {
+  content: ", ";
+}
+
+.featureCapabilities {
+  @include common.column;
+  flex: 1 1 auto;
+  align-items: stretch;
+}

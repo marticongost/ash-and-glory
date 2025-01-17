@@ -1,0 +1,5 @@
+@use "common.scss";
+
+.AreaCardGrid {
+  @include common.grid(md);
+}

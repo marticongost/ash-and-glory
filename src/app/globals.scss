@@ -29,6 +29,7 @@
   $palette-stone: rgb(111, 128, 132);
   $palette-stone-night: rgb(185, 198, 200);
   $palette-food: rgb(140, 137, 122);
+  $palette-weed: rgb(121, 110, 69);
   $palette-green: rgb(78, 95, 55);
   $palette-green-night: rgb(110, 128, 86);
   $palette-brown: rgb(102, 71, 71);
@@ -118,6 +119,10 @@
   --example-text-color: var(--text-color);
   --example-icon-color: #{$palette-latte};
   --example-border-color: #{$palette-cream};
+  --terrain-color-grassland: #{$palette-weed};
+  --terrain-color-forest: #{$palette-green};
+  --terrain-color-mountain: #{$palette-brown};
+  --terrain-color-sea: #{$palette-blue};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$palette-black}88;
@@ -135,6 +140,7 @@
   --light-line: 1px solid var(--light-line-color);
   --indent: 3px solid var(--indent-color);
   --thick-separator: 3px solid #{$palette-pearl};
+  --dashed-line: 1px dashed #{$palette-cream};
 }
 
 svg,

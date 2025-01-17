@@ -29,5 +29,30 @@ export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): R
   return record
 }
 
+export const mapRecord = <InKey extends Key, InValue, OutKey extends Key, OutValue>(
+  record: Record<InKey, InValue>,
+  mapper: (key: InKey, value: InValue) => [OutKey, OutValue],
+) => {
+  const mappedRecord = {} as Record<OutKey, OutValue>
+  for (const [key, value] of Object.entries(record) as Array<[InKey, InValue]>) {
+    const [outKey, outValue] = mapper(key, value)
+    mappedRecord[outKey] = outValue
+  }
+  return mappedRecord
+}
+
+export const mapRecordValues = <K extends Key, InValue, OutValue>(
+  record: Record<K, InValue>,
+  mapper: (key: K, value: InValue) => OutValue,
+) => {
+  const mappedRecord = {} as Record<K, OutValue>
+  for (const [key, value] of Object.entries(record) as Array<[K, InValue]>) {
+    mappedRecord[key] = mapper(key, value)
+  }
+  return mappedRecord
+}
+
 export const recordToList = <T, K extends Key, V>(record: Record<K, V>, mapper: (key: K, value: V) => T) =>
   Object.entries(record).map(([key, value]) => mapper(key as K, value as V))
+
+export const toPascalCase = (name: string): string => name.charAt(0).toUpperCase() + name.substring(1)

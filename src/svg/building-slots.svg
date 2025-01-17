@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1200pt"
+   height="1200pt"
+   version="1.1"
+   viewBox="0 0 1200 1200"
+   id="svg521"
+   sodipodi:docname="building-slots.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs525" />
+  <sodipodi:namedview
+     id="namedview523"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     showgrid="false"
+     inkscape:zoom="0.1911398"
+     inkscape:cx="-1425.6581"
+     inkscape:cy="1245.1619"
+     inkscape:window-width="2560"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg521" />
+  <path
+     d="M 276,482 600,246 924,482 V 954 H 708 V 678.67 H 492 V 954 H 276 Z"
+     id="path519" />
+  <path
+     d="m 157.50586,59.146484 c -54.14497,0 -98.359376,44.214406 -98.359376,98.359376 v 884.98824 c 0,54.145 44.214406,98.3594 98.359376,98.3594 h 884.98824 c 54.145,0 98.3594,-44.2144 98.3594,-98.3594 V 157.50586 c 0,-54.14497 -44.2144,-98.359376 -98.3594,-98.359376 z m 0,40 h 884.98824 c 32.6769,0 58.3594,25.682496 58.3594,58.359376 v 884.98824 c 0,32.6769 -25.6825,58.3594 -58.3594,58.3594 H 157.50586 c -32.67688,0 -58.359376,-25.6825 -58.359376,-58.3594 V 157.50586 c 0,-32.67688 25.682496,-58.359376 58.359376,-58.359376 z"
+     id="rect752" />
+</svg>

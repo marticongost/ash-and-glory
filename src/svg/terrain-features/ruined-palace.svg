@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1200pt"
+   height="1200pt"
+   version="1.1"
+   viewBox="0 0 1200 1200"
+   id="svg1035"
+   sodipodi:docname="ruined-palace.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1039" />
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     showgrid="false"
+     inkscape:zoom="0.25"
+     inkscape:cx="-1764"
+     inkscape:cy="204"
+     inkscape:window-width="2560"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1035" />
+  <path
+     id="path1031"
+     d="M 599.99854 120.01025 C 535.8283 199.58063 381.63647 237.89145 354.8584 348.2915 L 440.60156 404.01416 L 563.70117 181.82813 L 706.10303 356.34814 L 767.57227 244.57617 C 710.91541 201.39008 638.92296 168.27324 599.99854 120.01025 z M 849.12305 385.56006 L 707.36572 514.2041 L 569.0127 402.42773 L 439.85742 532.34033 L 377.86963 495.19189 C 389.03624 517.07409 403.29278 537.12216 420.12598 554.69971 L 779.86963 554.69971 C 822.06816 510.62423 848.33033 451.20916 849.12305 385.56006 z M 405.99023 590.69678 L 405.99023 652.98193 L 286.93945 743.57959 L 119.98975 743.57959 L 119.98975 990.75439 L 149.23828 954.91553 L 265.90723 1011.4497 L 374.54736 889.81201 L 460.82813 928.16602 L 460.82666 861.25049 C 460.82666 784.38773 599.99561 722.08008 599.99561 722.08008 C 599.99561 722.08008 739.16602 784.38973 739.16602 861.25049 L 739.16602 885.26074 L 779.77295 919.30225 L 909.16699 758.36133 L 1077.9653 870.58447 L 1079.9956 869.04639 L 1079.9956 743.57959 L 913.05029 743.57959 L 793.99951 652.98193 L 793.99951 590.69678 L 405.99023 590.69678 z M 937.08691 930.4248 L 781.03564 1027.2935 L 739.16602 1004.1548 L 739.16602 1080 L 1079.9956 1080 L 1079.9956 1003.7007 L 937.08691 930.4248 z M 394.58789 990.95508 L 299.27197 1068.312 L 161.18408 1032.4731 L 119.98975 1050.397 L 119.98975 1080 L 460.82959 1080 L 460.82813 1018.1104 L 394.58789 990.95508 z " />
+</svg>
