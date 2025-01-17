@@ -41,7 +41,7 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
     <div {...getStandardAttributes(baseProps, styles.CapabilityDisplay)} data-type={capability.constructor.name}>
       {capability instanceof Action ? (
         <>
-          <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="column" />
+          <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="inline" />
           <ConvertIcon className={styles.convertIcon} />
         </>
       ) : null}

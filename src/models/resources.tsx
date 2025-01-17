@@ -17,6 +17,8 @@ import JusticeDevotionIcon from "@/svg/deities/justice.svg"
 import DarknessDevotionIcon from "@/svg/deities/darkness.svg"
 import PopulationIcon from "@/svg/population.svg"
 import GloryIcon from "@/svg/glory.svg"
+import { terrainTypes, type TerrainTypeId } from "./terrain"
+import { mapRecord, mapRecordValues } from "@/modules/utils"
 
 export type DriveId = "anyDrive" | "effort" | "growth" | "curiosity" | "strife" | "resolve"
 export type MaterialId = "anyMaterial" | "gold" | "wood" | "ore" | "food"
@@ -26,7 +28,8 @@ export type DevotionId =
   | "inspirationDevotion"
   | "justiceDevotion"
   | "darknessDevotion"
-export type ResourceId = DriveId | MaterialId | DevotionId | "population" | "glory"
+export type TerrainHexId = `${TerrainTypeId}Hex`
+export type ResourceId = DriveId | MaterialId | DevotionId | TerrainHexId | "population" | "glory"
 
 export interface ResourceProps {
   id: ResourceId
@@ -84,6 +87,8 @@ export class Glory extends Resource {
 
 export class Devotion extends Resource {}
 
+export class TerrainHex extends Resource {}
+
 export const materials: Record<MaterialId, Material> = {
   anyMaterial: new Material({ id: "anyMaterial", title: "Qualsevol material", icon: AnyMaterialIcon }),
   gold: new Material({ id: "gold", title: "Or", icon: GoldIcon }),
@@ -125,11 +130,31 @@ export const devotion: Record<DevotionId, Devotion> = {
   }),
 }
 
+export const terrainHex = mapRecord(terrainTypes, (_, terrainType) => {
+  const id = `${terrainType.id}Hex` as TerrainHexId
+  return [
+    id,
+    new TerrainHex({
+      id,
+      title: terrainType.title,
+      icon: terrainType.resourceIcon,
+    }),
+  ]
+}) as unknown as Record<TerrainHexId, TerrainHex>
+
 export const population = new Population({ title: "Població", icon: PopulationIcon })
 export const glory = new Glory({ title: "Glòria", icon: GloryIcon })
-export const resources: Record<ResourceId, Resource> = Object.assign({ population, glory }, devotion, materials, drives)
+export const resources: Record<ResourceId, Resource> = Object.assign(
+  {},
+  drives,
+  { population },
+  terrainHex,
+  materials,
+  { glory },
+  devotion,
+)
 
-export type ResourceAmount = number | `${number}+` | "*"
+export type ResourceAmount = number | `${number}+` | "*" | "X" | `${number}X`
 
 export type ResourceSetProps = Partial<Record<ResourceId, ResourceAmount>>
 
@@ -152,6 +177,10 @@ export class ResourceSet implements ResourceSetProps {
   readonly inspirationDevotion: ResourceAmount
   readonly justiceDevotion: ResourceAmount
   readonly darknessDevotion: ResourceAmount
+  readonly grasslandHex: ResourceAmount
+  readonly mountainHex: ResourceAmount
+  readonly forestHex: ResourceAmount
+  readonly seaHex: ResourceAmount
 
   constructor(cost: ResourceSetProps) {
     this.anyMaterial = cost.anyMaterial ?? 0
@@ -172,6 +201,10 @@ export class ResourceSet implements ResourceSetProps {
     this.inspirationDevotion = cost.inspirationDevotion ?? 0
     this.justiceDevotion = cost.justiceDevotion ?? 0
     this.darknessDevotion = cost.darknessDevotion ?? 0
+    this.grasslandHex = cost.grasslandHex ?? 0
+    this.mountainHex = cost.mountainHex ?? 0
+    this.forestHex = cost.forestHex ?? 0
+    this.seaHex = cost.seaHex ?? 0
   }
 
   isNone(): boolean {
@@ -193,7 +226,11 @@ export class ResourceSet implements ResourceSetProps {
       !this.fertilityDevotion &&
       !this.inspirationDevotion &&
       !this.justiceDevotion &&
-      !this.darknessDevotion
+      !this.darknessDevotion &&
+      !this.grasslandHex &&
+      !this.mountainHex &&
+      !this.forestHex &&
+      !this.seaHex
     )
   }
 }

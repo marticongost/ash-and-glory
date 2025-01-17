@@ -2,8 +2,10 @@
 
 .ResourceIcon {
   @include common.resource-color-code(--icon-color);
+  display: inline-block;
   height: 2.2ch;
   width: auto;
+  vertical-align: middle;
 
   & + & {
     margin-left: 0.5ch;

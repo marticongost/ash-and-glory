@@ -5,7 +5,7 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 
 export interface ResourceSetDisplayProps extends StandardComponentProps {
   resourceSet?: ResourceSet
-  arrangement?: "row" | "column"
+  arrangement?: "row" | "column" | "multi-column" | "inline"
   background?: "day" | "night"
 }
 

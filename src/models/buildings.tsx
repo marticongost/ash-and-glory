@@ -40,6 +40,10 @@ import {
   JusticeDevotion,
   DarknessDevotion,
   InspirationDevotion,
+  GrasslandHex,
+  ForestHex,
+  MountainHex,
+  SeaHex,
 } from "@/components/ResourceIcon/ResourceIcon"
 import { Reference } from "@/components/Reference"
 
@@ -180,15 +184,19 @@ export const buildings = {
     capabilities: [
       new Limitation({
         id: "location-requirement",
-        effect: <>S'ha de construir a una casella en contacte amb un o més camps</>,
+        effect: (
+          <>
+            Ha d'estar en contacte amb 1+ <GrasslandHex />
+          </>
+        ),
       }),
       new Action({
         id: "produce-food",
         title: "Produir menjar",
-        cost: { growth: 1, population: "1+" },
+        cost: { growth: 1, population: "X", grasslandHex: "X" },
         effect: (
           <>
-            Guanyar <Food /> per cada <Population />, fins a un màxim igual al número de camps adjacents a la granja
+            Guanyar X <Food />
           </>
         ),
       }),
@@ -203,15 +211,19 @@ export const buildings = {
     capabilities: [
       new Limitation({
         id: "location-requirement",
-        effect: <>S'ha de construir a una casella en contacte amb un o més boscos</>,
+        effect: (
+          <>
+            Ha d'estar en contacte amb 1+ <ForestHex />
+          </>
+        ),
       }),
       new Action({
         id: "produce-wood",
         title: "Produir fusta",
-        cost: { effort: 1, population: "1+" },
+        cost: { effort: 1, population: "X", forestHex: "X" },
         effect: (
           <>
-            Guanyar <Wood /> per cada <Population />, fins a un màxim igual al número de boscos adjacents a la serradora
+            Guanyar X <Wood />
           </>
         ),
       }),
@@ -226,15 +238,19 @@ export const buildings = {
     capabilities: [
       new Limitation({
         id: "location-requirement",
-        effect: <>S'ha de construir a una casella en contacte amb una o més muntanyes</>,
+        effect: (
+          <>
+            Ha d'estar en contacte amb 1+ <MountainHex />
+          </>
+        ),
       }),
       new Action({
         id: "produce-ore",
         title: "Produir mineral",
-        cost: { effort: 1, population: "1+" },
+        cost: { effort: 1, population: "X", mountainHex: "X" },
         effect: (
           <>
-            Guanyar <Ore /> per cada <Population />, fins a un màxim igual al número de muntanyes adjacents a la mina
+            Guanyar X <Ore />
           </>
         ),
       }),
@@ -249,15 +265,19 @@ export const buildings = {
     capabilities: [
       new Limitation({
         id: "location-requirement",
-        effect: <>S'ha de construir a una casella adjacent a un o més mars</>,
+        effect: (
+          <>
+            Ha d'estar en contacte amb 1+ <SeaHex />
+          </>
+        ),
       }),
       new Action({
         id: "fish",
         title: "Pescar",
-        cost: { effort: 1, population: "1+" },
+        cost: { effort: 1, population: "X", seaHex: "X" },
         effect: (
           <>
-            Guanyar <Food /> per cada <Population />, fins a un màxim igual al número de mars adjacents al port
+            Guanyar X <Food />
           </>
         ),
       }),
@@ -284,10 +304,10 @@ export const buildings = {
       new Action({
         id: "fish",
         title: "Manufacturar productes",
-        cost: { effort: 1, population: "1+", anyMaterial: "1+" },
+        cost: { effort: 1, population: "X", anyMaterial: "X" },
         effect: (
           <>
-            Guanyar <Gold amount={2} /> per cada parella de <Population /> i <AnyMaterial /> invertida
+            Guanyar <Gold amount={2} /> per cada X
           </>
         ),
       }),

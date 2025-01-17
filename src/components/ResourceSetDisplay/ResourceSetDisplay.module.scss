@@ -36,6 +36,26 @@
     }
   }
 
+  &[data-arrangement="inline"] {
+    display: inline-flex;
+    gap: 1ch;
+    flex-wrap: wrap;
+
+    .resource {
+      display: inline-flex;
+      gap: 0.5ch;
+      white-space: nowrap;
+    }
+
+    .icon {
+      align-self: center;
+    }
+
+    .amount {
+      align-self: baseline;
+    }
+  }
+
   &[data-background="day"] .resource {
     @include common.resource-color-code(--icon-color);
   }

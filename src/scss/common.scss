@@ -96,8 +96,15 @@ $resources: gold, wood, ore, food, population, strife, effort, growth, curiosity
 }
 
 @mixin card {
-  width: 63.5mm;
-  height: 88mm;
+  width: 44mm;
+  height: 68mm;
+  font-size: 3mm;
+  --spacing-sm: 3mm;
+}
+
+@mixin landscape-card {
+  width: 68mm;
+  height: 44mm;
   font-size: 3mm;
   --spacing-sm: 3mm;
 }

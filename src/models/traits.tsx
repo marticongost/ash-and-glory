@@ -726,11 +726,10 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "export",
-                cost: { population: 1, curiosity: 1, anyMaterial: "1+" },
+                cost: { population: 1, curiosity: 1, anyMaterial: "X", seaHex: "X" },
                 effect: (
                   <>
-                    Guanyar <Gold /> per cada <AnyMaterial />, fins a un màxim igual al nombre de <em>mars</em>{" "}
-                    adjacents
+                    Guanyar X <Gold />
                   </>
                 ),
               }),
@@ -820,10 +819,10 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "riches-from-beyond-the-sea",
-                cost: { curiosity: "1+", population: 1 },
+                cost: { curiosity: "X", population: 1, seaHex: "X" },
                 effect: (
                   <>
-                    Guanyar <Gold /> per cada <Curiosity />, fins a un màxim igual al número de mars adjacents al port
+                    Guanyar X <Gold />
                   </>
                 ),
               }),
@@ -1259,10 +1258,10 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "slavery",
-            cost: { strife: 1, population: "1+" },
+            cost: { strife: 1, population: "X" },
             effect: (
               <>
-                Guanyar <Gold /> per cada <Population />
+                Guanyar X <Gold />
               </>
             ),
           }),
@@ -1279,10 +1278,10 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "bleed-the-people",
-                cost: { strife: "1+" },
+                cost: { strife: "X" },
                 effect: (
                   <>
-                    Guanyar <Gold /> per cada <Strife />, fins a un màxim dels edificis
+                    Guanyar X <Gold />, fins a un màxim igual als edificis
                     <em>militars</em> a la ciutat
                   </>
                 ),
@@ -1502,10 +1501,10 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "festival",
-            cost: { food: "2+" },
+            cost: { food: "2X" },
             effect: (
               <>
-                Guanyar <Resolve /> per cada <Food amount={2} />
+                Guanyar X <Resolve />
               </>
             ),
           }),

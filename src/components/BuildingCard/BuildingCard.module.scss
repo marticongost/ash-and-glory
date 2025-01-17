@@ -5,17 +5,18 @@
   @include common.column;
   @include common.card;
   align-items: stretch;
+  font-size: 0.6em;
 }
 
 .titleBar {
   @include common.titlebar;
   @include common.row(sm);
   @include common.padding(sm);
-  flex: 0 0 23%;
+  flex: 0 0 18%;
 }
 
 .icon {
-  height: 2.5em;
+  height: 2.3em;
   width: auto;
   flex: 0 0 auto;
 }
@@ -26,7 +27,7 @@
 
 .title {
   font-family: var(--heading-font-family);
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 .types {

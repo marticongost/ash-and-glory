@@ -1,8 +1,6 @@
 @use "common.scss";
 
 .CapabilityDisplay {
-  @include common.row(1ch);
-  align-items: flex-start;
   background-color: var(--page-background-color);
 
   &[data-type="Limitation"] {
@@ -14,12 +12,18 @@
   border-left: var(--indent);
 }
 
-.cost {
-  flex: 0 0 12%;
-}
-
 .convertIcon {
-  flex: 0 0 auto;
+  display: inline-block;
+  vertical-align: middle;
   width: auto;
   height: 1.2em;
+  @include common.horizontal-margin(0.5ch);
+}
+
+.content {
+  display: inline;
+
+  & > p:first-of-type {
+    display: inline;
+  }
 }

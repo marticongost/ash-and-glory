@@ -42,3 +42,7 @@ export const InspirationDevotion = (props: ResourceIconWrapperProps) => (
 )
 export const JusticeDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="justiceDevotion" />
 export const DarknessDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="darknessDevotion" />
+export const GrasslandHex = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="grasslandHex" />
+export const ForestHex = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="forestHex" />
+export const MountainHex = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="mountainHex" />
+export const SeaHex = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="seaHex" />
