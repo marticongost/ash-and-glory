@@ -35,7 +35,7 @@
 }
 
 .propertyIcon {
-  height: 2.5em;
+  height: 2em;
   width: auto;
   flex: 0 0 auto;
 }
@@ -46,20 +46,20 @@
 }
 
 .feature {
-  @include common.column(sm);
-  @include common.vertical-padding(xs);
+  @include common.column;
+  @include common.vertical-padding(1ch);
   flex: 1;
   border: var(--dashed-line);
 }
 
 .featureTitleBar {
-  @include common.row(xs);
+  @include common.row(1ch);
   flex: 0;
   padding-left: var(--spacing-xs);
 }
 
 .featureIcon {
-  height: 2.5em;
+  height: 2em;
   width: auto;
   flex: 0 0 auto;
 }

@@ -164,12 +164,9 @@ const makeRuinedBuildingFeature = (
           effect: (
             <>
               <p>
-                Substitueix la característica per un edifici <Reference item={building} />.
+                Substituir la característica per un edifici <Reference item={building} />.
               </p>
-              <p>
-                El jugador ha de tenir una ciutat adjacent. S'apliquen tots els efectes i limitacions normals per
-                construir un edifici.
-              </p>
+              <p>Cal tenir una ciutat adjacent. S'apliquen tots els efectes i regles per construir edificis.</p>
             </>
           ),
         }),
