@@ -917,41 +917,34 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { curiosity: 1 },
             effect: (
               <>
-                Llançar 1d10 i aplicar el resultat indicat:
+                Llançar 1d10
                 <table>
                   <tbody>
                     <tr>
                       <th>1</th>
                       <td>
-                        <h4>Catàstrofe</h4>
-                        Perdre un <Population /> a una ciutat
+                        Perdre <Population />
                       </td>
                     </tr>
                     <tr>
                       <th>2-4</th>
-                      <td>
-                        <h4>Resultat decebedor</h4>
-                        Sense efecte
-                      </td>
+                      <td>Sense efecte</td>
                     </tr>
                     <tr>
                       <th>5-8</th>
                       <td>
-                        <h4>Resultat prometedor</h4>
-                        Guanyar <AnyDrive /> (qualsevol impuls excepte <Resolve />)
+                        <AnyDrive /> (excepte <Resolve />)
                       </td>
                     </tr>
                     <tr>
                       <th>9</th>
                       <td>
-                        <h4>Resultat excepcional</h4>
                         Guanyar <Resolve />
                       </td>
                     </tr>
                     <tr>
                       <th>10</th>
                       <td>
-                        <h4>Descobriment inesperat</h4>
                         Guanyar <Glory />
                       </td>
                     </tr>

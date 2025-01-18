@@ -28,7 +28,7 @@
   @include common.row(sm);
   @include common.padding(sm);
   background-color: var(--titlebar-color);
-  flex: 0 0 18%;
+  flex: 0 0 23%;
 }
 
 .classifiers {
@@ -37,7 +37,7 @@
 
 .categoryIcon {
   height: auto;
-  width: 2.4em;
+  width: 2em;
   flex: 0 0 auto;
   --icon-color: var(--night-overlay-color);
 }
@@ -73,7 +73,7 @@
 .title {
   flex: 1 1 auto;
   font-family: var(--heading-font-family);
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .capabilities {

@@ -26,4 +26,13 @@
   & > p:first-of-type {
     display: inline;
   }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    th {
+      width: 20%;
+    }
+  }
 }
