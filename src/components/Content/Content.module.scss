@@ -24,10 +24,12 @@
     text-align: left;
     vertical-align: top;
     white-space: nowrap;
-    border-bottom: var(--light-line);
     &:not(:last-child) {
       padding-right: var(--spacing-md);
     }
+  }
+  thead th {
+    border-bottom: var(--light-line);
   }
   td {
     vertical-align: top;
