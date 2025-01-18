@@ -917,7 +917,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { curiosity: 1 },
             effect: (
               <>
-                Llançar 1d10
+                Llançar 1d10 i aplicar el resultat indicat:
                 <table>
                   <tbody>
                     <tr>
