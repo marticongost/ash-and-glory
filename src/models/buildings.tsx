@@ -144,13 +144,9 @@ export const buildings = {
       new Action({
         id: "create-explorer",
         title: "Emigrar",
-        cost: { curiosity: 1, population: 1 },
+        cost: { curiosity: 1, populationLoss: 1 },
         limit: Infinity,
-        effect: (
-          <>
-            Retirar un <Population /> de la ciutat i desplegar un explorador a l'edifici
-          </>
-        ),
+        effect: <>Desplegar un explorador a l'edifici</>,
       }),
       new Action({
         id: "build",
@@ -285,12 +281,8 @@ export const buildings = {
         id: "build-ship",
         title: "Construir vaixell",
         moment: "recruitingSoldiers",
-        cost: { population: 1, curiosity: 1, wood: 2 },
-        effect: (
-          <>
-            Retirar un <Population /> de la ciutat i desplegar un vaixell a un mar adjacent
-          </>
-        ),
+        cost: { populationLoss: 1, curiosity: 1, wood: 2 },
+        effect: <>Desplegar un vaixell a un mar adjacent</>,
       }),
     ],
   }),
@@ -452,13 +444,9 @@ export const buildings = {
       new Action({
         id: "recruit",
         title: "Reclutar",
-        cost: { strife: 1, ore: 1 },
+        cost: { strife: 1, ore: 1, populationLoss: 1 },
         moment: "manouverStage",
-        effect: (
-          <>
-            Retirar 1 <Population />, desplegar un soldat a l'edifici
-          </>
-        ),
+        effect: <>Desplegar un soldat a l'edifici</>,
       }),
     ],
   }),

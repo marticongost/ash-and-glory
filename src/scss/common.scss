@@ -76,13 +76,16 @@
   @include padding(xs);
 }
 
-$resources: gold, wood, ore, food, population, strife, effort, growth, curiosity, resolve, warDevotion,
+$resources: gold, wood, ore, food, population, populationLoss, strife, effort, growth, curiosity, resolve, warDevotion,
   fertilityDevotion, inspirationDevotion, justiceDevotion, darknessDevotion;
 
 @mixin resource-color-code($property) {
   @each $resource in $resources {
     &[data-resource="#{$resource}"] {
       #{$property}: var(--resource-color-#{$resource});
+      [class$="__secondary"] {
+        #{$property}: var(--resource-color-#{$resource}-secondary);
+      }
     }
   }
 }
@@ -91,6 +94,9 @@ $resources: gold, wood, ore, food, population, strife, effort, growth, curiosity
   @each $resource in $resources {
     &[data-resource="#{$resource}"] {
       #{$property}: var(--night-resource-color-#{$resource});
+      [class$="__secondary"] {
+        #{$property}: var(--night-resource-color-#{$resource}-secondary);
+      }
     }
   }
 }

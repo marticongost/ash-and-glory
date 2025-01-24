@@ -32,6 +32,7 @@ export const Growth = (props: ResourceIconWrapperProps) => <ResourceIcon {...pro
 export const Curiosity = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="curiosity" />
 export const Resolve = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="resolve" />
 export const Population = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="population" />
+export const PopulationLoss = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="populationLoss" />
 export const Glory = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="glory" />
 export const WarDevotion = (props: ResourceIconWrapperProps) => <ResourceIcon {...props} type="warDevotion" />
 export const FertilityDevotion = (props: ResourceIconWrapperProps) => (

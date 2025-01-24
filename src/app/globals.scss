@@ -93,6 +93,10 @@
   --night-resource-color-resolve: #{$palette-blue-night};
   --resource-color-population: #{$palette-flesh};
   --night-resource-color-population: #{$palette-flesh};
+  --resource-color-populationLoss: #{$palette-flesh};
+  --night-resource-color-populationLoss: #{$palette-flesh};
+  --resource-color-populationLoss-secondary: #{$palette-red};
+  --night-resource-color-populationLoss-secondary: #{$palette-red-night};
   --resource-color-warDevotion: #{$palette-turquoise};
   --night-resource-color-warDevotion: #{$palette-turquoise};
   --resource-color-fertilityDevotion: #{$palette-turquoise};

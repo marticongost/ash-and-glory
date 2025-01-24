@@ -20,6 +20,7 @@ import {
   Growth,
   Ore,
   Population,
+  PopulationLoss,
   Resolve,
   Strife,
   Wood,
@@ -590,12 +591,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "draft",
-                cost: { anyDrive: 1, population: 1 },
-                effect: (
-                  <>
-                    Eliminar un <Population /> i reclutar un soldat a la casella de l'edifici
-                  </>
-                ),
+                cost: { anyDrive: 1, populationLoss: 1 },
+                effect: <>Reclutar un soldat a la casella de l'edifici</>,
               }),
             ],
           }),
@@ -923,7 +920,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                     <tr>
                       <th>1</th>
                       <td>
-                        Perdre <Population />
+                        <PopulationLoss />
                       </td>
                     </tr>
                     <tr>

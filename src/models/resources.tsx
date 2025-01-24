@@ -16,6 +16,7 @@ import InspirationDevotionIcon from "@/svg/deities/inspiration.svg"
 import JusticeDevotionIcon from "@/svg/deities/justice.svg"
 import DarknessDevotionIcon from "@/svg/deities/darkness.svg"
 import PopulationIcon from "@/svg/population.svg"
+import PopulationLossIcon from "@/svg/population-loss.svg"
 import GloryIcon from "@/svg/glory.svg"
 import { terrainTypes, type TerrainTypeId } from "./terrain"
 import { mapRecord, mapRecordValues } from "@/modules/utils"
@@ -29,7 +30,7 @@ export type DevotionId =
   | "justiceDevotion"
   | "darknessDevotion"
 export type TerrainHexId = `${TerrainTypeId}Hex`
-export type ResourceId = DriveId | MaterialId | DevotionId | TerrainHexId | "population" | "glory"
+export type ResourceId = DriveId | MaterialId | DevotionId | TerrainHexId | "population" | "populationLoss" | "glory"
 
 export interface ResourceProps {
   id: ResourceId
@@ -74,6 +75,14 @@ export type PopulationProps = Omit<ResourceProps, "id">
 export class Population extends Resource {
   constructor(props: PopulationProps) {
     super({ id: "population", ...props })
+  }
+}
+
+export type PopulationLossProps = Omit<ResourceProps, "id">
+
+export class PopulationLoss extends Resource {
+  constructor(props: PopulationProps) {
+    super({ id: "populationLoss", ...props })
   }
 }
 
@@ -143,11 +152,12 @@ export const terrainHex = mapRecord(terrainTypes, (_, terrainType) => {
 }) as unknown as Record<TerrainHexId, TerrainHex>
 
 export const population = new Population({ title: "Població", icon: PopulationIcon })
+export const populationLoss = new PopulationLoss({ title: "Decreixement", icon: PopulationLossIcon })
 export const glory = new Glory({ title: "Glòria", icon: GloryIcon })
 export const resources: Record<ResourceId, Resource> = Object.assign(
   {},
   drives,
-  { population },
+  { population, populationLoss },
   terrainHex,
   materials,
   { glory },
@@ -171,6 +181,7 @@ export class ResourceSet implements ResourceSetProps {
   readonly strife: ResourceAmount
   readonly resolve: ResourceAmount
   readonly population: ResourceAmount
+  readonly populationLoss: ResourceAmount
   readonly glory: ResourceAmount
   readonly warDevotion: ResourceAmount
   readonly fertilityDevotion: ResourceAmount
@@ -195,6 +206,7 @@ export class ResourceSet implements ResourceSetProps {
     this.strife = cost.strife ?? 0
     this.resolve = cost.resolve ?? 0
     this.population = cost.population ?? 0
+    this.populationLoss = cost.populationLoss ?? 0
     this.glory = cost.glory ?? 0
     this.warDevotion = cost.warDevotion ?? 0
     this.fertilityDevotion = cost.fertilityDevotion ?? 0
@@ -221,6 +233,7 @@ export class ResourceSet implements ResourceSetProps {
       !this.strife &&
       !this.resolve &&
       !this.population &&
+      !this.populationLoss &&
       !this.glory &&
       !this.warDevotion &&
       !this.fertilityDevotion &&
