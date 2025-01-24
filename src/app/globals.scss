@@ -107,6 +107,14 @@
   --night-resource-color-justiceDevotion: #{$palette-turquoise};
   --resource-color-darknessDevotion: #{$palette-turquoise};
   --night-resource-color-darknessDevotion: #{$palette-turquoise};
+  --resource-color-grasslandHex: #{$palette-weed};
+  --night-resource-color-grasslandHex: #{$palette-weed};
+  --resource-color-forestHex: #{$palette-green};
+  --night-resource-color-forestHex: #{$palette-green};
+  --resource-color-mountainHex: #{$palette-brown};
+  --night-resource-color-mountainHex: #{$palette-brown};
+  --resource-color-seaHex: #{$palette-blue};
+  --night-resource-color-seaHex: #{$palette-blue};
   --standard-trait-background-color: #{$palette-dark-gray};
   --standard-medium-background-color: #{$palette-medium-dark-gray};
   --advantage-background-color: #{$palette-green};
@@ -123,10 +131,6 @@
   --example-text-color: var(--text-color);
   --example-icon-color: #{$palette-latte};
   --example-border-color: #{$palette-cream};
-  --terrain-color-grassland: #{$palette-weed};
-  --terrain-color-forest: #{$palette-green};
-  --terrain-color-mountain: #{$palette-brown};
-  --terrain-color-sea: #{$palette-blue};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$palette-black}88;

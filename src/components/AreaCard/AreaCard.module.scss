@@ -18,19 +18,19 @@
   align-items: center;
 
   &[data-property="grassland"] {
-    --icon-color: var(--terrain-color-grassland);
+    --icon-color: var(--resource-color-grasslandHex);
   }
 
   &[data-property="forest"] {
-    --icon-color: var(--terrain-color-forest);
+    --icon-color: var(--resource-color-forestHex);
   }
 
   &[data-property="mountain"] {
-    --icon-color: var(--terrain-color-mountain);
+    --icon-color: var(--resource-color-mountainHex);
   }
 
   &[data-property="sea"] {
-    --icon-color: var(--terrain-color-sea);
+    --icon-color: var(--resource-color-seaHex);
   }
 }
 
