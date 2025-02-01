@@ -16,6 +16,8 @@ import {
   Population,
   Glory,
 } from "@/components/ResourceIcon"
+import { Reference } from "@/components/Reference"
+import { traitCategories } from "@/models/traits"
 
 export interface BasicConceptsProps extends StandardComponentProps {}
 
@@ -208,10 +210,11 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
         Al llarg de la partida els jugadors poden optar a obtenir nous trets, per guanyar noves habilitats i capacitats
         especials. Aquests trets adquirits s'organitzen en <em>arquetips</em>, que representen conjunts temàtics
         relacionats en que els imperis poden aprofundir. Per exemple, un imperi podria tenir especial interès en
-        comerciar amb els demés jugadors, i podria adquirir trets de l'arquetip <em>Comerciants</em> per guanyar
-        capacitats relacionades amb l'establiment de rutes comercials; un altre imperi podria preferir una estratègia
-        més agressiva, adquirint trets de l'arquetip <em>Guerrers</em> per millorar les seves capacitats ofensives. Els
-        jugadors poden combinar aquests arquetips lliurement per personalitzar i modelar el seu imperi.
+        comerciar amb els demés jugadors, i podria adquirir trets de l'arquetip{" "}
+        <Reference item={traitCategories.traders} /> per guanyar capacitats relacionades amb l'establiment de rutes
+        comercials; un altre imperi podria preferir una estratègia més agressiva, adquirint trets de l'arquetip{" "}
+        <Reference item={traitCategories.warriors} /> per millorar les seves capacitats ofensives. Els jugadors poden
+        combinar aquests arquetips lliurement per personalitzar i modelar el seu imperi.
       </p>
     </Section>
   </Section>
