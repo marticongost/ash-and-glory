@@ -28,7 +28,7 @@ export const ResourceSetDisplay = ({
             const amount = resourceSet[resource.id]
             if (!amount) return null
             return (
-              <div className={styles.resource} data-resource={resource.id} key={resource.id}>
+              <div className={styles.resource} data-type={resource.id} key={resource.id}>
                 {createElement(resource.icon, { className: styles.icon })}
                 <div className={styles.amount}>{amount}</div>
               </div>

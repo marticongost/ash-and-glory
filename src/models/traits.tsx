@@ -24,7 +24,7 @@ import {
   Resolve,
   Strife,
   Wood,
-} from "@/components/ResourceIcon"
+} from "@/components/ItemIcon"
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
 

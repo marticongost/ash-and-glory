@@ -1,6 +1,6 @@
 @use "common.scss";
 
-.ResourceIcon {
+.ItemIcon {
   @include common.resource-color-code(--icon-color);
   display: inline-block;
   height: 2.2ch;

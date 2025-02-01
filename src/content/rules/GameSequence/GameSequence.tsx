@@ -1,7 +1,7 @@
 import { Section } from "@/components/Section"
 import styles from "./GameSequence.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
-import { AnyDrive } from "@/components/ResourceIcon"
+import { AnyDrive } from "@/components/ItemIcon"
 import { eligibleFocusCards, revealedFocusCards } from "@/models/values"
 import { Example } from "@/components/Example"
 

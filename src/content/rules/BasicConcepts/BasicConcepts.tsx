@@ -15,9 +15,16 @@ import {
   Gold,
   Population,
   Glory,
-} from "@/components/ResourceIcon"
+  Archers,
+  Militia,
+  Infantry,
+  Cavalry,
+  Ship,
+  Explorer,
+} from "@/components/ItemIcon"
 import { Reference } from "@/components/Reference"
 import { traitCategories } from "@/models/traits"
+import { unitTypes } from "@/models/units"
 
 export interface BasicConceptsProps extends StandardComponentProps {}
 
@@ -166,9 +173,17 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
         </p>
         <ul>
           <li>Treballar als edificis de la ciutat</li>
-          <li>Ser desplegats sobre el mapa com a exploradors</li>
-          <li>Ser desplegats sobre el mapa com a soldats</li>
-          <li>Ser desplegats sobre el mapa com a vaixells</li>
+          <li>
+            Ser desplegat sobre el mapa com a <Reference item={unitTypes.explorer} />
+          </li>
+          <li>
+            Ser desplegats sobre el mapa com a soldats (<Reference item={unitTypes.militia} />,{" "}
+            <Reference item={unitTypes.archers} />, <Reference item={unitTypes.infantry} /> o{" "}
+            <Reference item={unitTypes.cavalry} />)
+          </li>
+          <li>
+            Ser desplegats sobre el mapa com a <Reference item={unitTypes.ship} />
+          </li>
         </ul>
       </Section>
 

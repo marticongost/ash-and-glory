@@ -44,7 +44,7 @@ import {
   ForestHex,
   MountainHex,
   SeaHex,
-} from "@/components/ResourceIcon/ResourceIcon"
+} from "@/components/ItemIcon/ItemIcon"
 import { Reference } from "@/components/Reference"
 
 export type BuildingTypeId =
