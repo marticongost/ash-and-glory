@@ -9,14 +9,14 @@ export interface ReferenceProps extends StandardComponentProps {
 export interface ReferencedItem {
   id: string
   title: string
-  icon: JSXElementConstructor<any>
+  icon?: JSXElementConstructor<any>
 }
 
 export const Reference = ({ item, ...baseProps }: ReferenceProps) => {
   item = item instanceof Function ? item() : item
   return (
     <span {...getStandardAttributes(baseProps, styles.Reference)} data-item={item.id}>
-      {createElement(item.icon, { className: styles.icon })}
+      {item.icon ? createElement(item.icon, { className: styles.icon }) : null}
       <span className={styles.title}>{item.title}</span>
     </span>
   )
