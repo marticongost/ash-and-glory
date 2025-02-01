@@ -44,6 +44,11 @@ import {
   ForestHex,
   MountainHex,
   SeaHex,
+  Ship,
+  Infantry,
+  Archers,
+  Explorer,
+  Militia,
 } from "@/components/ItemIcon/ItemIcon"
 import { Reference } from "@/components/Reference"
 
@@ -146,7 +151,22 @@ export const buildings = {
         title: "Emigrar",
         cost: { curiosity: 1, populationLoss: 1 },
         limit: Infinity,
-        effect: <>Desplegar un explorador a l'edifici</>,
+        effect: (
+          <>
+            Desplegar <Explorer /> a l'edifici
+          </>
+        ),
+      }),
+      new Action({
+        id: "recruit-militia",
+        title: "Lleva",
+        cost: { strife: 1, populationLoss: 1 },
+        limit: Infinity,
+        effect: (
+          <>
+            Desplegar <Militia /> a l'edifici
+          </>
+        ),
       }),
       new Action({
         id: "build",
@@ -154,7 +174,7 @@ export const buildings = {
         moment: "constructionStage",
         cost: undefined,
         limit: Infinity,
-        effect: <>Construir un edifici a la ciutat, pagant el seu cost</>,
+        effect: <>Construir un edifici a la ciutat</>,
       }),
     ],
   }),
@@ -282,7 +302,11 @@ export const buildings = {
         title: "Construir vaixell",
         moment: "recruitingSoldiers",
         cost: { populationLoss: 1, curiosity: 1, wood: 2 },
-        effect: <>Desplegar un vaixell a un mar adjacent</>,
+        effect: (
+          <>
+            Desplegar <Ship /> a un mar adjacent
+          </>
+        ),
       }),
     ],
   }),
@@ -446,7 +470,11 @@ export const buildings = {
         title: "Reclutar",
         cost: { strife: 1, ore: 1, populationLoss: 1 },
         moment: "manouverStage",
-        effect: <>Desplegar un soldat a l'edifici</>,
+        effect: (
+          <>
+            Desplegar <Infantry /> o <Archers /> a l'edifici
+          </>
+        ),
       }),
     ],
   }),

@@ -7,6 +7,7 @@ import { Population } from "@/components/ItemIcon"
 import { Reference } from "@/components/Reference"
 import { buildings } from "@/models/buildings"
 import { startingCityPopulation } from "@/models/values"
+import { unitTypes } from "@/models/units"
 
 export interface PreparationProps extends StandardComponentProps {}
 
@@ -42,7 +43,9 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
         <li>
           Un <Reference item={buildings.cityCenter} />, a l'espai central de la seva àrea de desplegament
         </li>
-        <li>Un soldat, sobre el centre de ciutat</li>
+        <li>
+          Una <Reference item={unitTypes.infantry} />, sobre el centre de ciutat
+        </li>
         <li>
           <Population amount={startingCityPopulation} /> a la ciutat
         </li>

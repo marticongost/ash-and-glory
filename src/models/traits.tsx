@@ -12,12 +12,16 @@ import { Action, BuildingEnhancement, BuildingWithMinCost, Capability, Passive }
 import {
   AnyDrive,
   AnyMaterial,
+  Archers,
   Curiosity,
   Effort,
+  Explorer,
   Food,
   Glory,
   Gold,
   Growth,
+  Infantry,
+  Militia,
   Ore,
   Population,
   PopulationLoss,
@@ -27,6 +31,7 @@ import {
 } from "@/components/ItemIcon"
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
+import { unitTypes } from "./units"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -378,8 +383,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "manouverStage",
             effect: (
               <>
-                Permet que els exploradors i soldats entrin a territoris costers (caselles de mar adjacents a una
-                casella de terra), amb un cost de 3 punts de maniobra.
+                Permet que les unitats terrestres entrin a territoris costers (caselles de mar adjacents a una casella
+                de terra), amb un cost de 3 punts de maniobra.
               </>
             ),
           }),
@@ -490,7 +495,11 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Passive({
             id: "powerful-army",
             moment: "gameStart",
-            effect: <>Desplegar un soldat addicional a la ciutat inicial.</>,
+            effect: (
+              <>
+                Desplegar un <Infantry /> addicional a la ciutat inicial.
+              </>
+            ),
           }),
         ],
       },
@@ -591,8 +600,12 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "draft",
-                cost: { anyDrive: 1, populationLoss: 1 },
-                effect: <>Reclutar un soldat a la casella de l'edifici</>,
+                cost: { strife: 1 },
+                effect: (
+                  <>
+                    Reclutar <Militia /> a l'edifici
+                  </>
+                ),
               }),
             ],
           }),
@@ -699,7 +712,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             moment: "afterDestroyingBarbarianCamp",
             effect: (
               <>
-                Guanyar <Glory />, un <em>explorador</em> i un <em>soldat</em> a la ubicació del camp destruit
+                Guanyar <Glory />, <Explorer /> i <Militia /> a la ubicació del camp destruit
               </>
             ),
           }),
