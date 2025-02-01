@@ -30,13 +30,11 @@ export interface ActionProps extends CapabilityProps {
 
 export class Action extends Capability {
   readonly cost?: ResourceSet
-  readonly limit: number
   readonly effect: ReactNode
 
   constructor({ moment = "productionStage", cost, limit = 1, effect, ...baseProps }: ActionProps) {
     super({ moment, ...baseProps })
     this.cost = cost && instantiate(cost, ResourceSet)
-    this.limit = limit ?? Infinity
     this.effect = effect
   }
 }

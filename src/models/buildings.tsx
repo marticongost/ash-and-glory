@@ -138,33 +138,30 @@ export const buildings = {
       new Action({
         id: "increase-population",
         title: "Augmentar la població",
-        cost: { food: 1 },
-        limit: Infinity,
+        cost: { food: "X" },
         effect: (
           <>
-            Afegir <Population /> a la ciutat
+            Afegir X <Population /> a la ciutat
           </>
         ),
       }),
       new Action({
         id: "create-explorer",
         title: "Emigrar",
-        cost: { curiosity: 1, populationLoss: 1 },
-        limit: Infinity,
+        cost: { curiosity: 1, populationLoss: "X" },
         effect: (
           <>
-            Desplegar <Explorer /> a l'edifici
+            Desplegar X <Explorer />
           </>
         ),
       }),
       new Action({
         id: "recruit-militia",
         title: "Lleva",
-        cost: { strife: 1, populationLoss: 1 },
-        limit: Infinity,
+        cost: { strife: 1, populationLoss: "X" },
         effect: (
           <>
-            Desplegar <Militia /> a l'edifici
+            Desplegar X <Militia />
           </>
         ),
       }),
@@ -173,8 +170,7 @@ export const buildings = {
         title: "Construir edifici",
         moment: "constructionStage",
         cost: undefined,
-        limit: Infinity,
-        effect: <>Construir un edifici a la ciutat</>,
+        effect: <>Construir edificis a la ciutat</>,
       }),
     ],
   }),
