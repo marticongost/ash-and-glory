@@ -84,18 +84,23 @@ export class BuildingWithMinCost {
   }
 }
 
+export type Adjacency = "sameHex" | "inContact"
+
 export interface BuildingEnhancementProps extends CapabilityProps {
   target: BuildingEnhancementTarget
+  targetAdjacency?: Adjacency
   capabilities: Capability[]
 }
 
 export class BuildingEnhancement extends Capability {
   readonly target: BuildingEnhancementTarget
+  readonly targetAdjacency?: Adjacency
   readonly capabilities: Capability[]
 
-  constructor({ target, capabilities, ...baseProps }: BuildingEnhancementProps) {
+  constructor({ target, targetAdjacency, capabilities, ...baseProps }: BuildingEnhancementProps) {
     super(baseProps)
     this.target = target
+    this.targetAdjacency = targetAdjacency
     this.capabilities = capabilities
   }
 }

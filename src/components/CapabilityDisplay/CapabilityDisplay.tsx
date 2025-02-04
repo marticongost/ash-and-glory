@@ -5,6 +5,7 @@ import {
   BuildingWithMinCost,
   Limitation,
   Passive,
+  type Adjacency,
   type Capability,
 } from "@/models/capabilities"
 import styles from "./CapabilityDisplay.module.scss"
@@ -25,8 +26,9 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
     return (
       <div {...getStandardAttributes(baseProps, styles.BuildingEnhancementCapabilityDisplay)}>
         <div className={styles.buildingEnhancementIntroduction}>
-          Els edificis <BuildingEnhancementTargetDisplay target={capability.target} /> guanyen{" "}
-          {capability.capabilities.length > 1 ? "les següents capacitats" : "la capacitat següent"}:
+          Els edificis{" "}
+          <BuildingEnhancementTargetDisplay target={capability.target} targetAdjacency={capability.targetAdjacency} />{" "}
+          guanyen {capability.capabilities.length > 1 ? "les següents capacitats" : "la capacitat següent"}:
         </div>
         <CapabilityList className={styles.buildingEnhancementCapabilities} capabilities={capability.capabilities} />
       </div>
@@ -52,12 +54,15 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
 
 interface BuildingEnhancementTargetDisplayProps {
   target: BuildingEnhancementTarget
+  targetAdjacency?: Adjacency
 }
 
-const BuildingEnhancementTargetDisplay = ({ target }: BuildingEnhancementTargetDisplayProps) => (
+const BuildingEnhancementTargetDisplay = ({ target, targetAdjacency }: BuildingEnhancementTargetDisplayProps) => (
   <span className={styles.BuildingEnhancementTarget}>
     {target instanceof Building ? <Reference item={target} /> : null}
     {target instanceof BuildingType ? `de tipus ${target.title}` : null}
     {target instanceof BuildingWithMinCost ? `amb un cost de ${target.minCost}+ recursos` : null}
+    {targetAdjacency === "sameHex" ? " a la casella" : null}
+    {targetAdjacency === "inContact" ? " en contacte" : null}
   </span>
 )

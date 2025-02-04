@@ -23,12 +23,14 @@ import RuinedCastleIcon from "@/svg/terrain-features/ruined-castle.svg"
 import RuinedMageTowerIcon from "@/svg/terrain-features/ruined-mage-tower.svg"
 import RuinedPortalIcon from "@/svg/terrain-features/ruined-portal.svg"
 import RuinedMonumentIcon from "@/svg/terrain-features/ruined-monument.svg"
-import { Action, Capability, Passive } from "./capabilities"
+import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
 import { Reference } from "@/components/Reference"
 import { buildings, type Building } from "./buildings"
 import type { ResourceSet, ResourceSetProps } from "./resources"
 import { instantiate, toPascalCase } from "@/modules/utils"
 import { terrainTypes, type TerrainTypeId } from "./terrain"
+import { unitTypes } from "./units"
+import { Curiosity, Effort, Food, Gold, Growth, Ore, Strife, Wood } from "@/components/ItemIcon"
 
 export interface AreaProps {
   id: string
@@ -189,7 +191,11 @@ export const areas: Record<string, Area> = {
         new Passive({
           id: "feature",
           moment: "recruitingSoldiers",
-          effect: <>Permet reclutar milícia d'elit</>,
+          effect: (
+            <>
+              Permet reclutar <Reference item={unitTypes.militia} /> d'elit
+            </>
+          ),
         }),
       ],
     },
@@ -208,7 +214,11 @@ export const areas: Record<string, Area> = {
         new Passive({
           id: "feature",
           moment: "recruitingSoldiers",
-          effect: <>Permet reclutar arquers d'elit</>,
+          effect: (
+            <>
+              Permet reclutar <Reference item={unitTypes.archers} /> d'elit
+            </>
+          ),
         }),
       ],
     },
@@ -227,7 +237,11 @@ export const areas: Record<string, Area> = {
         new Passive({
           id: "feature",
           moment: "recruitingSoldiers",
-          effect: <>Permet reclutar infanteria d'elit</>,
+          effect: (
+            <>
+              Permet reclutar <Reference item={unitTypes.infantry} /> d'elit
+            </>
+          ),
         }),
       ],
     },
@@ -245,7 +259,11 @@ export const areas: Record<string, Area> = {
         new Passive({
           id: "feature",
           moment: "recruitingSoldiers",
-          effect: <>Permet reclutar cavalleria d'elit</>,
+          effect: (
+            <>
+              Permet reclutar <Reference item={unitTypes.cavalry} /> d'elit
+            </>
+          ),
         }),
       ],
     },
@@ -260,9 +278,20 @@ export const areas: Record<string, Area> = {
       icon: GemstonesIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.mine,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              effect: (
+                <>
+                  En recol·lectar <Ore />, convertir un dels <Ore /> obtinguts en <Gold />
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -277,9 +306,21 @@ export const areas: Record<string, Area> = {
       icon: QuarryIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.mine,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              moment: "whenBuilding",
+              effect: (
+                <>
+                  Reduir el cost d'un edifici en un <Ore /> en construir a la ciutat (màxim 1 cop per torn).
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -294,9 +335,21 @@ export const areas: Record<string, Area> = {
       icon: IronIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.mine,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              moment: "recruitingSoldiers",
+              effect: (
+                <>
+                  Reduir el cost en un <Ore /> en reclutar soldats a la ciutat (màxim 1 cop per torn).
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -311,9 +364,21 @@ export const areas: Record<string, Area> = {
       icon: ThickForestIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.sawmill,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              moment: "whenBuilding",
+              effect: (
+                <>
+                  Reduir el cost d'un edifici en un <Wood /> en construir a la ciutat (màxim 1 cop per torn).
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -328,9 +393,20 @@ export const areas: Record<string, Area> = {
       icon: GrainIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.farm,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              effect: (
+                <>
+                  En recol·lectar <Food /> amb aquesta granja, guanyar un <Food /> més de l'habitual.
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -345,9 +421,20 @@ export const areas: Record<string, Area> = {
       icon: WineIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.farm,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              effect: (
+                <>
+                  En recol·lectar <Food />, convertir un dels <Food /> obtinguts en <Gold />.
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -362,9 +449,21 @@ export const areas: Record<string, Area> = {
       icon: PeltsIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.farm,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              effect: (
+                <>
+                  Opcionalment, es pot gastar <Strife /> en comptes de
+                  <Growth /> per pagar la recol·lecció.
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -379,9 +478,21 @@ export const areas: Record<string, Area> = {
       icon: FishIcon,
       types: ["production"],
       capabilities: [
-        new Passive({
+        new BuildingEnhancement({
           id: "feature",
-          effect: <></>,
+          target: buildings.harbour,
+          targetAdjacency: "sameHex",
+          capabilities: [
+            new Passive({
+              id: "abundance",
+              effect: (
+                <>
+                  Opcionalment, es pot gastar <Curiosity /> en comptes d'
+                  <Effort /> per pagar la recol·lecció.
+                </>
+              ),
+            }),
+          ],
         }),
       ],
     },
@@ -430,9 +541,15 @@ export const areas: Record<string, Area> = {
       icon: SunkenTreasureIcon,
       types: ["riches"],
       capabilities: [
-        new Passive({
+        new Action({
           id: "feature",
-          effect: <></>,
+          moment: "whenVisited",
+          cost: { curiosity: 1 },
+          effect: (
+            <>
+              Guanyar <Gold amount={3} /> i retirar la característica.
+            </>
+          ),
         }),
       ],
     },
