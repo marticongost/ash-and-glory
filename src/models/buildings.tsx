@@ -49,6 +49,7 @@ import {
   Archers,
   Explorer,
   Militia,
+  Cavalry,
 } from "@/components/ItemIcon/ItemIcon"
 import { Reference } from "@/components/Reference"
 
@@ -485,6 +486,17 @@ export const buildings = {
       new Passive({
         id: "horses",
         effect: <>Els exèrcits i exploradors amics que comencin el torn a la ciutat guanyen un punt de maniobra</>,
+      }),
+      new Action({
+        id: "recruit",
+        title: "Reclutar",
+        cost: { strife: 1, ore: 2, gold: 1, populationLoss: 1 },
+        moment: "manouverStage",
+        effect: (
+          <>
+            Desplegar <Cavalry /> a l'edifici
+          </>
+        ),
       }),
     ],
   }),
