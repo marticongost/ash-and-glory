@@ -531,7 +531,7 @@ export const buildings = {
   }),
   warTemple: new Building({
     id: "warTemple",
-    title: "Temple de la guerra",
+    title: "Temple: guerra",
     icon: WarTempleIcon,
     types: ["religious"],
     cost: { strife: 1, population: 2, wood: 1, ore: 1, gold: 1 },
@@ -550,7 +550,7 @@ export const buildings = {
   }),
   fertilityTemple: new Building({
     id: "fertilityTemple",
-    title: "Temple de la fertilitat",
+    title: "Temple: fertilitat",
     icon: FertilityTempleIcon,
     types: ["religious"],
     cost: { growth: 1, population: 2, wood: 1, ore: 1, gold: 1 },
@@ -569,7 +569,7 @@ export const buildings = {
   }),
   inspirationTemple: new Building({
     id: "inspirationTemple",
-    title: "Temple de la inspiració",
+    title: "Temple: enginy",
     icon: InspirationTempleIcon,
     types: ["religious"],
     cost: { curiosity: 1, population: 2, wood: 1, ore: 1, gold: 1 },
@@ -588,7 +588,7 @@ export const buildings = {
   }),
   justiceTemple: new Building({
     id: "justiceTemple",
-    title: "Temple de la justícia",
+    title: "Temple: justícia",
     icon: JusticeTempleIcon,
     types: ["religious"],
     cost: { effort: 1, population: 2, wood: 1, ore: 1, gold: 1 },
@@ -607,7 +607,7 @@ export const buildings = {
   }),
   darknessTemple: new Building({
     id: "darknessTemple",
-    title: "Temple de la foscor",
+    title: "Temple: foscor",
     icon: DarknessTempleIcon,
     types: ["religious"],
     cost: { anyDrive: 1, population: 2, wood: 1, ore: 1, gold: 1 },
