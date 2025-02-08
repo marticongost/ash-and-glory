@@ -32,7 +32,6 @@ import {
   Ore,
   Population,
   Wood,
-  AnyMaterial,
   Glory,
   Resolve,
   WarDevotion,
@@ -96,6 +95,7 @@ export const buildingTypes: Record<BuildingTypeId, BuildingType> = {
 export interface BuildingProps {
   id: string
   title: string
+  shortTitle?: string
   icon: JSXElementConstructor<any>
   types: Array<BuildingTypeId | BuildingType>
   capabilities: Capability[]
@@ -105,14 +105,16 @@ export interface BuildingProps {
 export class Building {
   readonly id: string
   readonly title: string
+  readonly shortTitle: string
   readonly icon: JSXElementConstructor<any>
   readonly types: BuildingType[]
   readonly cost: ResourceSet
   readonly capabilities: Capability[]
 
-  constructor({ id, title, icon, types, cost, capabilities }: BuildingProps) {
+  constructor({ id, title, shortTitle, icon, types, cost, capabilities }: BuildingProps) {
     this.id = id
     this.title = title
+    this.shortTitle = shortTitle || title
     this.icon = icon
     this.types = types.map((type) => (type instanceof BuildingType ? type : buildingTypes[type]))
     this.cost = instantiate(cost, ResourceSet)
@@ -647,6 +649,7 @@ export const buildings = {
   mageTower: new Building({
     id: "mageTower",
     title: "Torre de màgia",
+    shortTitle: "T. de màgia",
     icon: MageTowerIcon,
     types: ["academic", "magic"],
     cost: { population: 2, resolve: 1, wood: 1, ore: 2 },
