@@ -14,6 +14,7 @@
   $palette-cream: #e0d1c2;
   $palette-latte: #c0a78e;
   $palette-toffee: #8a6948;
+  $palette-caramel: #674320;
   $palette-dull-gray: #b9b1b1;
   $palette-medium-gray: #797474;
   $palette-medium-dark-gray: #403d3d;
@@ -69,6 +70,7 @@
   --light-line-color: #{$palette-cream};
   --subtle-separator-color: #{$palette-dull-gray}30;
   --night-subtle-separator-color: #{$palette-pearl}15;
+  --clear-separator-color: #{$palette-toffee}70;
   --indent-color: #{$palette-cream};
   --night-unselected-text-color: #{$palette-dull-gray};
   --night-selected-text-color: #{$palette-pearl};
@@ -107,14 +109,14 @@
   --night-resource-color-justiceDevotion: #{$palette-turquoise};
   --resource-color-darknessDevotion: #{$palette-turquoise};
   --night-resource-color-darknessDevotion: #{$palette-turquoise};
-  --resource-color-grasslandHex: #{$palette-weed};
-  --night-resource-color-grasslandHex: #{$palette-weed};
-  --resource-color-forestHex: #{$palette-green};
-  --night-resource-color-forestHex: #{$palette-green};
-  --resource-color-mountainHex: #{$palette-brown};
-  --night-resource-color-mountainHex: #{$palette-brown};
-  --resource-color-seaHex: #{$palette-blue};
-  --night-resource-color-seaHex: #{$palette-blue};
+  --resource-color-grassland: #{$palette-weed};
+  --night-resource-color-grassland: #{$palette-weed};
+  --resource-color-forest: #{$palette-green};
+  --night-resource-color-forest: #{$palette-green};
+  --resource-color-mountain: #{$palette-brown};
+  --night-resource-color-mountain: #{$palette-brown};
+  --resource-color-sea: #{$palette-blue};
+  --night-resource-color-sea: #{$palette-blue};
   --standard-trait-background-color: #{$palette-dark-gray};
   --standard-medium-background-color: #{$palette-medium-dark-gray};
   --advantage-background-color: #{$palette-green};
@@ -123,6 +125,9 @@
   --disadvantage-medium-background-color: #{$palette-dull-pink};
   --archetype-trait-background-color: #{$palette-regal-purple};
   --archetype-trait-medium-background-color: #{$palette-soft-purple};
+  --area-terrain-background-color: #{$palette-caramel};
+  --area-terrain-choices-background-color: #{$palette-pearl};
+  --feature-icon-color: #{$palette-latte};
   --focus-background-color: #{$palette-dark-gray};
   --focus-medium-background-color: #{$palette-medium-gray};
   --even-row-background-color: #{$palette-mist};
@@ -144,6 +149,7 @@
 
   // Separators
   --subtle-line: 1px solid var(--subtle-separator-color);
+  --clear-line: 1px solid var(--clear-separator-color);
   --night-subtle-line: 1px solid var(--night-subtle-separator-color);
   --light-line: 1px solid var(--light-line-color);
   --indent: 3px solid var(--indent-color);

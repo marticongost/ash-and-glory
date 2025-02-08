@@ -77,8 +77,7 @@
 }
 
 $resources: gold, wood, ore, food, population, populationLoss, strife, effort, growth, curiosity, resolve, warDevotion,
-  fertilityDevotion, inspirationDevotion, justiceDevotion, darknessDevotion, grasslandHex, forestHex, mountainHex,
-  seaHex;
+  fertilityDevotion, inspirationDevotion, justiceDevotion, darknessDevotion, grassland, forest, mountain, sea;
 
 @mixin resource-color-code($property) {
   @each $resource in $resources {

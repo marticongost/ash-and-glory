@@ -33,7 +33,7 @@ import {
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
 import { unitTypes } from "./units"
-import { areaFeatureTypes } from "./areas"
+import { areaTypes } from "./areas"
 import { moments } from "./moments"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
@@ -626,7 +626,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             effect: (
               <>
                 Combatre contra cartes d'
-                <Reference item={areaFeatureTypes.threat} /> costa un <Strife /> addicional
+                <Reference item={areaTypes.threat} /> costa un <Strife /> addicional
               </>
             ),
           }),

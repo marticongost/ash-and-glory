@@ -23,75 +23,102 @@ import RuinedCastleIcon from "@/svg/terrain-features/ruined-castle.svg"
 import RuinedMageTowerIcon from "@/svg/terrain-features/ruined-mage-tower.svg"
 import RuinedPortalIcon from "@/svg/terrain-features/ruined-portal.svg"
 import RuinedMonumentIcon from "@/svg/terrain-features/ruined-monument.svg"
-import { Action, BuildingEnhancement, Capability, Passive } from "./capabilities"
+import { Action, BuildingEnhancement, Capability, Limitation, Passive } from "./capabilities"
 import { Reference } from "@/components/Reference"
 import { buildings, type Building } from "./buildings"
 import type { ResourceSet, ResourceSetProps } from "./resources"
-import { instantiate, toPascalCase } from "@/modules/utils"
-import { terrainTypes, type TerrainTypeId } from "./terrain"
+import { instantiate, instantiateAll, toPascalCase } from "@/modules/utils"
+import { TerrainType, terrainTypes, type TerrainTypeId } from "./terrain"
 import { unitTypes } from "./units"
-import { Curiosity, Effort, Food, Gold, Growth, Ore, Strife, Wood } from "@/components/ItemIcon"
+import { Curiosity, Effort, Food, Gold, Growth, Ore, SeaHex, Strife, Wood } from "@/components/ItemIcon"
+import { HexSet, HexSetBuilder, type Hex } from "@/modules/hex"
 
-export interface AreaProps {
+export const areaShapes: HexSet[] = [
+  HexSet.builder()
+    .push((c) => c.southEast())
+    .build(),
+  HexSet.builder()
+    .push((c) => c.southEast())
+    .push((c) => c.southWest())
+    .build(),
+  HexSet.builder()
+    .push((c) => c.northEast())
+    .push((c) => c.southEast())
+    .build(),
+  HexSet.builder()
+    .push((c) => c.southEast())
+    .push((c) => c.south())
+    .push((c) => c.northWest())
+    .build(),
+  HexSet.builder()
+    .push((c) => c.northEast())
+    .push((c) => c.south())
+    .push((c) => c.south())
+    .push((c) => c.northEast())
+    .build(),
+  HexSet.builder()
+    .push((c) => c.northEast())
+    .push((c) => c.south())
+    .push((c) => c.south())
+    .push((c) => c.northWest())
+    .build(),
+  HexSet.builder()
+    .add((c) => c.north())
+    .add((c) => c.southWest())
+    .add((c) => c.southEast())
+    .build(),
+]
+
+export interface AreaTerrainChoicesProps {
+  primary: TerrainChoice
+  secondary?: TerrainChoice
+  tertiary?: TerrainChoice
+}
+
+export class AreaTerrainChoices {
+  readonly primary: TerrainType[]
+  readonly secondary: TerrainType[]
+  readonly tertiary: TerrainType[]
+
+  constructor({ primary, secondary, tertiary }: AreaTerrainChoicesProps) {
+    const toTerrainTypes = (choice: TerrainChoice): TerrainType[] => {
+      if (choice === undefined) {
+        return []
+      } else if (typeof choice === "object" && choice instanceof Array) {
+        return choice.flatMap(toTerrainTypes)
+      } else {
+        return typeof choice === "string" ? [terrainTypes[choice]] : [choice]
+      }
+    }
+    this.primary = toTerrainTypes(primary)
+    this.secondary = toTerrainTypes(secondary)
+    this.tertiary = toTerrainTypes(tertiary)
+  }
+}
+
+export type TerrainChoice = TerrainTypeId | TerrainTypeId[] | TerrainType | TerrainType[] | undefined
+
+export interface AreaContentProps {
   id: string
+  title: string
+  types: Array<AreaType | AreaFeatureTypeId>
   feature?: AreaFeature | AreaFeatureProps
-  terrain: Partial<Record<TerrainTypeId, AreaSize | AreaSizeProps>>
-  size?: AreaSize | AreaSizeProps
-  buildingSlots?: number
+  terrain: AreaTerrainChoices | AreaTerrainChoicesProps
 }
 
 export class Area {
   readonly id: string
+  readonly title: string
+  readonly types: AreaType[]
   readonly feature?: AreaFeature
-  readonly terrain: Partial<Record<TerrainTypeId, AreaSize>>
-  readonly size: AreaSize
-  readonly buildingSlots: number
+  readonly terrain: AreaTerrainChoices
 
-  constructor({ id, feature, terrain, size, buildingSlots }: AreaProps) {
+  constructor({ id, title, types, feature, terrain }: AreaContentProps) {
     this.id = id
+    this.title = title
+    this.types = types.map((type) => (typeof type === "string" ? areaTypes[type] : type))
     this.feature = feature && instantiate(feature, AreaFeature)
-    this.terrain = {}
-    const terrainTypeIds = Object.keys(terrainTypes) as TerrainTypeId[]
-    let autoMinSize = 0
-    let autoMaxSize = 0
-    for (const terrainTypeId of terrainTypeIds) {
-      let terrainType = terrain[terrainTypeId]
-      if (terrainType !== undefined) {
-        terrainType = instantiate(terrainType, AreaSize)
-        this.terrain[terrainTypeId] = terrainType
-        autoMinSize += terrainType.min
-        autoMaxSize += terrainType.max
-      }
-    }
-    this.size =
-      size === undefined
-        ? new AreaSize([Math.max(autoMinSize, 1), Math.max(autoMaxSize, 1)])
-        : instantiate(size, AreaSize)
-    this.buildingSlots = buildingSlots ?? this.size.max
-  }
-}
-
-export type AreaSizeProps = number | [number, number]
-
-export class AreaSize {
-  readonly min: number
-  readonly max: number
-
-  constructor(size: number | [number, number]) {
-    if (typeof size === "number") {
-      this.min = size
-      this.max = size
-    } else {
-      this.min = size[0]
-      this.max = size[1]
-    }
-  }
-
-  toString(): string {
-    if (this.min === this.max) {
-      return this.min.toString()
-    }
-    return `${this.min}-${this.max}`
+    this.terrain = instantiate(terrain, AreaTerrainChoices)
   }
 }
 
@@ -102,7 +129,7 @@ export interface AreaFeatureTypeProps {
   title: string
 }
 
-export class AreaFeatureType {
+export class AreaType {
   readonly id: AreaFeatureTypeId
   readonly title: string
 
@@ -112,31 +139,25 @@ export class AreaFeatureType {
   }
 }
 
-export const areaFeatureTypes: Record<AreaFeatureTypeId, AreaFeatureType> = {
-  threat: new AreaFeatureType({ id: "threat", title: "Amenaça" }),
-  production: new AreaFeatureType({ id: "production", title: "Producció" }),
-  riches: new AreaFeatureType({ id: "riches", title: "Riqueses" }),
-  ruinedBuilding: new AreaFeatureType({ id: "ruinedBuilding", title: "Edifici abandonat" }),
-  specialUnit: new AreaFeatureType({ id: "specialUnit", title: "Unitat especial" }),
+export const areaTypes: Record<AreaFeatureTypeId, AreaType> = {
+  threat: new AreaType({ id: "threat", title: "Amenaça" }),
+  production: new AreaType({ id: "production", title: "Producció" }),
+  riches: new AreaType({ id: "riches", title: "Riqueses" }),
+  ruinedBuilding: new AreaType({ id: "ruinedBuilding", title: "Edifici abandonat" }),
+  specialUnit: new AreaType({ id: "specialUnit", title: "Unitat especial" }),
 }
 
 export interface AreaFeatureProps {
-  title: string
   icon: JSXElementConstructor<any>
-  types: Array<AreaFeatureType | AreaFeatureTypeId>
   capabilities: Capability[]
 }
 
 export class AreaFeature {
-  readonly title: string
   readonly icon: JSXElementConstructor<any>
-  readonly types: AreaFeatureType[]
   readonly capabilities: Capability[]
 
-  constructor({ title, icon, types, capabilities }: AreaFeatureProps) {
-    this.title = title
+  constructor({ icon, capabilities }: AreaFeatureProps) {
     this.icon = icon
-    this.types = types.map((type) => (typeof type === "string" ? areaFeatureTypes[type] : type))
     this.capabilities = capabilities
   }
 }
@@ -148,16 +169,14 @@ const makeRuinedBuildingFeature = (
 ): Area =>
   new Area({
     id: `ruined${toPascalCase(building.id)}`,
+    title: `Ruina: ${building.shortTitle}`,
+    types: ["ruinedBuilding"],
     terrain: {
-      grassland: [0, 1],
-      forest: [0, 1],
-      mountain: [0, 1],
+      primary: ["grassland", "forest", "mountain"],
+      secondary: ["grassland", "forest", "mountain", "sea"],
     },
-    size: 1,
     feature: {
-      title: `${building.title} en ruïnes`,
       icon,
-      types: ["ruinedBuilding"],
       capabilities: [
         new Action({
           id: "feature",
@@ -179,14 +198,14 @@ const makeRuinedBuildingFeature = (
 export const areas: Record<string, Area> = {
   renownedMilitia: new Area({
     id: "renownedMilitia",
+    title: "Vilatans indòmits",
+    types: ["specialUnit"],
     terrain: {
-      forest: [0, 1],
-      mountain: [0, 1],
+      primary: ["forest", "mountain"],
+      secondary: ["forest", "mountain"],
     },
     feature: {
-      title: "Vilatans indòmits",
       icon: RenownedMilitiaIcon,
-      types: ["specialUnit"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -202,14 +221,14 @@ export const areas: Record<string, Area> = {
   }),
   renownedArchers: new Area({
     id: "renownedArchers",
+    title: "Arquers reputats",
+    types: ["specialUnit"],
     terrain: {
-      forest: [0, 1],
-      mountain: [0, 1],
+      primary: ["forest", "mountain"],
+      secondary: ["forest", "mountain"],
     },
     feature: {
-      title: "Arquers reputats",
       icon: RenownedArchersIcon,
-      types: ["specialUnit"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -225,14 +244,14 @@ export const areas: Record<string, Area> = {
   }),
   renownedInfantry: new Area({
     id: "renownedInfantry",
+    title: "Infanteria reputada",
+    types: ["specialUnit"],
     terrain: {
-      grassland: [0, 1],
-      forest: [0, 1],
+      primary: ["grassland", "forest"],
+      secondary: ["grassland", "forest"],
     },
     feature: {
-      title: "Infanteria reputada",
       icon: RenownedInfantryIcon,
-      types: ["specialUnit"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -248,13 +267,13 @@ export const areas: Record<string, Area> = {
   }),
   renownedCavalry: new Area({
     id: "renownedCavalry",
+    title: "Cavallers reputats",
+    types: ["specialUnit"],
     terrain: {
-      grassland: [1, 2],
+      primary: "grassland",
     },
     feature: {
-      title: "Cavallers reputats",
       icon: RenownedCavalryIcon,
-      types: ["specialUnit"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -270,13 +289,14 @@ export const areas: Record<string, Area> = {
   }),
   gemstones: new Area({
     id: "gemstones",
+    title: "Gemmes",
+    types: ["production"],
     terrain: {
-      mountain: [1, 2],
+      primary: "mountain",
+      secondary: ["grassland", "forest", "sea"],
     },
     feature: {
-      title: "Gemmes",
       icon: GemstonesIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -298,13 +318,14 @@ export const areas: Record<string, Area> = {
   }),
   quarry: new Area({
     id: "quarry",
+    title: "Cantera",
+    types: ["production"],
     terrain: {
-      mountain: [1, 2],
+      primary: "mountain",
+      secondary: ["grassland", "forest", "sea"],
     },
     feature: {
-      title: "Cantera",
       icon: QuarryIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -327,13 +348,14 @@ export const areas: Record<string, Area> = {
   }),
   iron: new Area({
     id: "iron",
+    title: "Veta de ferro",
+    types: ["production"],
     terrain: {
-      mountain: [1, 2],
+      primary: "mountain",
+      secondary: ["grassland", "forest", "sea"],
     },
     feature: {
-      title: "Veta de ferro",
       icon: IronIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -356,13 +378,13 @@ export const areas: Record<string, Area> = {
   }),
   thickForest: new Area({
     id: "thickForest",
+    title: "Bosc dens",
+    types: ["production"],
     terrain: {
-      forest: [1, 2],
+      primary: "forest",
     },
     feature: {
-      title: "Bosc dens",
       icon: ThickForestIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -385,13 +407,14 @@ export const areas: Record<string, Area> = {
   }),
   grain: new Area({
     id: "grain",
+    title: "Gra",
+    types: ["production"],
     terrain: {
-      grassland: [1, 2],
+      primary: "grassland",
+      secondary: ["forest", "sea"],
     },
     feature: {
-      title: "Gra",
       icon: GrainIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -413,13 +436,14 @@ export const areas: Record<string, Area> = {
   }),
   wine: new Area({
     id: "wine",
+    title: "Vi",
+    types: ["production"],
     terrain: {
-      grassland: [1, 2],
+      primary: "grassland",
+      secondary: ["sea"],
     },
     feature: {
-      title: "Vi",
       icon: WineIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -441,13 +465,14 @@ export const areas: Record<string, Area> = {
   }),
   pelts: new Area({
     id: "pelts",
+    title: "Pells",
+    types: ["production"],
     terrain: {
-      forest: [1, 2],
+      primary: "forest",
+      secondary: ["mountain", "grassland"],
     },
     feature: {
-      title: "Pells",
       icon: PeltsIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -470,13 +495,14 @@ export const areas: Record<string, Area> = {
   }),
   fish: new Area({
     id: "fish",
+    title: "Peix",
+    types: ["production"],
     terrain: {
-      sea: [1, 2],
+      primary: "sea",
+      secondary: ["grassland", "forest", "mountain"],
     },
     feature: {
-      title: "Peix",
       icon: FishIcon,
-      types: ["production"],
       capabilities: [
         new BuildingEnhancement({
           id: "feature",
@@ -499,13 +525,14 @@ export const areas: Record<string, Area> = {
   }),
   pirates: new Area({
     id: "pirates",
+    title: "Pirates",
+    types: ["threat"],
     terrain: {
-      sea: [1, 2],
+      primary: "sea",
+      secondary: "mountain",
     },
     feature: {
-      title: "Pirates",
       icon: PiratesIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -516,13 +543,14 @@ export const areas: Record<string, Area> = {
   }),
   seaMonster: new Area({
     id: "seaMonster",
+    title: "Monstre marí",
+    types: ["threat"],
     terrain: {
-      sea: [1, 2],
+      primary: "sea",
+      secondary: "mountain",
     },
     feature: {
-      title: "Monstre marí",
       icon: SeaMonsterIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -533,13 +561,14 @@ export const areas: Record<string, Area> = {
   }),
   sunkenTreasure: new Area({
     id: "sunkenTreasure",
+    title: "Tresor enfonsat",
+    types: ["riches"],
     terrain: {
-      sea: [1, 2],
+      primary: "sea",
+      secondary: "mountain",
     },
     feature: {
-      title: "Tresor enfonsat",
       icon: SunkenTreasureIcon,
-      types: ["riches"],
       capabilities: [
         new Action({
           id: "feature",
@@ -556,13 +585,14 @@ export const areas: Record<string, Area> = {
   }),
   dragon: new Area({
     id: "dragon",
+    title: "Cova de drac",
+    types: ["threat"],
     terrain: {
-      mountain: [1, 2],
+      primary: "mountain",
+      secondary: ["grassland", "forest", "sea"],
     },
     feature: {
-      title: "Cova de drac",
       icon: DragonIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -573,13 +603,14 @@ export const areas: Record<string, Area> = {
   }),
   barbarians: new Area({
     id: "barbarians",
+    title: "Bàrbars",
+    types: ["threat"],
     terrain: {
-      forest: [1, 2],
+      primary: ["forest", "mountain"],
+      secondary: ["grassland", "forest", "sea"],
     },
     feature: {
-      title: "Bàrbars",
       icon: BarbariansIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -590,13 +621,14 @@ export const areas: Record<string, Area> = {
   }),
   goblins: new Area({
     id: "goblins",
+    title: "Gòblins",
+    types: ["threat"],
     terrain: {
-      forest: [1, 2],
+      primary: "forest",
+      secondary: ["grassland", "mountain", "sea"],
     },
     feature: {
-      title: "Gòblins",
       icon: GoblinsIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",
@@ -607,15 +639,14 @@ export const areas: Record<string, Area> = {
   }),
   trolls: new Area({
     id: "trolls",
+    title: "Trolls",
+    types: ["threat"],
     terrain: {
-      forest: [0, 2],
-      mountain: [0, 2],
+      primary: "forest",
+      secondary: ["grassland", "mountain", "sea"],
     },
-    size: [1, 2],
     feature: {
-      title: "Trolls",
       icon: TrollsIcon,
-      types: ["threat"],
       capabilities: [
         new Passive({
           id: "feature",

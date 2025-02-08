@@ -2,86 +2,70 @@
 
 .AreaCard {
   @include common.panel;
-  @include common.column(sm);
+  @include common.column;
   @include common.card;
-  @include common.padding(xs);
   align-items: stretch;
 }
 
-.properties {
-  @include common.row;
-  justify-content: space-evenly;
-}
-
-.property {
+.titleBar {
+  @include common.titlebar;
   @include common.column(0.5ch);
-  align-items: center;
+  @include common.padding(sm);
+  flex: 0 0 18%;
+  background-color: var(--area-terrain-background-color);
+}
 
-  &[data-property="grassland"] {
-    --icon-color: var(--resource-color-grasslandHex);
-  }
+.title {
+  font-family: var(--heading-font-family);
+  font-size: 1.3em;
+}
 
-  &[data-property="forest"] {
-    --icon-color: var(--resource-color-forestHex);
-  }
+.type {
+  @include common.row;
+  font-weight: 300;
+  font-size: 0.9em;
+}
 
-  &[data-property="mountain"] {
-    --icon-color: var(--resource-color-mountainHex);
-  }
+.type + .type:before {
+  content: ", ";
+}
 
-  &[data-property="sea"] {
-    --icon-color: var(--resource-color-seaHex);
+.terrainChoices {
+  @include common.row;
+  @include common.padding(xs);
+  background-color: var(--area-terrain-choices-background-color);
+}
+
+.terrainChoice {
+  @include common.row;
+
+  & + &::before {
+    content: "";
+    display: block;
+    border-left: var(--clear-line);
+    height: 1.5cap;
+    @include common.horizontal-margin(xs);
   }
 }
 
-.propertyIcon {
-  height: 2em;
-  width: auto;
-  flex: 0 0 auto;
-}
-
-.propertyValue {
-  font-size: 1.2em;
-  font-weight: bold;
+.terrainIcon {
+  font-size: 1.1em;
 }
 
 .feature {
   @include common.column;
   @include common.vertical-padding(1ch);
   flex: 1;
-  border: var(--dashed-line);
-}
-
-.featureTitleBar {
-  @include common.row(1ch);
-  flex: 0;
-  padding-left: var(--spacing-xs);
+  background-color: var(--page-background-color);
+  --icon-color: var(--feature-icon-color);
 }
 
 .featureIcon {
-  height: 2em;
+  align-self: center;
+  height: 2.6em;
   width: auto;
   flex: 0 0 auto;
-}
-
-.featureTaxonomy {
-  @include common.column(0.5ch);
-  flex: 1 1 auto;
-}
-
-.featureTitle {
-  font-family: var(--heading-font-family);
-  font-size: 1.2em;
-}
-
-.featureTypes {
-  @include common.row;
-  font-weight: 300;
-  font-size: 0.9em;
-}
-
-.featureType + .featureType:before {
-  content: ", ";
+  @include common.vertical-margin(0.5ch);
 }
 
 .featureCapabilities {
