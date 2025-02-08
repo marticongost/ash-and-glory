@@ -26,12 +26,15 @@ import {
   Population,
   PopulationLoss,
   Resolve,
+  SeaHex,
   Strife,
   Wood,
 } from "@/components/ItemIcon"
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
 import { unitTypes } from "./units"
+import { areaFeatureTypes } from "./areas"
+import { moments } from "./moments"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -544,6 +547,340 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
     icon: DisadvantageIcon,
     traits: [
       {
+        id: "helpless",
+        level: 1,
+        title: "Indefensos",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameStart",
+            effect: <>Es comença la partida sense soldats</>,
+          }),
+        ],
+      },
+      {
+        id: "divided",
+        level: 1,
+        title: "Dividits",
+        capabilities: [
+          new Passive({
+            id: "setup",
+            moment: "gameStart",
+            effect: <>Colocar dos marcadors sobre la carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            effect: (
+              <>
+                Mentre la carta tingui marcadors, no es poden utilitzar recursos <Resolve />
+              </>
+            ),
+          }),
+          new Action({
+            id: "discard",
+            moment: "productionStage",
+            cost: { strife: 1 },
+            effect: (
+              <>
+                Retirar un marcador. Si era l'últim, guanyar <Resolve />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "secluded",
+        level: 1,
+        title: "Tancats",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameStart",
+            effect: <>Es comença la partida amb 2 territoris menys</>,
+          }),
+        ],
+      },
+      {
+        id: "isolationists",
+        level: 1,
+        title: "Aïllacionistes",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            effect: (
+              <>
+                Desplegar <Explorer /> costa <Resolve /> en comptes de <Curiosity />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "cowards",
+        level: 1,
+        title: "Covards",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "manouverStage",
+            effect: (
+              <>
+                Combatre contra cartes d'
+                <Reference item={areaFeatureTypes.threat} /> costa un <Strife /> addicional
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "undead",
+        level: 1,
+        title: "No morts",
+        capabilities: [
+          new Passive({
+            id: "dontRequireFood",
+            effect: (
+              <>
+                No es pot guanyar <Food />, ni construir <Reference item={buildings.farm} /> o{" "}
+                <Reference item={buildings.granary} />.
+              </>
+            ),
+          }),
+          new Action({
+            id: "reanimate",
+            cost: { anyDrive: "X" },
+            effect: (
+              <>
+                Guanyar X <Population /> a la ciutat
+              </>
+            ),
+          }),
+          new Action({
+            id: "reanimate",
+            moment: "afterWinningBattle",
+            cost: { anyDrive: "X" },
+            effect: (
+              <>
+                Guanyar X <Militia /> a l'exèrcit (màxim igual al número d'unitats eliminades)
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "daredevils",
+        level: 1,
+        title: "Temeraris",
+        capabilities: [
+          new Passive({
+            id: "daredevils",
+            effect: <>-1 a la defensa</>,
+          }),
+        ],
+      },
+      {
+        id: "talasofobia",
+        level: 1,
+        title: "Talassofòbia",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "manouverStage",
+            effect: (
+              <>
+                Els moviments per <SeaHex /> costen un punt de maniobra addicional
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "chaotic",
+        level: 1,
+        title: "Caòtics",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "whenChoosingFocus",
+            effect: <>S'ha d'agafar sempre la primera carta de focus</>,
+          }),
+        ],
+      },
+      {
+        id: "codeOfHonor",
+        level: 1,
+        title: "Codi d'honor",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "afterLoosingBattle",
+            effect: (
+              <>
+                Perdre un punt de <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "sinners",
+        level: 2,
+        title: "Pecadors",
+        capabilities: [
+          new Passive({
+            id: "setup",
+            moment: "gameStart",
+            effect: <>Colocar un marcador a la carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            effect: (
+              <>
+                Mentre la carta tingui el marcador, el jugador no pot guanyar <Glory />
+              </>
+            ),
+          }),
+          new Action({
+            id: "redemption",
+            cost: { resolve: 2 },
+            effect: <>Retirar el marcador</>,
+          }),
+        ],
+      },
+      {
+        id: "wasteful",
+        level: 2,
+        title: "Malgastadors",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "turnStart",
+            effect: (
+              <>
+                Descartar un <AnyMaterial /> emmagatzemat
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "obtuse",
+        level: 2,
+        title: "Obtusos",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "whenChoosingFocus",
+            effect: <>No es pot escollir la última carta revel·lada</>,
+          }),
+        ],
+      },
+      {
+        id: "ostentatious",
+        level: 2,
+        title: "Ostentadors",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si el jugador té menys de 3 edificis <Reference item={buildingTypes.monumental} />, perdre dos punts de{" "}
+                <Glory /> per cada edifici que li falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "gluttons",
+        level: 2,
+        title: "Golafres",
+        capabilities: [
+          new Action({
+            id: "staveOff",
+            moment: "productionStage",
+            cost: { food: 1 },
+            effect: <>Afegir un marcador a aquesta carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si hi ha menys de 6 marcadors a la carta, perdre un punt de <Glory /> per cada marcador que falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "greedy",
+        level: 2,
+        title: "Avariciosos",
+        capabilities: [
+          new Action({
+            id: "staveOff",
+            moment: "productionStage",
+            cost: { gold: 1 },
+            effect: <>Afegir un marcador a aquesta carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si hi ha menys de 4 marcadors a la carta, perdre un punt de <Glory /> per cada marcador que falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "megalomaniacs",
+        level: 2,
+        title: "Megalòmans",
+        capabilities: [
+          new Action({
+            id: "staveOff",
+            moment: "productionStage",
+            cost: { resolve: 1 },
+            effect: <>Afegir un marcador a aquesta carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si hi ha menys de 4 marcadors a la carta, perdre un punt de <Glory /> per cada marcador que falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "bloodlust",
+        level: 2,
+        title: "Sed de sang",
+        capabilities: [
+          new Action({
+            id: "staveOff",
+            moment: "afterBattle",
+            cost: { resolve: 1 },
+            effect: <>Afegir un marcador a aquesta carta</>,
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si hi ha menys de 4 marcadors a la carta, perdre un punt de <Glory /> per cada marcador que falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         id: "feeble",
         level: 2,
         title: "Febles",
@@ -552,6 +889,59 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             id: "feeble",
             moment: "combat",
             effect: "-1 a l'atac i la defensa",
+          }),
+        ],
+      },
+      {
+        id: "centralists",
+        level: 2,
+        title: "Centralistes",
+        capabilities: [
+          new Passive({
+            id: "centralists",
+            moment: "constructionStage",
+            effect: (
+              <>
+                La ciutat inicial del jugador es considera la seva capital. En construir en altres ciutats, no es poden
+                construir edificis <Reference item={buildingTypes.monumental} />,{" "}
+                <Reference item={buildingTypes.academic} /> o <Reference item={buildingTypes.economic} /> si la capital
+                no compta amb una còpia del mateix edifici. A més, la mida de les ciutats secundàries mai podrà igualar
+                o superar la de la capital.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "perfectionists",
+        level: 2,
+        title: "Perfeccionistes",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si el jugador té menys de 2 trets de nivell 3, perdre 3 <Glory /> per cada tret que li falti
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "dogmatic",
+        level: 3,
+        title: "Dogmàtics",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Designar un dels arquetips posseïts com a arquetip principal. Si s'han adquirit trets d'altres
+                arquetips, perdre tants punts de <Glory /> com la suma total de tots els seus nivells.
+              </>
+            ),
           }),
         ],
       },
@@ -567,6 +957,77 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                 El jugador no pot construir ni utilitzar edificis <em>religiosos</em>
               </>
             ),
+          }),
+        ],
+      },
+      {
+        id: "infertile",
+        level: 3,
+        title: "Infèrtils",
+        capabilities: [
+          new Passive({
+            id: "limitation",
+            effect: (
+              <>
+                No es pot utilitzar <Resolve /> per pagar costos de <Growth />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "lazy",
+        level: 3,
+        title: "Dropos",
+        capabilities: [
+          new Passive({
+            id: "limitation",
+            effect: (
+              <>
+                No es pot utilitzar <Resolve /> per pagar costos de <Effort />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "reactionary",
+        level: 3,
+        title: "Reaccionaris",
+        capabilities: [
+          new Passive({
+            id: "limitation",
+            effect: (
+              <>
+                No es pot utilitzar <Resolve /> per pagar costos de <Curiosity />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "pacifists",
+        level: 3,
+        title: "Pacifistes",
+        capabilities: [
+          new Passive({
+            id: "limitation",
+            effect: (
+              <>
+                No es pot utilitzar <Resolve /> per pagar costos de <Strife />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "hermetic",
+        level: 3,
+        title: "Hermètics",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            effect: <>El jugador no pot establir o beneficiar-se de rutes comercials</>,
           }),
         ],
       },

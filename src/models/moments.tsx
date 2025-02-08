@@ -1,5 +1,6 @@
 export type MomentId =
   | "constant"
+  | "whenChoosingFocus"
   | "productionStage"
   | "constructionStage"
   | "manouverStage"
@@ -7,7 +8,9 @@ export type MomentId =
   | "afterEventResolved"
   | "beforeCombat"
   | "combat"
+  | "afterBattle"
   | "afterWinningBattle"
+  | "afterLoosingBattle"
   | "recruitingSoldiers"
   | "whenAcquiringTraits"
   | "afterCityConquered"
@@ -39,6 +42,7 @@ export class Moment {
 
 export const moments: Record<MomentId, Moment> = {
   constant: new Moment({ id: "constant", title: "Efecte constant" }),
+  whenChoosingFocus: new Moment({ id: "whenChoosingFocus", title: "En escollir focus" }),
   productionStage: new Moment({ id: "productionStage", title: "Fase de producció" }),
   constructionStage: new Moment({ id: "constructionStage", title: "Fase de construcció" }),
   afterEventRevealed: new Moment({ id: "afterEventRevealed", title: "Després de revelar un esdeveniment" }),
@@ -46,7 +50,9 @@ export const moments: Record<MomentId, Moment> = {
   manouverStage: new Moment({ id: "manouverStage", title: "Fase de maniobra" }),
   beforeCombat: new Moment({ id: "beforeCombat", title: "Abans del combat" }),
   combat: new Moment({ id: "combat", title: "En combat" }),
+  afterBattle: new Moment({ id: "afterBattle", title: "En concloure una batalla" }),
   afterWinningBattle: new Moment({ id: "afterWinningBattle", title: "En guanyar una batalla" }),
+  afterLoosingBattle: new Moment({ id: "afterLoosingBattle", title: "En perdre una batalla" }),
   recruitingSoldiers: new Moment({ id: "recruitingSoldiers", title: "En reclutar soldats" }),
   afterCityConquered: new Moment({ id: "afterCityConquered", title: "En conquerir una ciutat" }),
   afterDestroyingBarbarianCamp: new Moment({

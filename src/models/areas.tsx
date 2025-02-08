@@ -112,7 +112,7 @@ export class AreaFeatureType {
   }
 }
 
-export const areaTypes: Record<AreaFeatureTypeId, AreaFeatureType> = {
+export const areaFeatureTypes: Record<AreaFeatureTypeId, AreaFeatureType> = {
   threat: new AreaFeatureType({ id: "threat", title: "Amenaça" }),
   production: new AreaFeatureType({ id: "production", title: "Producció" }),
   riches: new AreaFeatureType({ id: "riches", title: "Riqueses" }),
@@ -136,7 +136,7 @@ export class AreaFeature {
   constructor({ title, icon, types, capabilities }: AreaFeatureProps) {
     this.title = title
     this.icon = icon
-    this.types = types.map((type) => (typeof type === "string" ? areaTypes[type] : type))
+    this.types = types.map((type) => (typeof type === "string" ? areaFeatureTypes[type] : type))
     this.capabilities = capabilities
   }
 }
