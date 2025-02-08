@@ -125,3 +125,70 @@ const subtractCubeCoordinates = (a: CubeCoordinates, b: CubeCoordinates): CubeCo
   r: a.r - b.r,
   s: a.s - b.s,
 })
+
+export class HexSetBuilder {
+  private _hexes: Hex[]
+  private _cursor: Hex
+
+  constructor() {
+    this._hexes = []
+    this._cursor = new Hex()
+  }
+
+  push(hexMovement: (cursor: Hex) => Hex): HexSetBuilder {
+    this._cursor = hexMovement(this._cursor)
+    this._hexes.push(this._cursor)
+    return this
+  }
+
+  add(hexMovement: (cursor: Hex) => Hex): HexSetBuilder {
+    this._hexes.push(hexMovement(this._cursor))
+    return this
+  }
+
+  skip(hexMovement: (cursor: Hex) => Hex): HexSetBuilder {
+    this._cursor = hexMovement(this._cursor)
+    return this
+  }
+
+  build(): HexSet {
+    return new HexSet(this._hexes)
+  }
+}
+
+export class HexSet {
+  readonly hexes: Hex[]
+  readonly top: number
+  readonly bottom: number
+  readonly left: number
+  readonly right: number
+
+  static builder(): HexSetBuilder {
+    return new HexSetBuilder().push((center) => center)
+  }
+
+  constructor(hexes: Hex[]) {
+    this.hexes = []
+
+    this.top = 0
+    this.bottom = 0
+    this.left = 0
+    this.right = 0
+
+    for (const hex of hexes) {
+      this.hexes.push(hex)
+      this.top = Math.min(this.top, hex.row)
+      this.bottom = Math.max(this.bottom, hex.row)
+      this.left = Math.min(this.left, hex.column)
+      this.right = Math.max(this.right, hex.column)
+    }
+  }
+
+  get width(): number {
+    return this.right - this.left + 1
+  }
+
+  get height(): number {
+    return this.bottom - this.top + 1
+  }
+}

@@ -2,7 +2,7 @@ import { Section } from "@/components/Section"
 import styles from "./Preparation.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { HexGrid } from "@/components/HexGrid"
-import { Hex } from "@/modules/hex"
+import { Hex, HexSet } from "@/modules/hex"
 import { Population } from "@/components/ItemIcon"
 import { Reference } from "@/components/Reference"
 import { buildings } from "@/models/buildings"
@@ -150,7 +150,7 @@ const MapDistribution = ({ playerCount, mapSize, startPositions }: MapDistributi
     <Section title={`Distribució per ${playerCount} jugadors`} className={styles.mapDistributionSection}>
       <HexGrid
         className={styles.mapDistributionHexGrid}
-        size={mapSize}
+        hexSet={new HexSet(new Hex().concentricRings(mapSize))}
         hexDecorator={(hex) => {
           for (const startingHex of startHexes) {
             if (hex.is(startingHex)) {

@@ -1,11 +1,11 @@
 import styles from "./HexGrid.module.scss"
 import { getStandardAttributes, mergeClassName, type StandardComponentProps } from "@/modules/react-utils"
 import HexSVG from "@/svg/hex.svg"
-import { Hex } from "@/modules/hex"
+import { Hex, HexSet } from "@/modules/hex"
 import type { ReactNode } from "react"
 
 export interface HexGridProps extends StandardComponentProps {
-  size: number
+  hexSet: HexSet
   showCoordinates?: boolean
   hexDecorator?: (hex: Hex) => HexDecoration | undefined
 }
@@ -15,15 +15,13 @@ export interface HexDecoration {
   children?: ReactNode
 }
 
-export const HexGrid = ({ size, hexDecorator, showCoordinates = false, ...baseProps }: HexGridProps) => {
-  const center = new Hex()
-  const hexes = center.concentricRings(size)
+export const HexGrid = ({ hexSet, hexDecorator, showCoordinates = false, ...baseProps }: HexGridProps) => {
   return (
     <div
       {...getStandardAttributes(baseProps, styles.HexGrid)}
-      style={{ "--w": size * 2 + 1, "--h": size * 2 + 1 } as any}
+      style={{ "--w": hexSet.width, "--h": hexSet.height } as any}
     >
-      {hexes.map((hex) => {
+      {hexSet.hexes.map((hex) => {
         const decoration = hexDecorator ? hexDecorator(hex) : undefined
         return (
           <div
