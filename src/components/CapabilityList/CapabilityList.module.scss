@@ -5,6 +5,10 @@
   @include common.column(sm);
   align-items: stretch;
   margin-top: var(--spacing-xs);
+
+  .CapabilityList {
+    padding-right: 0;
+  }
 }
 
 .moment {
