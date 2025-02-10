@@ -5,6 +5,7 @@ import {
   BuildingWithMinCost,
   Limitation,
   Passive,
+  type ActionTiming,
   type Adjacency,
   type Capability,
 } from "@/models/capabilities"
@@ -12,10 +13,20 @@ import styles from "./CapabilityDisplay.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
+import ActionIcon from "@/svg/action-timing/action.svg"
+import ReactionIcon from "@/svg/action-timing/reaction.svg"
+import InstantActionIcon from "@/svg/action-timing/instant.svg"
 import ConvertIcon from "@/svg/convert.svg"
 import { CapabilityList } from "../CapabilityList"
 import { Building, BuildingType } from "@/models/buildings"
 import { Reference } from "../Reference"
+import { createElement, type JSXElementConstructor } from "react"
+
+const actionTimingIcons: Record<ActionTiming, JSXElementConstructor<any>> = {
+  action: ActionIcon,
+  reaction: ReactionIcon,
+  instant: InstantActionIcon,
+}
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -41,11 +52,19 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
 
   return (
     <div {...getStandardAttributes(baseProps, styles.CapabilityDisplay)} data-type={capability.constructor.name}>
+      {(capability instanceof Action || capability instanceof Passive) && !capability.moment.implicit ? (
+        <span className={styles.moment}>{capability.moment.title}</span>
+      ) : null}
       {capability instanceof Action ? (
-        <>
-          <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="inline" />
-          <ConvertIcon className={styles.convertIcon} />
-        </>
+        <span className={styles.actionPreface}>
+          {createElement(actionTimingIcons[capability.timing], { className: styles.actionIcon })}
+          {capability.cost?.isNone() ? null : (
+            <>
+              <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="inline" />
+              <ConvertIcon className={styles.convertIcon} />
+            </>
+          )}
+        </span>
       ) : null}
       <Content className={styles.content}>{capability.effect}</Content>
     </div>

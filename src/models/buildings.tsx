@@ -171,7 +171,6 @@ export const buildings = {
       new Action({
         id: "build",
         title: "Construir edifici",
-        moment: "constructionStage",
         cost: undefined,
         effect: <>Construir edificis a la ciutat</>,
       }),
@@ -208,6 +207,7 @@ export const buildings = {
       new Action({
         id: "produce-food",
         title: "Produir menjar",
+        timing: "instant",
         cost: { growth: 1, population: "X", grasslandHex: "X" },
         effect: (
           <>
@@ -235,6 +235,7 @@ export const buildings = {
       new Action({
         id: "produce-wood",
         title: "Produir fusta",
+        timing: "instant",
         cost: { effort: 1, population: "X", forestHex: "X" },
         effect: (
           <>
@@ -262,6 +263,7 @@ export const buildings = {
       new Action({
         id: "produce-ore",
         title: "Produir mineral",
+        timing: "instant",
         cost: { effort: 1, population: "X", mountainHex: "X" },
         effect: (
           <>
@@ -289,6 +291,7 @@ export const buildings = {
       new Action({
         id: "fish",
         title: "Pescar",
+        timing: "instant",
         cost: { effort: 1, population: "X", seaHex: "X" },
         effect: (
           <>
@@ -299,7 +302,6 @@ export const buildings = {
       new Action({
         id: "build-ship",
         title: "Construir vaixell",
-        moment: "recruitingSoldiers",
         cost: { populationLoss: 1, curiosity: 1, wood: 2 },
         effect: (
           <>
@@ -319,6 +321,7 @@ export const buildings = {
       new Action({
         id: "fish",
         title: "Manufacturar productes",
+        timing: "instant",
         cost: { effort: 1, population: "X", anyMaterial: "X" },
         effect: (
           <>
@@ -337,7 +340,7 @@ export const buildings = {
     capabilities: [
       new Passive({
         id: "store-materials",
-        moment: "turnEnd",
+        moment: "roundEnd",
         effect: (
           <>
             Permet emmagatzemar un <Wood /> o <Ore /> per cada <Reference item={() => buildings.sawmill} /> o{" "}
@@ -356,7 +359,7 @@ export const buildings = {
     capabilities: [
       new Passive({
         id: "store-materials",
-        moment: "turnEnd",
+        moment: "roundEnd",
         effect: (
           <>
             Permet emmagatzemar un <Food /> per cada <em>Granja</em> adjacent
@@ -375,6 +378,7 @@ export const buildings = {
       new Action({
         id: "exchange-goods",
         title: "Comerciar",
+        timing: "instant",
         cost: { growth: 1, anyMaterial: "1+" },
         effect: (
           <>
@@ -404,7 +408,7 @@ export const buildings = {
       new Passive({
         id: "vault",
         title: "Estalvi",
-        moment: "turnEnd",
+        moment: "roundEnd",
         effect: (
           <>
             Permet emmagatzemar un <Gold /> per cada edifici <em>econòmic</em> a la ciutat
@@ -414,7 +418,7 @@ export const buildings = {
       new Passive({
         id: "finance",
         title: "Interessos",
-        moment: "turnStart",
+        moment: "roundStart",
         effect: (
           <>
             Si el banc conté 1+ <Gold /> emmagatzemat, guanyar un <Gold /> adicional
@@ -447,6 +451,7 @@ export const buildings = {
       new Action({
         id: "rule",
         title: "Regnar",
+        timing: "instant",
         cost: { strife: 1 },
         effect: (
           <>
@@ -468,7 +473,6 @@ export const buildings = {
         id: "recruit",
         title: "Reclutar",
         cost: { strife: 1, ore: 1, populationLoss: 1 },
-        moment: "manouverStage",
         effect: (
           <>
             Desplegar <Infantry /> o <Archers /> a l'edifici
@@ -493,7 +497,6 @@ export const buildings = {
         id: "recruit",
         title: "Reclutar",
         cost: { strife: 1, ore: 2, gold: 1, populationLoss: 1 },
-        moment: "manouverStage",
         effect: (
           <>
             Desplegar <Cavalry /> a l'edifici
@@ -522,6 +525,7 @@ export const buildings = {
       new Action({
         id: "oppulence",
         title: "Opulència",
+        timing: "instant",
         cost: { gold: 1 },
         effect: (
           <>
@@ -637,6 +641,7 @@ export const buildings = {
       new Action({
         id: "teaching",
         title: "Ensenyament",
+        timing: "instant",
         cost: { curiosity: 1 },
         effect: (
           <>
@@ -658,6 +663,7 @@ export const buildings = {
       new Action({
         id: "arcane-misteries",
         title: "Misteris arcans",
+        timing: "instant",
         cost: { anyDrive: 1 },
         effect: (
           <>

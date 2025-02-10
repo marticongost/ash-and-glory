@@ -2,35 +2,15 @@
 
 .CapabilityList {
   @include common.horizontal-padding(xs);
-  @include common.column(sm);
+  @include common.column;
   align-items: stretch;
   margin-top: var(--spacing-xs);
 
   .CapabilityList {
     padding-right: 0;
   }
-}
 
-.moment {
-  @include common.column;
-  align-items: stretch;
-}
-
-.momentTitle {
-  font-family: var(--heading-font-family);
-  color: var(--section-heading-text-color);
-  border-bottom: var(--light-line);
-  padding-right: var(--spacing-xs);
-  padding-bottom: 0.4ch;
-  margin-bottom: 0.6ch;
-}
-
-.momentCapabilities {
-  @include common.column;
-  align-self: stretch;
-  align-items: stretch;
-
-  & > * + * {
+  .capability + .capability {
     margin-top: 1ch;
     padding-top: 1ch;
     border-top: var(--subtle-line);

@@ -29,6 +29,22 @@ export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): R
   return record
 }
 
+export const sortBy = <T, K extends string | number>(items: T[], getKey: (item: T) => K): T[] => {
+  const entries = items.map((item) => ({ key: getKey(item), item }))
+  entries.sort((a, b) => compareKeys(a.key, b.key))
+  return entries.map((entry) => entry.item)
+}
+
+export const compareKeys = <K extends string | number>(a: K, b: K): number => {
+  if (a > b) {
+    return 1
+  }
+  if (b < a) {
+    return -1
+  }
+  return 0
+}
+
 export const mapRecord = <InKey extends Key, InValue, OutKey extends Key, OutValue>(
   record: Record<InKey, InValue>,
   mapper: (key: InKey, value: InValue) => [OutKey, OutValue],

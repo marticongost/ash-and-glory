@@ -22,17 +22,15 @@ export const ResourceSetDisplay = ({
   >
     {resourceSet === undefined
       ? "Variable"
-      : resourceSet.isNone()
-        ? "Gratis"
-        : Object.values(resources).map((resource) => {
-            const amount = resourceSet[resource.id]
-            if (!amount) return null
-            return (
-              <div className={styles.resource} data-type={resource.id} key={resource.id}>
-                {createElement(resource.icon, { className: styles.icon })}
-                <div className={styles.amount}>{amount}</div>
-              </div>
-            )
-          })}
+      : Object.values(resources).map((resource) => {
+          const amount = resourceSet[resource.id]
+          if (!amount) return null
+          return (
+            <div className={styles.resource} data-type={resource.id} key={resource.id}>
+              {createElement(resource.icon, { className: styles.icon })}
+              <div className={styles.amount}>{amount}</div>
+            </div>
+          )
+        })}
   </div>
 )

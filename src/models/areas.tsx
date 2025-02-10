@@ -180,7 +180,6 @@ const makeRuinedBuildingFeature = (
       capabilities: [
         new Action({
           id: "feature",
-          moment: "constructionStage",
           cost,
           effect: (
             <>

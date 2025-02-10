@@ -12,7 +12,6 @@ import { Action, BuildingEnhancement, BuildingWithMinCost, Capability, Passive }
 import {
   AnyDrive,
   AnyMaterial,
-  Archers,
   Curiosity,
   Effort,
   Explorer,
@@ -32,9 +31,7 @@ import {
 } from "@/components/ItemIcon"
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
-import { unitTypes } from "./units"
 import { areaTypes } from "./areas"
-import { moments } from "./moments"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -136,7 +133,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "storage",
-            moment: "turnEnd",
+            moment: "roundEnd",
             effect: (
               <>
                 Emmagetzemar un <AnyDrive /> i/o fins a <AnyMaterial amount={2} />
@@ -154,6 +151,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           }),
           new Action({
             id: "flexibility",
+            timing: "instant",
             cost: { anyDrive: 2 },
             effect: (
               <>
@@ -163,6 +161,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           }),
           new Action({
             id: "catch-up",
+            timing: "instant",
             cost: { anyDrive: 1 },
             effect: (
               <>
@@ -224,7 +223,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "mountaineers",
-            moment: "manouverStage",
             effect: <>El moviment per muntanyes costa un punt de maniobra menys del normal.</>,
           }),
         ],
@@ -236,7 +234,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "sylvan",
-            moment: "manouverStage",
             effect: <>El moviment per boscos costa un punt de maniobra menys del normal.</>,
           }),
         ],
@@ -337,6 +334,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Action({
             id: "peek-combat-cards",
             moment: "beforeCombat",
+            timing: "reaction",
             cost: { curiosity: 1 },
             effect: <>Veure la meitat (arrodonint cap a baix) de la ma de cartes de combat del rival.</>,
           }),
@@ -359,6 +357,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Action({
             id: "resolute",
             moment: "afterEventRevealed",
+            timing: "reaction",
             cost: { effort: 1 },
             effect: <>Ignorar l'efecte de l'esdeveniment sobre el jugador.</>,
           }),
@@ -383,7 +382,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "amphibious",
-            moment: "manouverStage",
             effect: (
               <>
                 Permet que les unitats terrestres entrin a territoris costers (caselles de mar adjacents a una casella
@@ -400,6 +398,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "expansive",
+            timing: "instant",
             cost: { anyDrive: 1 },
             effect: (
               <>
@@ -416,6 +415,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "hard-working",
+            timing: "instant",
             cost: { anyDrive: 1 },
             effect: (
               <>
@@ -432,6 +432,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "curious",
+            timing: "instant",
             cost: { anyDrive: 1 },
             effect: (
               <>
@@ -448,6 +449,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "combative",
+            timing: "instant",
             cost: { anyDrive: 1 },
             effect: (
               <>
@@ -464,6 +466,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "versatile",
+            timing: "instant",
             cost: { anyDrive: 2 },
             effect: (
               <>
@@ -529,7 +532,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "winged",
-            moment: "manouverStage",
             effect: (
               <>
                 Ignorar les penalitzacions al moviment de boscos i muntanyes. +1 a l'atac i la defensa contra enemics
@@ -578,7 +580,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           }),
           new Action({
             id: "discard",
-            moment: "productionStage",
             cost: { strife: 1 },
             effect: (
               <>
@@ -622,7 +623,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "penalty",
-            moment: "manouverStage",
             effect: (
               <>
                 Combatre contra cartes d'
@@ -656,8 +656,9 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             ),
           }),
           new Action({
-            id: "reanimate",
+            id: "reanimateFallen",
             moment: "afterWinningBattle",
+            timing: "reaction",
             cost: { anyDrive: "X" },
             effect: (
               <>
@@ -685,7 +686,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "penalty",
-            moment: "manouverStage",
             effect: (
               <>
                 Els moviments per <SeaHex /> costen un punt de maniobra addicional
@@ -754,7 +754,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "penalty",
-            moment: "turnStart",
+            moment: "roundStart",
             effect: (
               <>
                 Descartar un <AnyMaterial /> emmagatzemat
@@ -799,7 +799,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "staveOff",
-            moment: "productionStage",
             cost: { food: 1 },
             effect: <>Afegir un marcador a aquesta carta</>,
           }),
@@ -821,7 +820,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "staveOff",
-            moment: "productionStage",
             cost: { gold: 1 },
             effect: <>Afegir un marcador a aquesta carta</>,
           }),
@@ -843,7 +841,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "staveOff",
-            moment: "productionStage",
             cost: { resolve: 1 },
             effect: <>Afegir un marcador a aquesta carta</>,
           }),
@@ -899,7 +896,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "centralists",
-            moment: "constructionStage",
             effect: (
               <>
                 La ciutat inicial del jugador es considera la seva capital. En construir en altres ciutats, no es poden
@@ -1079,7 +1075,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "advanced-logistics",
-            moment: "manouverStage",
             effect: <>Guanyar +1 punt de maniobra per torn</>,
           }),
         ],
@@ -1091,8 +1086,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "siege-machines",
-            moment: "manouverStage",
             cost: { wood: "1+" },
+            timing: "reaction",
             effect: (
               <>
                 Abans de començar un combat a una ciutat, gastar 1-3 <Wood />. Per cada
@@ -1109,7 +1104,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "warmongers",
-            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Strife />
@@ -1171,6 +1165,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             id: "warlords",
             cost: { growth: 1 },
             moment: "afterDestroyingBarbarianCamp",
+            timing: "reaction",
             effect: (
               <>
                 Guanyar <Glory />, <Explorer /> i <Militia /> a la ubicació del camp destruit
@@ -1198,6 +1193,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
               new Action({
                 id: "export",
                 cost: { population: 1, curiosity: 1, anyMaterial: "X", seaHex: "X" },
+                timing: "instant",
                 effect: (
                   <>
                     Guanyar X <Gold />
@@ -1219,6 +1215,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "hagglers",
+                timing: "instant",
                 cost: { anyDrive: 2 },
                 effect: (
                   <>
@@ -1238,6 +1235,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Action({
             id: "creative-economy",
             cost: { anyDrive: 1, gold: 1 },
+            timing: "instant",
             effect: (
               <>
                 Guanyar <Resolve />
@@ -1270,7 +1268,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "bankers",
-            moment: "productionStage",
+            moment: "roundStart",
             effect: (
               <>
                 Guanyar <Gold />
@@ -1290,6 +1288,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "riches-from-beyond-the-sea",
+                timing: "instant",
                 cost: { curiosity: "X", population: 1, seaHex: "X" },
                 effect: (
                   <>
@@ -1346,6 +1345,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "cosmopolitan",
+            timing: "instant",
             cost: { curiosity: "1+" },
             effect: (
               <>
@@ -1369,7 +1369,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "research",
-            moment: "turnEnd",
+            moment: "roundEnd",
             effect: (
               <>
                 Cada <em>Universitat</em> pot emmagatzemar un <Curiosity />
@@ -1433,6 +1433,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "ingenuity",
+            timing: "instant",
             cost: { curiosity: 1 },
             effect: (
               <>
@@ -1465,7 +1466,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "innovation",
-            moment: "productionStage",
+            moment: "roundStart",
             effect: (
               <>
                 Guanyar <Curiosity />
@@ -1501,6 +1502,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "advanced-materials",
+                timing: "instant",
                 cost: { curiosity: 1 },
                 effect: (
                   <>
@@ -1535,7 +1537,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "volumes-of-knowledge",
-            moment: "turnStart",
+            moment: "roundStart",
             effect: (
               <>
                 Convertir els <Curiosity /> emmagatzemats en <Resolve />
@@ -1611,6 +1613,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "monumental-splendor",
+                timing: "instant",
                 cost: { anyDrive: 1 },
                 effect: (
                   <>
@@ -1644,7 +1647,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "roads",
-            moment: "manouverStage",
             effect: (
               <>
                 Els exèrcits i exploradors que comencin el seu moviment a una ciutat del jugador guanyen 2 punts de
@@ -1681,6 +1683,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "distant-visitors",
+                timing: "instant",
                 cost: { growth: 1 },
                 effect: (
                   <>
@@ -1706,6 +1709,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "corruption",
+            timing: "instant",
             cost: { glory: 1 },
             effect: (
               <>
@@ -1722,6 +1726,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "slavery",
+            timing: "instant",
             cost: { strife: 1, population: "X" },
             effect: (
               <>
@@ -1742,6 +1747,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "bleed-the-people",
+                timing: "instant",
                 cost: { strife: "X" },
                 effect: (
                   <>
@@ -1765,7 +1771,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Passive({
                 id: "strike-fear",
-                moment: "turnEnd",
+                moment: "roundEnd",
                 effect: (
                   <>
                     Emmgatzemar un <Strife />
@@ -1783,6 +1789,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "autocracy",
+            timing: "instant",
             cost: { population: 1 },
             effect: (
               <>
@@ -1800,11 +1807,13 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Action({
             id: "blind-obedience",
             moment: "afterActionExecuted",
+            timing: "reaction",
             cost: { strife: 1 },
             effect: (
               <>
-                Permet tornar a executar l'acció una segona vegada durant el torn en curs. No pot aplicar-se a{" "}
-                <em>Obediència cega</em>.
+                L'acció executada no s'exhaureix, i podrà tornar a executar-se durant la ronda en curs (no afegir el
+                marcador d'acció executada sobre la carta, ni girar l'edifici a la banda exhaurida, si es tracta d'una
+                acció d'edifici). No pot aplicar-se a <em>Obediència cega</em>.
               </>
             ),
           }),
@@ -1848,7 +1857,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "reign-of-terror",
-            moment: "turnStart",
+            moment: "roundStart",
             effect: (
               <>
                 Convertir els <Strife /> emmagatzemats en <Resolve />
@@ -1931,7 +1940,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Passive({
                 id: "crop-rotation",
-                moment: "turnEnd",
+                moment: "roundEnd",
                 effect: (
                   <>
                     Permet emmagatzemar un <Growth />
@@ -1949,7 +1958,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "fertility",
-            moment: "productionStage",
             effect: (
               <>
                 Guanyar <Growth />
@@ -1965,6 +1973,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "festival",
+            timing: "instant",
             cost: { food: "2X" },
             effect: (
               <>
@@ -1985,7 +1994,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Action({
                 id: "exceptional-chefs",
-                cost: { food: 1, effort: 1 },
+                cost: { food: 1, effort: 1, population: 1 },
                 effect: (
                   <>
                     Guanyar <Glory />. Màxim per torn d'un cop per edifici i ruta comercial oberta.
@@ -2019,7 +2028,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "sustained-growth",
-            moment: "turnStart",
+            moment: "roundStart",
             effect: (
               <>
                 Convertir els <Growth /> emmagatzemats en <Resolve />

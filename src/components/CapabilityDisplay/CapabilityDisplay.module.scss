@@ -12,12 +12,36 @@
   border-left: var(--indent);
 }
 
+.moment {
+  font-family: var(--heading-font-family);
+  color: var(--section-heading-text-color);
+
+  &::after {
+    content: ": ";
+  }
+}
+
+.actionPreface {
+  white-space: nowrap;
+}
+
+.actionIcon,
 .convertIcon {
   display: inline-block;
   vertical-align: middle;
   width: auto;
+}
+
+.actionIcon {
+  position: relative;
+  top: -0.1em;
+  margin-right: 0.5ch;
   height: 1.2em;
+}
+
+.convertIcon {
   @include common.horizontal-margin(0.5ch);
+  height: 0.7em;
 }
 
 .content {

@@ -4,6 +4,8 @@ import type { ReactNode } from "react"
 import { BuildingType, type Building } from "./buildings"
 import { Moment, MomentId, moments } from "./moments"
 
+export type ActionTiming = "action" | "reaction" | "instant"
+
 export interface CapabilityProps {
   id: string
   title?: string
@@ -24,17 +26,19 @@ export abstract class Capability {
 
 export interface ActionProps extends CapabilityProps {
   cost?: ResourceSet | ResourceSetProps
-  limit?: number
+  timing?: ActionTiming
   effect: ReactNode
 }
 
 export class Action extends Capability {
   readonly cost?: ResourceSet
+  readonly timing: ActionTiming
   readonly effect: ReactNode
 
-  constructor({ moment = "productionStage", cost, limit = 1, effect, ...baseProps }: ActionProps) {
+  constructor({ moment = "actionPhase", cost, timing = "action", effect, ...baseProps }: ActionProps) {
     super({ moment, ...baseProps })
     this.cost = cost && instantiate(cost, ResourceSet)
+    this.timing = timing
     this.effect = effect
   }
 }

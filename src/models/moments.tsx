@@ -1,9 +1,9 @@
 export type MomentId =
   | "constant"
   | "whenChoosingFocus"
-  | "productionStage"
-  | "constructionStage"
-  | "manouverStage"
+  | "actionPhase"
+  | "actionPhase"
+  | "actionPhase"
   | "afterEventRevealed"
   | "afterEventResolved"
   | "beforeCombat"
@@ -20,34 +20,35 @@ export type MomentId =
   | "whenBuilt"
   | "whenSupportingPopulation"
   | "whenVisited"
-  | "turnStart"
-  | "turnEnd"
+  | "roundStart"
+  | "roundEnd"
   | "gameStart"
   | "gameEnd"
 
 export interface MomentProps {
   id: MomentId
   title: string
+  implicit?: boolean
 }
 
 export class Moment {
   readonly id: MomentId
   readonly title: string
+  readonly implicit: boolean
 
-  constructor({ id, title }: MomentProps) {
+  constructor({ id, title, implicit = false }: MomentProps) {
     this.id = id
     this.title = title
+    this.implicit = implicit
   }
 }
 
 export const moments: Record<MomentId, Moment> = {
-  constant: new Moment({ id: "constant", title: "Efecte constant" }),
+  constant: new Moment({ id: "constant", title: "Efecte constant", implicit: true }),
   whenChoosingFocus: new Moment({ id: "whenChoosingFocus", title: "En escollir focus" }),
-  productionStage: new Moment({ id: "productionStage", title: "Fase de producció" }),
-  constructionStage: new Moment({ id: "constructionStage", title: "Fase de construcció" }),
+  actionPhase: new Moment({ id: "actionPhase", title: "Fase d'acció", implicit: true }),
   afterEventRevealed: new Moment({ id: "afterEventRevealed", title: "Després de revelar un esdeveniment" }),
   afterEventResolved: new Moment({ id: "afterEventResolved", title: "Després de resoldre un esdeveniment" }),
-  manouverStage: new Moment({ id: "manouverStage", title: "Fase de maniobra" }),
   beforeCombat: new Moment({ id: "beforeCombat", title: "Abans del combat" }),
   combat: new Moment({ id: "combat", title: "En combat" }),
   afterBattle: new Moment({ id: "afterBattle", title: "En concloure una batalla" }),
@@ -62,17 +63,17 @@ export const moments: Record<MomentId, Moment> = {
   afterActionExecuted: new Moment({ id: "afterActionExecuted", title: "Després d'executar una acció" }),
   whenAcquiringTraits: new Moment({ id: "whenAcquiringTraits", title: "En adquirir trets" }),
   whenBuilding: new Moment({ id: "whenBuilding", title: "En construir" }),
-  whenBuilt: new Moment({ id: "whenBuilt", title: "Després de ser construit" }),
+  whenBuilt: new Moment({ id: "whenBuilt", title: "En ser construit" }),
   whenSupportingPopulation: new Moment({ id: "whenSupportingPopulation", title: "En satisfer la població" }),
   whenVisited: new Moment({ id: "whenVisited", title: "En ser visitat" }),
-  turnStart: new Moment({
-    id: "turnStart",
-    title: "A l'inici del torn",
+  roundStart: new Moment({
+    id: "roundStart",
+    title: "Inici de la ronda",
   }),
-  turnEnd: new Moment({
-    id: "turnEnd",
-    title: "En finalitzar el torn",
+  roundEnd: new Moment({
+    id: "roundEnd",
+    title: "Final de la ronda",
   }),
-  gameStart: new Moment({ id: "gameStart", title: "En començar la partida" }),
-  gameEnd: new Moment({ id: "gameEnd", title: "En finalitzar la partida" }),
+  gameStart: new Moment({ id: "gameStart", title: "Inici de la partida" }),
+  gameEnd: new Moment({ id: "gameEnd", title: "Final de la partida" }),
 }
