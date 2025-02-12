@@ -1,7 +1,8 @@
 @use "common.scss";
 
 .Content {
-  ul {
+  ul,
+  ol {
     padding-left: var(--spacing-md);
   }
   li {
