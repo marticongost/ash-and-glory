@@ -336,7 +336,7 @@ export const areas: Record<string, Area> = {
               moment: "whenBuilding",
               effect: (
                 <>
-                  Reduir el cost d'un edifici en un <Ore /> en construir a la ciutat (màxim 1 cop per torn).
+                  Reduir el cost d'un edifici en un <Ore /> en construir a la ciutat (màxim 1 cop per capítol).
                 </>
               ),
             }),
@@ -366,7 +366,7 @@ export const areas: Record<string, Area> = {
               moment: "recruitingSoldiers",
               effect: (
                 <>
-                  Reduir el cost en un <Ore /> en reclutar soldats a la ciutat (màxim 1 cop per torn).
+                  Reduir el cost en un <Ore /> en reclutar soldats a la ciutat (màxim 1 cop per capítol).
                 </>
               ),
             }),
@@ -395,7 +395,7 @@ export const areas: Record<string, Area> = {
               moment: "whenBuilding",
               effect: (
                 <>
-                  Reduir el cost d'un edifici en un <Wood /> en construir a la ciutat (màxim 1 cop per torn).
+                  Reduir el cost d'un edifici en un <Wood /> en construir a la ciutat (màxim 1 cop per capítol).
                 </>
               ),
             }),

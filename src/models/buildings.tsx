@@ -340,7 +340,7 @@ export const buildings = {
     capabilities: [
       new Passive({
         id: "store-materials",
-        moment: "roundEnd",
+        moment: "chapterEnd",
         effect: (
           <>
             Permet emmagatzemar un <Wood /> o <Ore /> per cada <Reference item={() => buildings.sawmill} /> o{" "}
@@ -359,7 +359,7 @@ export const buildings = {
     capabilities: [
       new Passive({
         id: "store-materials",
-        moment: "roundEnd",
+        moment: "chapterEnd",
         effect: (
           <>
             Permet emmagatzemar un <Food /> per cada <em>Granja</em> adjacent
@@ -408,7 +408,7 @@ export const buildings = {
       new Passive({
         id: "vault",
         title: "Estalvi",
-        moment: "roundEnd",
+        moment: "chapterEnd",
         effect: (
           <>
             Permet emmagatzemar un <Gold /> per cada edifici <em>econòmic</em> a la ciutat
@@ -418,7 +418,7 @@ export const buildings = {
       new Passive({
         id: "finance",
         title: "Interessos",
-        moment: "roundStart",
+        moment: "chapterStart",
         effect: (
           <>
             Si el banc conté 1+ <Gold /> emmagatzemat, guanyar un <Gold /> adicional
@@ -491,7 +491,7 @@ export const buildings = {
       unique,
       new Passive({
         id: "horses",
-        effect: <>Els exèrcits i exploradors amics que comencin el torn a la ciutat guanyen un punt de maniobra</>,
+        effect: <>Els exèrcits i exploradors amics que comencin el capítol a la ciutat guanyen un punt de maniobra</>,
       }),
       new Action({
         id: "recruit",

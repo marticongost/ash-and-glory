@@ -133,7 +133,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "storage",
-            moment: "roundEnd",
+            moment: "chapterEnd",
             effect: (
               <>
                 Emmagetzemar un <AnyDrive /> i/o fins a <AnyMaterial amount={2} />
@@ -165,7 +165,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { anyDrive: 1 },
             effect: (
               <>
-                Guanyar <Resolve />. Només pel(s) jugador(s) amb menys <Glory /> a l'inici del torn.
+                Guanyar <Resolve />. Només pel(s) jugador(s) amb menys <Glory />.
               </>
             ),
           }),
@@ -212,7 +212,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Passive({
             id: "rugged",
             moment: "whenSupportingPopulation",
-            effect: <>Permet ignorar la primera penalització del torn per fam.</>,
+            effect: <>Permet ignorar la primera penalització del capítol per fam.</>,
           }),
         ],
       },
@@ -754,7 +754,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "penalty",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Descartar un <AnyMaterial /> emmagatzemat
@@ -1075,7 +1075,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "advanced-logistics",
-            effect: <>Guanyar +1 punt de maniobra per torn</>,
+            effect: <>Guanyar +1 punt de maniobra per capítol</>,
           }),
         ],
       },
@@ -1268,7 +1268,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "bankers",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Guanyar <Gold />
@@ -1314,7 +1314,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                 cost: { gold: 1, effort: 1 },
                 effect: (
                   <>
-                    Guanyar <Glory />. Màxim per torn d'un cop per edifici i ruta comercial oberta.
+                    Guanyar <Glory />. Màxim per capítol d'un cop per edifici i ruta comercial oberta.
                   </>
                 ),
               }),
@@ -1369,7 +1369,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "research",
-            moment: "roundEnd",
+            moment: "chapterEnd",
             effect: (
               <>
                 Cada <em>Universitat</em> pot emmagatzemar un <Curiosity />
@@ -1466,7 +1466,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "innovation",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Guanyar <Curiosity />
@@ -1537,7 +1537,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "volumes-of-knowledge",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Convertir els <Curiosity /> emmagatzemats en <Resolve />
@@ -1687,7 +1687,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                 cost: { growth: 1 },
                 effect: (
                   <>
-                    Guanyar <Gold /> i <Resolve />. Màxim un cop per torn per edifici i ruta comercial oberta.
+                    Guanyar <Gold /> i <Resolve />. Màxim un cop per capítol per edifici i ruta comercial oberta.
                   </>
                 ),
               }),
@@ -1771,7 +1771,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Passive({
                 id: "strike-fear",
-                moment: "roundEnd",
+                moment: "chapterEnd",
                 effect: (
                   <>
                     Emmgatzemar un <Strife />
@@ -1811,7 +1811,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { strife: 1 },
             effect: (
               <>
-                L'acció executada no s'exhaureix, i podrà tornar a executar-se durant la ronda en curs (no afegir el
+                L'acció executada no s'exhaureix, i podrà tornar a executar-se durant el capítol en curs (no afegir el
                 marcador d'acció executada sobre la carta, ni girar l'edifici a la banda exhaurida, si es tracta d'una
                 acció d'edifici). No pot aplicar-se a <em>Obediència cega</em>.
               </>
@@ -1857,7 +1857,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "reign-of-terror",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Convertir els <Strife /> emmagatzemats en <Resolve />
@@ -1940,7 +1940,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             capabilities: [
               new Passive({
                 id: "crop-rotation",
-                moment: "roundEnd",
+                moment: "chapterEnd",
                 effect: (
                   <>
                     Permet emmagatzemar un <Growth />
@@ -1997,7 +1997,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                 cost: { food: 1, effort: 1, population: 1 },
                 effect: (
                   <>
-                    Guanyar <Glory />. Màxim per torn d'un cop per edifici i ruta comercial oberta.
+                    Guanyar <Glory />. Màxim per capítol d'un cop per edifici i ruta comercial oberta.
                   </>
                 ),
               }),
@@ -2028,7 +2028,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Passive({
             id: "sustained-growth",
-            moment: "roundStart",
+            moment: "chapterStart",
             effect: (
               <>
                 Convertir els <Growth /> emmagatzemats en <Resolve />

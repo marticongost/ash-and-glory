@@ -32,16 +32,17 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
   <Section {...getStandardAttributes(baseProps, styles.BasicConcepts)} title="Conceptes bàsics">
     <Section title="Recursos">
       <p>
-        Els recursos medeixen la capacitat d'acció dels imperis. Els jugadors els acumulen i inverteixen al llarg del
-        torn, utilitzant les capacitats dels seus <em>trets</em> i <em>edificis</em> per obtenir-los i transformar-los
-        en altres tipus que puguin necessitar.
+        Els recursos medeixen la capacitat d'acció dels imperis. Els jugadors els acumulen i inverteixen al llarg de la
+        partida, utilitzant les capacitats dels seus <em>trets</em> i <em>edificis</em> per obtenir-los i
+        transformar-los en altres tipus que puguin necessitar.
       </p>
       <p>Els recursos es classifiquen en diferents tipus, que s'expliquen a continuació.</p>
 
       <Section title="Impulsos">
         <p>
-          Recursos fonamentals que es revel·len aleatòriament cada torn. Són l’element primordial a l’inici de la cadena
-          econòmica, i s’utilitzen a diferents edificis per obtenir o activar diferents recursos, edificis o trets.
+          Recursos fonamentals que es revel·len aleatòriament al principi de cada capítol. Són l’element primordial a
+          l’inici de la cadena econòmica, i s’utilitzen a diferents edificis per obtenir o activar diferents recursos,
+          edificis o trets.
         </p>
 
         <p>
@@ -174,7 +175,7 @@ export const BasicConcepts = ({ ...baseProps }: BasicConceptsProps) => (
         <ul>
           <li>Treballar als edificis de la ciutat</li>
           <li>
-            Ser desplegat sobre el mapa com a <Reference item={unitTypes.explorer} />
+            Ser desplegats sobre el mapa com a <Reference item={unitTypes.explorer} />
           </li>
           <li>
             Ser desplegats sobre el mapa com a soldats (<Reference item={unitTypes.militia} />,{" "}
