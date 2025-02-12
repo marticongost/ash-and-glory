@@ -15,12 +15,6 @@ import {
   Gold,
   Population,
   Glory,
-  Archers,
-  Militia,
-  Infantry,
-  Cavalry,
-  Ship,
-  Explorer,
 } from "@/components/ItemIcon"
 import { Reference } from "@/components/Reference"
 import { traitCategories } from "@/models/traits"

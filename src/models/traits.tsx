@@ -142,12 +142,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           }),
           new Action({
             id: "acquire-trait",
-            cost: { resolve: "1+" },
-            effect: (
-              <>
-                Adquirir un tret. Els primers 3 trets costen <Resolve />; els posteriors, <Resolve amount={2} />.
-              </>
-            ),
+            cost: { resolve: "X" },
+            effect: <>Adquirir un tret de nivell X.</>,
           }),
           new Action({
             id: "flexibility",
@@ -176,6 +172,16 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
               <>
                 Substituir un explorador propi per una ciutat. El cost és de un <Growth /> per cada ciutat que el
                 jugador ja controli. Guanyar la mateixa quantitat en <Glory />.
+              </>
+            ),
+          }),
+          new Action({
+            id: "becomeFirstPlayer",
+            cost: { anyDrive: 1 },
+            effect: (
+              <>
+                Convertir-se en el primer jugador. No es pot utilitzar si un altre jugador ja l'ha utilitzat durant el
+                capítol en curs.
               </>
             ),
           }),

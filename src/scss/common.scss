@@ -114,3 +114,10 @@ $resources: gold, wood, ore, food, population, populationLoss, strife, effort, g
   font-size: 3mm;
   --spacing-sm: 3mm;
 }
+
+@mixin landscape-tarot-card {
+  width: 120mm;
+  height: 70mm;
+  font-size: 3mm;
+  --spacing-sm: 3mm;
+}

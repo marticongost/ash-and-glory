@@ -9,7 +9,7 @@ export interface TraitCardProps extends StandardComponentProps {
 }
 
 export const TraitCard = ({ trait, ...baseProps }: TraitCardProps) => (
-  <div {...getStandardAttributes(baseProps, styles.TraitCard)} data-category={trait.category.id}>
+  <div {...getStandardAttributes(baseProps, styles.TraitCard)} data-category={trait.category.id} data-id={trait.id}>
     <div className={styles.titleBar}>
       {trait.category.icon || trait.level ? (
         <div className={styles.classifiers}>

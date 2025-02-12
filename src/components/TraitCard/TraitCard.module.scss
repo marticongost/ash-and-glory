@@ -22,6 +22,10 @@
     --titlebar-color: var(--disadvantage-background-color);
     --level-background-color: var(--disadvantage-medium-background-color);
   }
+
+  &[data-id="basic-capabilities"] {
+    @include common.landscape-tarot-card;
+  }
 }
 
 .titleBar {
