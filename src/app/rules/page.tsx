@@ -9,6 +9,7 @@ import { makeMetadata } from "../metadata"
 import { requireSection } from "@/modules/navigation"
 import { EventsPhase } from "@/content/rules/EventsPhase"
 import { FocusPhase } from "@/content/rules/FocusPhase"
+import { ActionPhase } from "@/content/rules/ActionPhase"
 
 export const metadata = makeMetadata({ title: requireSection("rules").title })
 
@@ -21,6 +22,7 @@ export default function Rules() {
       <GameSequence />
       <EventsPhase />
       <FocusPhase />
+      <ActionPhase />
 
       <Section title="Construir edificis"></Section>
 

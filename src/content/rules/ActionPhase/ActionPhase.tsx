@@ -1,0 +1,173 @@
+import styles from "./ActionPhase.module.scss"
+import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
+import { Section } from "@/components/Section"
+import ActionIcon from "@/svg/action-timing/action.svg"
+import InstantIcon from "@/svg/action-timing/instant.svg"
+import ReactionIcon from "@/svg/action-timing/reaction.svg"
+import { Reference } from "@/components/Reference"
+import { actionTimings } from "@/models/capabilities"
+import {
+  AnyDrive,
+  AnyMaterial,
+  Curiosity,
+  Effort,
+  Food,
+  ForestHex,
+  Gold,
+  GrasslandHex,
+  Growth,
+  MountainHex,
+  Ore,
+  Population,
+  PopulationLoss,
+  Resolve,
+  SeaHex,
+  Strife,
+  WastelandHex,
+  Wood,
+} from "@/components/ItemIcon"
+import { population, populationLoss } from "@/models/resources"
+import { unitTypes } from "@/models/units"
+
+export interface ActionPhaseProps extends StandardComponentProps {}
+
+export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
+  <Section {...getStandardAttributes(baseProps, styles.FocusPhase)} title="Fase d'acció">
+    <p>
+      En aquesta fase, els jugadors s'alternen en ordre de joc per activar les capacitats proporcionades pels seus trets
+      i edificis.
+    </p>
+
+    <Section title="Passar">
+      <p>
+        Durant el seu torn, un jugador pot decidir renunciar al seu torn i <em>passar</em>. Normalment ho farà quan ja
+        no disposi de més accions a executar, o no pugui pagar-ne el cost associat - però també es pot fer
+        voluntàriament, per cedir la iniciativa als rivals i reaccionar a les seves decisions.
+      </p>
+      <p>
+        Sigui com sigui, un jugador que passi no durà a terme cap acció, i finalitzarà el seu torn immediatament. El
+        torn passarà al següent jugador, en ordre de joc.
+      </p>
+      <p>
+        Si tots els jugadors passen de forma consecutiva, la Fase d'Acció conclourà, i el capítol continuarà amb la
+        següent fase (la Fase de Neteja).
+      </p>
+    </Section>
+    <Section title="Accions">
+      <p>
+        Si un jugador no ha passat, haurà de dur a terme una o més <em>accions</em>.
+      </p>
+      <Section title="Temps de les accions">
+        <p>Segons el moment i velocitat amb que s'executen, les accions es classifiquen en els següents tipus:</p>
+        <ul>
+          <li>
+            <Reference item={actionTimings.action} />: les accions més importants i decisives, sovint amb un efecte
+            directe o indirecte sobre els demés jugadors. No es permet executar més d'una acció principal durant un
+            mateix torn.
+          </li>
+          <li>
+            <Reference item={actionTimings.instant} />: accions ràpides, de caire productiu i/o complementari. Se'n
+            poden executar tantes per torn com es vulgui.
+          </li>
+          <li>
+            <Reference item={actionTimings.reaction} />: accions desencadenades per una situació específica. A menys que
+            s'indiqui el contrari, la seva aplicació és obligatòria, i es durà a terme immediatament després de la
+            condició que l'activa, tants cops per torn com es compleixi la condició.
+          </li>
+        </ul>
+        <p>
+          El jugador podrà combinar accions de diferents tipus a la seva conveniència i en l'ordre que desitgi, sempre
+          que es respectin els límits indicats per cada tipus d'acció, i se'n pugui pagar el cost.
+        </p>
+      </Section>
+      <Section title="Origen de les accions">
+        <p>Segons qui les confereixi, les accions es poden classificar en els següents tipus:</p>
+        <ul>
+          <li>
+            <strong>Accions d'edifici</strong>: Accions vinculades als edificis construits pels jugadors a les seves
+            ciutats. En executar una d'aquestes accions, cal seleccionar i <em>exhaurir</em> un edifici propi del tipus
+            corresponent. Si el jugador no disposa d'edificis no exhaurits d'aquell tipus, no podrà dur a terme l'acció.
+          </li>
+          <li>
+            <strong>Accions de tret</strong>: Accions vinculades als trets adquirits pels jugadors. Les accions{" "}
+            <ActionIcon /> i <InstantIcon /> d'aquest tipus es poden executar un sol cop per capítol.
+          </li>
+        </ul>
+      </Section>
+      <Section title="Cost de les accions">
+        <p>
+          La majoria d'accions tenen un cost que els jugadors hauran de pagar per poder-les executar. A continuació es
+          descriuen els diferents tipus de costos i com satisfer-los.
+        </p>
+        <Section title="Impulsos i materials">
+          <p>
+            Si una acció requereix un o més impulsos o materials, el jugador haurà de pagar la quantitat indicada de
+            recursos de la reserva de recursos del seu imperi. Els recursos gastats es retornen a la reserva general.
+          </p>
+          <p>Cal tenir present que:</p>
+          <ul>
+            <li>
+              Si el cost indicat és <AnyDrive />, el jugador podrà pagar utilitzant qualsevol impuls de la seva reserva
+              (
+              <Growth />, <Effort />, <Curiosity />, <Strife /> o <Resolve />
+              ).
+            </li>
+            <li>
+              Si el cost indicat és <AnyMaterial />, el jugador podrà pagar utilitzant qualsevol material de la seva
+              reserva (<Food />, <Wood />, <Ore /> o <Gold />
+              ).
+            </li>
+            <li>
+              Cada <Resolve /> es podrà utilitzar per pagar qualsevol altre impuls (
+              <Growth />, <Effort />, <Curiosity /> o <Strife />
+              ).
+            </li>
+            <li>
+              Cada <Gold /> es podrà utilitzar per pagar qualsevol altre material (<Food />, <Wood /> o <Ore />
+              ).
+            </li>
+          </ul>
+        </Section>
+        <Section title="Població">
+          <p>
+            Els costos de població sempre fan referència a una ciutat concreta - normalment, la ciutat on es troba
+            l'edifici que proporciona l'acció. Per satisfer-los, el jugador haurà d'utilitzar tanta població de la
+            ciutat en qüestió com s'indiqui. Aquests costos prenen dues formes:
+          </p>
+          <ul>
+            <li>
+              <Reference item={population} />: el jugador ha de moure la quantitat indicada de treballadors de la{" "}
+              <em>població activa</em> de la ciutat a la <em>població exhausta</em>.
+            </li>
+            <li>
+              <Reference item={populationLoss} />: el jugador ha de retirar la quantitat indicada de treballadors de la{" "}
+              <em>població activa</em> de la ciutat, i tornar-los a la reserva general.
+            </li>
+          </ul>
+        </Section>
+        <Section title="Territori">
+          <p>
+            Els costos de territori (<ForestHex />, <MountainHex />, <GrasslandHex />, <SeaHex /> i <WastelandHex />)
+            requereixen que el jugador seleccioni i <em>exhaureixi</em> la quantitat demandada de caselles del tipus
+            indicat. Les caselles seleccionades han de complir les condicions següents:
+          </p>
+          <ul>
+            <li>
+              Han d'estar en contacte amb la casella central de l'acció (normalment, la casella que conté l'edifici que
+              proporciona l'acció). Dues caselles es consideren en contacte si són la mateixa casella o són adjacents.
+            </li>
+            <li>No poden haver estat prèviament exhaurides durant el capítol en curs</li>
+            <li>
+              No poden contenir unitats militars d'altres jugadors, a menys que els jugadors en qüestió donin el seu
+              consentiment a l'utilització del territori. Les unitats <Reference item={unitTypes.explorer} /> rivals no
+              compten a aquest efecte.
+            </li>
+          </ul>
+          <p>
+            Les caselles seleccionades passaran a considerar-se <em>exhaurides</em> durant la resta del capítol.
+          </p>
+        </Section>
+      </Section>
+    </Section>
+  </Section>
+)

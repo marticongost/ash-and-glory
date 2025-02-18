@@ -5,7 +5,6 @@ import {
   BuildingWithMinCost,
   Limitation,
   Passive,
-  type ActionTiming,
   type Adjacency,
   type Capability,
 } from "@/models/capabilities"
@@ -13,20 +12,11 @@ import styles from "./CapabilityDisplay.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
 import { Content } from "../Content"
-import ActionIcon from "@/svg/action-timing/action.svg"
-import ReactionIcon from "@/svg/action-timing/reaction.svg"
-import InstantActionIcon from "@/svg/action-timing/instant.svg"
 import ConvertIcon from "@/svg/convert.svg"
 import { CapabilityList } from "../CapabilityList"
 import { Building, BuildingType } from "@/models/buildings"
 import { Reference } from "../Reference"
 import { createElement, type JSXElementConstructor } from "react"
-
-const actionTimingIcons: Record<ActionTiming, JSXElementConstructor<any>> = {
-  action: ActionIcon,
-  reaction: ReactionIcon,
-  instant: InstantActionIcon,
-}
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -57,7 +47,7 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
       ) : null}
       {capability instanceof Action ? (
         <span className={styles.actionPreface}>
-          {createElement(actionTimingIcons[capability.timing], { className: styles.actionIcon })}
+          {createElement(capability.timing.icon, { className: styles.actionIcon })}
           {capability.cost?.isNone() ? null : (
             <>
               <ResourceSetDisplay className={styles.cost} resourceSet={capability.cost} arrangement="inline" />

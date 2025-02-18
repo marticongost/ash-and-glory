@@ -1,10 +1,37 @@
 import { instantiate } from "@/modules/utils"
 import { ResourceSet, ResourceSetProps } from "./resources"
-import type { ReactNode } from "react"
+import type { JSXElementConstructor, ReactNode } from "react"
 import { BuildingType, type Building } from "./buildings"
 import { Moment, MomentId, moments } from "./moments"
+import ActionIcon from "@/svg/action-timing/action.svg"
+import ReactionIcon from "@/svg/action-timing/reaction.svg"
+import InstantActionIcon from "@/svg/action-timing/instant.svg"
 
-export type ActionTiming = "action" | "reaction" | "instant"
+export type ActionTimingId = "action" | "reaction" | "instant"
+
+export interface ActionTimingProps {
+  id: ActionTimingId
+  title: string
+  icon: JSXElementConstructor<any>
+}
+
+export class ActionTiming {
+  readonly id: ActionTimingId
+  readonly title: string
+  readonly icon: JSXElementConstructor<any>
+
+  constructor({ id, title, icon }: ActionTimingProps) {
+    this.id = id
+    this.title = title
+    this.icon = icon
+  }
+}
+
+export const actionTimings: Record<ActionTimingId, ActionTiming> = {
+  action: new ActionTiming({ id: "action", title: "Acció principal", icon: ActionIcon }),
+  reaction: new ActionTiming({ id: "reaction", title: "Reacció", icon: ReactionIcon }),
+  instant: new ActionTiming({ id: "instant", title: "Acció instantània", icon: InstantActionIcon }),
+}
 
 export interface CapabilityProps {
   id: string
@@ -26,7 +53,7 @@ export abstract class Capability {
 
 export interface ActionProps extends CapabilityProps {
   cost?: ResourceSet | ResourceSetProps
-  timing?: ActionTiming
+  timing?: ActionTimingId | ActionTiming
   effect: ReactNode
 }
 
@@ -38,7 +65,7 @@ export class Action extends Capability {
   constructor({ moment = "actionPhase", cost, timing = "action", effect, ...baseProps }: ActionProps) {
     super({ moment, ...baseProps })
     this.cost = cost && instantiate(cost, ResourceSet)
-    this.timing = timing
+    this.timing = typeof timing === "string" ? actionTimings[timing] : timing
     this.effect = effect
   }
 }

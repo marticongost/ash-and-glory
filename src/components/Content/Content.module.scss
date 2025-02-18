@@ -61,6 +61,11 @@
     margin-top: var(--spacing-md);
   }
 
+  section section section section h1 {
+    font-size: 1.3em;
+    margin-top: var(--spacing-md);
+  }
+
   p {
     @include common.vertical-margin(sm);
 
@@ -82,5 +87,10 @@
 
   dd {
     margin-left: 1.6em;
+  }
+
+  svg {
+    height: 2ch;
+    width: auto;
   }
 }
