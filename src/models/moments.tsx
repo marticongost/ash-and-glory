@@ -2,8 +2,6 @@ export type MomentId =
   | "constant"
   | "whenChoosingFocus"
   | "actionPhase"
-  | "actionPhase"
-  | "actionPhase"
   | "afterEventRevealed"
   | "afterEventResolved"
   | "beforeCombat"
