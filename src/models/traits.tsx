@@ -27,6 +27,7 @@ import {
   Resolve,
   SeaHex,
   Strife,
+  WastelandHex,
   Wood,
 } from "@/components/ItemIcon"
 import { buildings, buildingTypes } from "./buildings"
@@ -723,6 +724,22 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             effect: (
               <>
                 Perdre un punt de <Glory />
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        id: "poorLands",
+        level: 2,
+        title: "Terres pobres",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "gameStart",
+            effect: (
+              <>
+                Substituir dos dels territoris inicials per <WastelandHex />
               </>
             ),
           }),
