@@ -192,6 +192,7 @@ export class ResourceSet implements ResourceSetProps {
   readonly mountainHex: ResourceAmount
   readonly forestHex: ResourceAmount
   readonly seaHex: ResourceAmount
+  readonly wastelandHex: ResourceAmount
 
   constructor(cost: ResourceSetProps) {
     this.anyMaterial = cost.anyMaterial ?? 0
@@ -217,6 +218,7 @@ export class ResourceSet implements ResourceSetProps {
     this.mountainHex = cost.mountainHex ?? 0
     this.forestHex = cost.forestHex ?? 0
     this.seaHex = cost.seaHex ?? 0
+    this.wastelandHex = cost.wastelandHex ?? 0
   }
 
   isNone(): boolean {
@@ -243,7 +245,8 @@ export class ResourceSet implements ResourceSetProps {
       !this.grasslandHex &&
       !this.mountainHex &&
       !this.forestHex &&
-      !this.seaHex
+      !this.seaHex &&
+      !this.wastelandHex
     )
   }
 }

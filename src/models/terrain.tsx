@@ -2,13 +2,15 @@ import GrasslandIcon from "@/svg/terrain/grassland.svg"
 import ForestIcon from "@/svg/terrain/forest.svg"
 import MountainIcon from "@/svg/terrain/mountain.svg"
 import SeaIcon from "@/svg/terrain/sea.svg"
+import WastelandIcon from "@/svg/terrain/wasteland.svg"
 import GrasslandResourceIcon from "@/svg/terrain/grassland-hex.svg"
 import ForestResourceIcon from "@/svg/terrain/forest-hex.svg"
 import MountainResourceIcon from "@/svg/terrain/mountain-hex.svg"
 import SeaResourceIcon from "@/svg/terrain/sea-hex.svg"
+import WastelandResourceIcon from "@/svg/terrain/wasteland-hex.svg"
 import type { JSXElementConstructor } from "react"
 
-export type TerrainTypeId = "grassland" | "forest" | "mountain" | "sea"
+export type TerrainTypeId = "grassland" | "forest" | "mountain" | "sea" | "wasteland"
 
 export interface TerrainTypeProps {
   id: TerrainTypeId
@@ -46,4 +48,10 @@ export const terrainTypes: Record<TerrainTypeId, TerrainType> = {
     resourceIcon: MountainResourceIcon,
   }),
   sea: new TerrainType({ id: "sea", title: "Mar", icon: SeaIcon, resourceIcon: SeaResourceIcon }),
+  wasteland: new TerrainType({
+    id: "wasteland",
+    title: "Desolació",
+    icon: WastelandIcon,
+    resourceIcon: WastelandResourceIcon,
+  }),
 }

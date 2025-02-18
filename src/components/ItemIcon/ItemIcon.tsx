@@ -59,6 +59,7 @@ export const GrasslandHex = (props: ResourceIconWrapperProps) => <ItemIcon {...p
 export const ForestHex = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={resources.forestHex} />
 export const MountainHex = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={resources.mountainHex} />
 export const SeaHex = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={resources.seaHex} />
+export const WastelandHex = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={resources.wastelandHex} />
 export const Militia = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={unitTypes.militia} />
 export const Explorer = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={unitTypes.explorer} />
 export const Archers = (props: ResourceIconWrapperProps) => <ItemIcon {...props} item={unitTypes.archers} />
