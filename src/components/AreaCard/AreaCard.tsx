@@ -5,6 +5,7 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 import { CapabilityList } from "../CapabilityList"
 import type { TerrainType } from "@/models/terrain"
 import { ItemIcon } from "../ItemIcon"
+import { terrainHex } from "@/models/resources"
 
 export interface AreaCardProps extends StandardComponentProps {
   area: Area
@@ -38,7 +39,7 @@ const TerrainChoice = ({ choice }: { choice: TerrainType[] }) =>
   choice.length ? (
     <div className={styles.terrainChoice}>
       {choice.map((terrainType) => (
-        <ItemIcon key={terrainType.id} className={styles.terrainIcon} item={terrainType} />
+        <ItemIcon key={terrainType.id} className={styles.terrainIcon} item={terrainHex[`${terrainType.id}Hex`]} />
       ))}
     </div>
   ) : null
