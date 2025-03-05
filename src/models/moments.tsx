@@ -18,6 +18,7 @@ export type MomentId =
   | "whenBuilt"
   | "whenSupportingPopulation"
   | "whenVisited"
+  | "whenSpendingResolve"
   | "chapterStart"
   | "chapterEnd"
   | "gameStart"
@@ -64,6 +65,7 @@ export const moments: Record<MomentId, Moment> = {
   whenBuilt: new Moment({ id: "whenBuilt", title: "En ser construit" }),
   whenSupportingPopulation: new Moment({ id: "whenSupportingPopulation", title: "En satisfer la població" }),
   whenVisited: new Moment({ id: "whenVisited", title: "En ser visitat" }),
+  whenSpendingResolve: new Moment({ id: "whenSpendingResolve", title: "En gastar determinació" }),
   chapterStart: new Moment({
     id: "chapterStart",
     title: "Inici del capítol",

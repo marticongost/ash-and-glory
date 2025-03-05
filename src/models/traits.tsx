@@ -33,6 +33,7 @@ import {
 import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
 import { areaTypes } from "./areas"
+import { moments } from "./moments"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -359,6 +360,23 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        level: 1,
+        id: "latentPotential",
+        title: "Potencial latent",
+        capabilities: [
+          new Passive({
+            id: "latentPotential",
+            moment: "whenSpendingResolve",
+            effect: (
+              <>
+                Afegir un marcador a la carta. Si hi ha 5+ marcadors, substituir l'avantatge per una nova avantatge de
+                nivell 2. Si l'avantatge aplica efectes <Reference item={moments.gameStart} />, aplicar-los ara.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         level: 2,
         id: "numerous",
         title: "Numerosos",
@@ -616,6 +634,40 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
               <>
                 Ignorar les penalitzacions al moviment de boscos i muntanyes. +1 a l'atac i la defensa contra enemics
                 que no tinguin aquest avantatge.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "fortunate",
+        title: "Afortunats",
+        capabilities: [
+          new Passive({
+            id: "fortunate",
+            moment: "whenChoosingFocus",
+            effect: (
+              <>
+                Un cop durant la fase, el jugador pot descartar tantes cartes de focus com vulgui de les cartes rebudes,
+                i substituir-les per noves cartes de la pila dels mateixos nivells.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 3,
+        id: "persuasive",
+        title: "Persuassius",
+        capabilities: [
+          new Passive({
+            id: "persuassive",
+            moment: "whenChoosingFocus",
+            effect: (
+              <>
+                Un cop els jugadors han revel·lat les cartes de focus adquirides, el jugador pot canviar una de les
+                seves cartes per una altra carta del mateix nivell d'un altre jugador.
               </>
             ),
           }),
