@@ -1012,6 +1012,33 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        id: "obsequious",
+        level: 2,
+        title: "Obsequiosos",
+        capabilities: [
+          new Action({
+            id: "gift",
+            timing: "instant",
+            cost: { anyMaterial: 1 },
+            effect: (
+              <>
+                El jugador dona el material gastat a un jugador amb qui tingui una ruta comercial. Afegir un marcador
+                sobre aquesta carta.
+              </>
+            ),
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Si hi ha menys de 3 marcadors a la carta, perdre un punt de <Glory /> per cada marcador que falti.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         id: "chaotic",
         level: 3,
         title: "Caòtics",
