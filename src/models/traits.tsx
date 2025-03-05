@@ -238,6 +238,19 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        id: "richLands",
+        level: 1,
+        title: "Terres riques",
+        implications: ["+landWealth"],
+        capabilities: [
+          new Passive({
+            id: "bonus",
+            moment: "gameStart",
+            effect: <>Afegir un espai de construcció addicional als territoris inicials</>,
+          }),
+        ],
+      },
+      {
         level: 1,
         id: "rugged",
         title: "Soferts",
@@ -788,6 +801,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "poorLands",
         level: 2,
         title: "Terres pobres",
+        implications: ["-landWealth"],
         capabilities: [
           new Passive({
             id: "penalty",
