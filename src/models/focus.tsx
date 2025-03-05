@@ -3,7 +3,7 @@ import { instantiate, instantiateAll } from "@/modules/utils"
 
 export type FocusLevel = 1 | 2 | 3
 
-export const eraLabels: Record<FocusLevel, String> = {
+export const focusLevelLabels: Record<FocusLevel, String> = {
   1: "I",
   2: "II",
   3: "III",
@@ -15,6 +15,32 @@ export interface FocusProps {
   title: string
   copies?: number
   resources: ResourceSet | ResourceSetProps | ResourceSet[] | ResourceSetProps[]
+}
+
+const initialHandSize = 5
+
+export const focusCardsDraft = {
+  initialHandSize,
+  finalHandSize: 4,
+  firstChapterWithStableComposition: initialHandSize * 2 + 1,
+}
+
+export const getFocusCardLevelsForChapter = (chapter: number): Record<FocusLevel, number> => {
+  const levels: Record<FocusLevel, number> = { 1: focusCardsDraft.initialHandSize, 2: 0, 3: 0 }
+  let lowestLevel: FocusLevel = 1
+
+  for (let i = 1; i < chapter; i++) {
+    levels[lowestLevel]--
+    levels[(lowestLevel + 1) as FocusLevel]++
+    if (levels[lowestLevel] === 0) {
+      if (lowestLevel === 2) {
+        break
+      }
+      lowestLevel = (lowestLevel + 1) as FocusLevel
+    }
+  }
+
+  return levels
 }
 
 export class Focus {

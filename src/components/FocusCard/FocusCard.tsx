@@ -1,4 +1,4 @@
-import { eraLabels, type Focus } from "@/models/focus"
+import { focusLevelLabels, type Focus } from "@/models/focus"
 import styles from "./FocusCard.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { ResourceSetDisplay } from "../ResourceSetDisplay"
@@ -11,7 +11,7 @@ export const FocusCard = ({ focus, ...baseProps }: FocusCardProps) => (
   <div {...getStandardAttributes(baseProps, styles.FocusCard)} data-era={focus.era}>
     <div className={styles.titleBar}>
       <div className={styles.era}>
-        <div className={styles.eraLabel}>{eraLabels[focus.era]}</div>
+        <div className={styles.eraLabel}>{focusLevelLabels[focus.era]}</div>
       </div>
       <div className={styles.title}>{focus.title}</div>
     </div>

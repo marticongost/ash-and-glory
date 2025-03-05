@@ -6,7 +6,7 @@ import { Hex, HexSet } from "@/modules/hex"
 import { Population } from "@/components/ItemIcon"
 import { Reference } from "@/components/Reference"
 import { buildings } from "@/models/buildings"
-import { startingCityPopulation } from "@/models/values"
+import { startingCityPopulation } from "@/models/focus"
 import { unitTypes } from "@/models/units"
 
 export interface PreparationProps extends StandardComponentProps {}

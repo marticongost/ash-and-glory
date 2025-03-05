@@ -2,5 +2,7 @@
 export const startingCityPopulation = 3
 
 // Focus cards
-export const revealedFocusCards = 6
-export const eligibleFocusCards = 4
+export const focusCards = {
+  initialHandSize: 5,
+  finalHandSize: 4,
+}
