@@ -1068,6 +1068,47 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
+        id: "arrogant",
+        level: 3,
+        title: "Arrogants",
+        capabilities: [
+          new Passive({
+            id: "resentment",
+            moment: "chapterEnd",
+            effect: (
+              <>
+                Afegir un marcador a la carta si el jugador no és troba a la posició indicada:
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>2-3 jugadors</td>
+                      <td>1er</td>
+                    </tr>
+                    <tr>
+                      <td>4-5 jugadors</td>
+                      <td>1er o 2on</td>
+                    </tr>
+                    <tr>
+                      <td>6+ jugadors</td>
+                      <td>3 primers</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </>
+            ),
+          }),
+          new Passive({
+            id: "penalty",
+            moment: "gameEnd",
+            effect: (
+              <>
+                Perdre un punt de <Glory /> per cada marcador a la carta.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
         id: "dogmatic",
         level: 3,
         title: "Dogmàtics",
