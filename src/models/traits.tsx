@@ -902,6 +902,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "greedy",
         level: 2,
         title: "Avariciosos",
+        implications: ["+greed"],
         capabilities: [
           new Action({
             id: "staveOff",
@@ -1015,6 +1016,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "obsequious",
         level: 2,
         title: "Obsequiosos",
+        implications: ["-greed"],
         capabilities: [
           new Action({
             id: "gift",
