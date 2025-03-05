@@ -400,6 +400,23 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
       },
       {
         level: 2,
+        id: "opportunists",
+        title: "Oportunistes",
+        capabilities: [
+          new Passive({
+            id: "opportunists",
+            moment: "whenChoosingFocus",
+            effect: (
+              <>
+                Al final de la fase de focus, el jugador pot decidir canviar una de les seves cartes de focus per una de
+                les cartes descartades pels demés jugadors.
+              </>
+            ),
+          }),
+        ],
+      },
+      {
+        level: 2,
         id: "expansive",
         title: "Expansius",
         capabilities: [
@@ -702,18 +719,6 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         ],
       },
       {
-        id: "chaotic",
-        level: 1,
-        title: "Caòtics",
-        capabilities: [
-          new Passive({
-            id: "penalty",
-            moment: "whenChoosingFocus",
-            effect: <>S'ha d'agafar sempre la primera carta de focus</>,
-          }),
-        ],
-      },
-      {
         id: "codeOfHonor",
         level: 1,
         title: "Codi d'honor",
@@ -794,7 +799,12 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Passive({
             id: "penalty",
             moment: "whenChoosingFocus",
-            effect: <>No es pot escollir la última carta revel·lada</>,
+            effect: (
+              <>
+                A la primera ronda de seleccions, escollir una de les cartes aleatòriament, sense mirar-la; la carta no
+                podrà ser escollida durant aquella ronda, i passarà al següent jugador
+              </>
+            ),
           }),
         ],
       },
@@ -944,6 +954,18 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
                 Si el jugador té menys de 2 trets de nivell 3, perdre 3 <Glory /> per cada tret que li falti
               </>
             ),
+          }),
+        ],
+      },
+      {
+        id: "chaotic",
+        level: 3,
+        title: "Caòtics",
+        capabilities: [
+          new Passive({
+            id: "penalty",
+            moment: "whenChoosingFocus",
+            effect: <>Escollir aleatòriament les 2 últimes cartes de focus</>,
           }),
         ],
       },
