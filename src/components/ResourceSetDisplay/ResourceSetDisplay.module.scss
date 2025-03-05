@@ -12,10 +12,10 @@
   }
 
   &[data-arrangement="row"] {
-    @include common.row(sm);
+    @include common.row(xs);
 
     .resource {
-      @include common.row(1ch);
+      @include common.row(0.5ch);
     }
   }
 

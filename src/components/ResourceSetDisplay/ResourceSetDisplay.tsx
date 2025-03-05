@@ -2,6 +2,7 @@ import { resources, ResourceSet } from "@/models/resources"
 import styles from "./ResourceSetDisplay.module.scss"
 import { createElement } from "react"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
+import { repeat } from "@/modules/utils"
 
 export interface ResourceSetDisplayProps extends StandardComponentProps {
   resourceSet?: ResourceSet
@@ -27,8 +28,14 @@ export const ResourceSetDisplay = ({
           if (!amount) return null
           return (
             <div className={styles.resource} data-type={resource.id} key={resource.id}>
-              {createElement(resource.icon, { className: styles.icon })}
-              <div className={styles.amount}>{amount}</div>
+              {typeof amount === "number" ? (
+                repeat(amount, (i) => createElement(resource.icon, { key: i, className: styles.icon }))
+              ) : (
+                <>
+                  {createElement(resource.icon, { className: styles.icon })}
+                  <div className={styles.amount}>{amount}</div>
+                </>
+              )}
             </div>
           )
         })}
