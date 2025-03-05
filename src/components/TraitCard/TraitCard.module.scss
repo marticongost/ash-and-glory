@@ -85,6 +85,16 @@
   font-size: 1.1em;
 }
 
+.incompatibleTraits {
+  @include common.horizontal-padding(xs);
+  margin-top: var(--spacing-xs);
+  font-style: italic;
+
+  * + *:before {
+    content: ", ";
+  }
+}
+
 .capabilities {
   @include common.column;
   flex: 1 1 auto;

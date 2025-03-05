@@ -99,12 +99,15 @@ export const levelLabels: Record<TraitLevel, string> = {
   3: "III",
 }
 
+export type TraitTag = `+${string}` | `-${string}`
+
 export interface TraitProps {
   category: TraitsCategory
   level?: TraitLevel
   id: string
   title: string
   capabilities: Array<Capability>
+  implications?: TraitTag[]
 }
 
 export class Trait {
@@ -113,15 +116,38 @@ export class Trait {
   readonly id: string
   readonly title: string
   readonly capabilities: Capability[]
+  readonly implications: Set<TraitTag>
 
-  constructor({ category, level, id, title, capabilities }: TraitProps) {
+  constructor({ category, level, id, title, capabilities, implications }: TraitProps) {
     this.category = category
     this.level = level
     this.id = id
     this.title = title
     this.capabilities = capabilities
+    this.implications = new Set(implications ?? [])
+  }
+
+  isCompatibleWith(otherTrait: Trait): boolean {
+    for (const implication of this.implications) {
+      const oppositeTag = ((implication.startsWith("-") ? "+" : "-") + implication.substring(1)) as TraitTag
+      if (otherTrait.implications.has(oppositeTag)) {
+        return false
+      }
+    }
+    return true
   }
 }
+
+export const getTraits = (): Trait[] => {
+  const traits = []
+  for (const category of Object.values(traitCategories)) {
+    traits.push(...category.traits)
+  }
+  return traits
+}
+
+export const getIncompatibleTraits = (trait: Trait): Trait[] =>
+  getTraits().filter((otherTrait) => !trait.isCompatibleWith(otherTrait))
 
 export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
   standard: new StandardTraitsCategory({
@@ -227,6 +253,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "mountaineers",
         title: "Muntanyers",
+        implications: ["+mountainAffinity"],
         capabilities: [
           new Passive({
             id: "mountaineers",
@@ -238,6 +265,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "sylvan",
         title: "Silvans",
+        implications: ["+forestAffinity"],
         capabilities: [
           new Passive({
             id: "sylvan",
@@ -249,6 +277,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "canibals",
         title: "Caníbals",
+        implications: ["+food"],
         capabilities: [
           new Passive({
             id: "canibals",
@@ -265,6 +294,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "tough",
         title: "Durs",
+        implications: ["+defense"],
         capabilities: [
           new Passive({
             id: "tough",
@@ -277,6 +307,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "skilled",
         title: "Hàbils",
+        implications: ["+initialTraits"],
         capabilities: [
           new Passive({
             id: "skilled",
@@ -289,6 +320,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 1,
         id: "devote",
         title: "Devots",
+        implications: ["+devotion"],
         capabilities: [
           new Passive({
             id: "devote",
@@ -317,6 +349,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "numerous",
         title: "Numerosos",
+        implications: ["+population"],
         capabilities: [
           new Passive({
             id: "population-gain",
@@ -374,6 +407,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "berserkers",
         title: "Berserkers",
+        implications: ["+attack", "-defense"],
         capabilities: [
           new Passive({
             id: "berserkers",
@@ -386,6 +420,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "amphibious",
         title: "Amfibis",
+        implications: ["+seaAffinity"],
         capabilities: [
           new Passive({
             id: "amphibious",
@@ -419,6 +454,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "expansive",
         title: "Expansius",
+        implications: ["+growth"],
         capabilities: [
           new Action({
             id: "expansive",
@@ -436,6 +472,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "hard-working",
         title: "Treballadors",
+        implications: ["+effort"],
         capabilities: [
           new Action({
             id: "hard-working",
@@ -453,6 +490,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "curious",
         title: "Curiosos",
+        implications: ["+curiosity"],
         capabilities: [
           new Action({
             id: "curious",
@@ -470,6 +508,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "combative",
         title: "Combatius",
+        implications: ["+strife"],
         capabilities: [
           new Action({
             id: "combative",
@@ -487,6 +526,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 2,
         id: "versatile",
         title: "Versàtils",
+        implications: ["+resolve"],
         capabilities: [
           new Action({
             id: "versatile",
@@ -504,6 +544,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 3,
         id: "born-warriors",
         title: "Guerrers innats",
+        implications: ["+attack", "+defense"],
         capabilities: [
           new Passive({
             id: "born-warriors",
@@ -521,6 +562,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 3,
         id: "powerful-army",
         title: "Exèrcit poderós",
+        implications: ["+startingArmy"],
         capabilities: [
           new Passive({
             id: "powerful-army",
@@ -537,6 +579,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         level: 3,
         id: "well-stocked",
         title: "Previsors",
+        implications: ["+food"],
         capabilities: [
           new Passive({
             id: "well-stocked",
@@ -576,6 +619,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "helpless",
         level: 1,
         title: "Indefensos",
+        implications: ["-startingArmy"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -617,6 +661,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "secluded",
         level: 1,
         title: "Tancats",
+        implications: ["-startingTerritories"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -629,6 +674,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "isolationists",
         level: 1,
         title: "Aïllacionistes",
+        implications: ["-easeOfExplorerRecruitment"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -644,6 +690,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "cowards",
         level: 1,
         title: "Covards",
+        implications: ["-bravery"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -660,6 +707,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "undead",
         level: 1,
         title: "No morts",
+        implications: ["-food", "-canConsumeFood"],
         capabilities: [
           new Passive({
             id: "dontRequireFood",
@@ -696,6 +744,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "daredevils",
         level: 1,
         title: "Temeraris",
+        implications: ["-defense"],
         capabilities: [
           new Passive({
             id: "daredevils",
@@ -707,6 +756,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "talasofobia",
         level: 1,
         title: "Talassofòbia",
+        implications: ["-seaAffinity"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -795,6 +845,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "obtuse",
         level: 2,
         title: "Obtusos",
+        implications: ["-focusAgency"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -829,6 +880,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "gluttons",
         level: 2,
         title: "Golafres",
+        implications: ["+canConsumeFood"],
         capabilities: [
           new Action({
             id: "staveOff",
@@ -892,6 +944,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "bloodlust",
         level: 2,
         title: "Sed de sang",
+        implications: ["+warAffinity"],
         capabilities: [
           new Action({
             id: "staveOff",
@@ -914,6 +967,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "feeble",
         level: 2,
         title: "Febles",
+        implications: ["-attack", "-defense"],
         capabilities: [
           new Passive({
             id: "feeble",
@@ -961,6 +1015,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "chaotic",
         level: 3,
         title: "Caòtics",
+        implications: ["-focusAgency"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -973,6 +1028,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "dogmatic",
         level: 3,
         title: "Dogmàtics",
+        implications: ["-diversityAffinity"],
         capabilities: [
           new Passive({
             id: "penalty",
@@ -990,6 +1046,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "atheist",
         level: 3,
         title: "Ateus",
+        implications: ["-devotion"],
         capabilities: [
           new Passive({
             id: "atheist",
@@ -1005,6 +1062,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "infertile",
         level: 3,
         title: "Infèrtils",
+        implications: ["-growth"],
         capabilities: [
           new Passive({
             id: "limitation",
@@ -1020,6 +1078,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "lazy",
         level: 3,
         title: "Dropos",
+        implications: ["-effort"],
         capabilities: [
           new Passive({
             id: "limitation",
@@ -1035,6 +1094,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "reactionary",
         level: 3,
         title: "Reaccionaris",
+        implications: ["-curiosity"],
         capabilities: [
           new Passive({
             id: "limitation",
@@ -1050,6 +1110,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "pacifists",
         level: 3,
         title: "Pacifistes",
+        implications: ["-strife", "-warAffinity"],
         capabilities: [
           new Passive({
             id: "limitation",
@@ -1065,6 +1126,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         id: "hermetic",
         level: 3,
         title: "Hermètics",
+        implications: ["-tradeRoutes"],
         capabilities: [
           new Passive({
             id: "penalty",
