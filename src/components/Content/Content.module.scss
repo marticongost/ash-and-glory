@@ -89,8 +89,14 @@
     margin-left: 1.6em;
   }
 
-  svg {
-    height: 2ch;
-    width: auto;
+  p,
+  li,
+  th,
+  td,
+  dd {
+    svg {
+      height: 2ch;
+      width: auto;
+    }
   }
 }
