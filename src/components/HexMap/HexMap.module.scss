@@ -4,7 +4,7 @@
   --hex-height: 5rem;
   --building-size: 1.5em;
   --building-color: white;
-  --label-size: 1.25rem;
+  --label-size: 1rem;
 }
 
 .territory {
@@ -38,7 +38,7 @@
   width: var(--label-size);
   height: var(--label-size);
   color: white;
-  font-size: 85%;
+  font-size: 80%;
   font-weight: bold;
   font-family: var(--heading-font-family);
 }
