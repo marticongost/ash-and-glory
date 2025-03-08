@@ -1,0 +1,7 @@
+@use "common.scss";
+
+.PlayerReference {
+  @include common.player-color-code(color);
+  display: inline;
+  font-weight: bold;
+}
