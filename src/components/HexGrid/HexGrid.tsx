@@ -25,7 +25,7 @@ export const HexGrid = <H extends Hex = Hex>({
   return (
     <div
       {...getStandardAttributes(baseProps, styles.HexGrid)}
-      style={{ "--w": hexSet.width, "--h": hexSet.height } as any}
+      style={{ "--w": hexSet.width, "--h": getGridHeight(hexSet) } as any}
     >
       {hexSet.hexes.map((hex) => {
         const decoration = hexDecorator ? hexDecorator(hex) : undefined
@@ -54,4 +54,12 @@ export const HexGrid = <H extends Hex = Hex>({
       })}
     </div>
   )
+}
+
+const getGridHeight = (hexSet: HexSet<Hex>): number => {
+  let height: number = 0
+  for (const hex of hexSet.hexes) {
+    height = Math.max(height, (hex.column % 2 == 0 ? 1 : 1.5) + hex.row - hexSet.top)
+  }
+  return height
 }
