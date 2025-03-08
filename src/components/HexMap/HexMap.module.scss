@@ -8,6 +8,7 @@
 
 .territory {
   @include common.column;
+  @include common.player-color-code(--building-color);
   align-items: center;
   justify-content: space-between;
   @include common.vertical-padding(0.75rem);
@@ -15,12 +16,6 @@
   @each $territory in (grassland, forest, mountain, sea, wasteland) {
     &[data-type="#{$territory}"] {
       --territory-color: var(--resource-color-#{$territory}Hex);
-    }
-  }
-
-  @each $player in (1, 2, 3, 4) {
-    &[data-owner="#{$player}"] {
-      --building-color: var(--player-color-#{$player});
     }
   }
 }
