@@ -94,7 +94,7 @@
   th,
   td,
   dd {
-    svg {
+    & > svg {
       height: 2ch;
       width: auto;
     }
