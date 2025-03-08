@@ -2,11 +2,13 @@
 
 .HexMap {
   --hex-height: 5rem;
+  --building-size: 1.5em;
 }
 
 .territory {
-  display: flex;
-  justify-content: center;
+  @include common.column;
+  align-items: center;
+  justify-content: space-between;
   @include common.vertical-padding(0.75rem);
 
   @each $territory in (grassland, forest, mountain, sea, wasteland) {
@@ -26,4 +28,26 @@
   height: 1rem;
   width: auto;
   --icon-color: rgba(255, 255, 255, 0.7);
+}
+
+.buildings {
+  @include common.row;
+}
+
+.building {
+  position: relative;
+  z-index: 2;
+  background-color: black;
+  border-radius: 25%;
+  display: flex;
+  height: var(--building-size);
+  width: var(--building-size);
+  align-items: center;
+  justify-content: center;
+}
+
+.buildingIcon {
+  height: 90%;
+  width: auto;
+  --icon-color: white;
 }
