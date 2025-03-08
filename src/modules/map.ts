@@ -6,18 +6,21 @@ import { type Building, buildings as allBuildings } from "@/models/buildings"
 interface TerritoryProps extends HexProps {
   type: TerrainTypeId | TerrainType
   buildings?: Array<Building | keyof typeof allBuildings>
+  owner?: number
 }
 
 export class Territory extends Hex {
   readonly type: TerrainType
   readonly buildings: Building[]
+  readonly owner?: number
 
-  constructor({ type, buildings, ...baseProps }: TerritoryProps) {
+  constructor({ type, buildings, owner, ...baseProps }: TerritoryProps) {
     super(baseProps)
     this.type = typeof type === "string" ? terrainTypes[type] : type
     this.buildings = buildings
       ? buildings.map((building) => (typeof building === "string" ? allBuildings[building] : building))
       : []
+    this.owner = owner
   }
 
   static beginSet(centerProps: HexExtraProps<TerritoryProps>): HexSetBuilder<Territory> {

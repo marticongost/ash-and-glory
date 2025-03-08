@@ -13,7 +13,7 @@ export const HexMap = ({ className, ...baseProps }: HexMapProps) => (
 const decorateTerritoryHex = (territory: Territory): HexDecoration => {
   return {
     className: styles.territory,
-    data: { type: territory.type.id },
+    data: { type: territory.type.id, owner: territory.owner ?? "" },
     contourProps: { className: styles.territoryContour },
     children: (
       <>

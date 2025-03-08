@@ -138,6 +138,10 @@
   --example-text-color: var(--text-color);
   --example-icon-color: #{$palette-latte};
   --example-border-color: #{$palette-cream};
+  --player-color-1: #{$palette-red};
+  --player-color-2: #{$palette-blue};
+  --player-color-3: #{$palette-gold};
+  --player-color-4: #{$palette-lilac};
 
   // Shadows & glow effects
   $shadow: 0 0 var(--spacing-sm) #{$palette-black}88;
