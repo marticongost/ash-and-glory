@@ -2,20 +2,26 @@ import styles from "./HexGrid.module.scss"
 import { getStandardAttributes, mergeClassName, type StandardComponentProps } from "@/modules/react-utils"
 import HexSVG from "@/svg/hex.svg"
 import { Hex, HexSet } from "@/modules/hex"
-import type { ReactNode } from "react"
+import { createElement, type ReactNode } from "react"
+import { terrainTypes, type TerrainTypeId } from "@/models/terrain"
 
-export interface HexGridProps extends StandardComponentProps {
-  hexSet: HexSet
+export interface HexGridProps<H extends Hex = Hex> extends StandardComponentProps {
+  hexSet: HexSet<H>
   showCoordinates?: boolean
-  hexDecorator?: (hex: Hex) => HexDecoration | undefined
+  hexDecorator?: (hex: H) => HexDecoration | undefined
 }
 
-export interface HexDecoration {
-  className?: string
+export interface HexDecoration extends StandardComponentProps {
+  contourProps?: StandardComponentProps
   children?: ReactNode
 }
 
-export const HexGrid = ({ hexSet, hexDecorator, showCoordinates = false, ...baseProps }: HexGridProps) => {
+export const HexGrid = <H extends Hex = Hex>({
+  hexSet,
+  hexDecorator,
+  showCoordinates = false,
+  ...baseProps
+}: HexGridProps<H>) => {
   return (
     <div
       {...getStandardAttributes(baseProps, styles.HexGrid)}
@@ -23,10 +29,11 @@ export const HexGrid = ({ hexSet, hexDecorator, showCoordinates = false, ...base
     >
       {hexSet.hexes.map((hex) => {
         const decoration = hexDecorator ? hexDecorator(hex) : undefined
+        const { children, contourProps, ...hexProps } = decoration ?? {}
         return (
           <div
             key={`${hex.column}-${hex.row}`}
-            className={mergeClassName(styles.hex, decoration?.className)}
+            {...getStandardAttributes(hexProps, styles.hex)}
             style={{ "--column": hex.column, "--row": hex.row, "--offset": hex.column % 2 ? "0.5" : "0" } as any}
           >
             {showCoordinates ? (
@@ -34,8 +41,8 @@ export const HexGrid = ({ hexSet, hexDecorator, showCoordinates = false, ...base
                 {hex.column}, {hex.row}
               </div>
             ) : null}
-            <HexSVG />
-            {decoration?.children ?? null}
+            <HexSVG {...getStandardAttributes(contourProps ?? {}, styles.contour)} />
+            {children}
           </div>
         )
       })}
