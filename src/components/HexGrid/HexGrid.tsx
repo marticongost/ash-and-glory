@@ -30,11 +30,17 @@ export const HexGrid = <H extends Hex = Hex>({
       {hexSet.hexes.map((hex) => {
         const decoration = hexDecorator ? hexDecorator(hex) : undefined
         const { children, contourProps, ...hexProps } = decoration ?? {}
+
+        // Transpose coordinates to the top-left corner
+        const col = hex.column - hexSet.left
+        const row = hex.row - hexSet.top
+        const offset = hex.column % 2 ? 0.5 : 0
+
         return (
           <div
             key={`${hex.column}-${hex.row}`}
             {...getStandardAttributes(hexProps, styles.hex)}
-            style={{ "--column": hex.column, "--row": hex.row, "--offset": hex.column % 2 ? "0.5" : "0" } as any}
+            style={{ "--column": col, "--row": row, "--offset": offset } as any}
           >
             {showCoordinates ? (
               <div className={styles.coordinates}>
