@@ -120,6 +120,14 @@ export class Building {
     this.cost = instantiate(cost, ResourceSet)
     this.capabilities = capabilities
   }
+
+  getCapability(id: string): Capability {
+    const capability = this.capabilities.find((capability) => capability.id === id)
+    if (!capability) {
+      throw new Error(`Capability ${id} not found in building ${this.id}`)
+    }
+    return capability
+  }
 }
 
 export const buildings = {
