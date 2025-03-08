@@ -1,8 +1,6 @@
 @use "common.scss";
 
 .CapabilityDisplay {
-  background-color: var(--page-background-color);
-
   &[data-type="Limitation"] {
     font-style: italic;
   }
