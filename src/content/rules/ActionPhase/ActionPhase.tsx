@@ -5,7 +5,7 @@ import ActionIcon from "@/svg/action-timing/action.svg"
 import InstantIcon from "@/svg/action-timing/instant.svg"
 import ReactionIcon from "@/svg/action-timing/reaction.svg"
 import { Reference } from "@/components/Reference"
-import { actionTimings } from "@/models/capabilities"
+import { Action, actionTimings } from "@/models/capabilities"
 import {
   AnyDrive,
   AnyMaterial,
@@ -26,8 +26,17 @@ import {
   WastelandHex,
   Wood,
 } from "@/components/ItemIcon"
-import { population, populationLoss } from "@/models/resources"
+import { population, populationLoss, resources } from "@/models/resources"
 import { unitTypes } from "@/models/units"
+import { Example } from "@/components/Example"
+import { ResourceSetDisplay } from "@/components/ResourceSetDisplay"
+import { CapabilityDisplay } from "@/components/CapabilityDisplay"
+import { HexMap } from "@/components/HexMap"
+import { HexSet, HexSetBuilder } from "@/modules/hex"
+import { Territory } from "@/modules/map"
+import { terrainTypes } from "@/models/terrain"
+import { buildings } from "@/models/buildings"
+import { PlayerReference } from "@/components/PlayerReference"
 
 export interface ActionPhaseProps extends StandardComponentProps {}
 
@@ -158,14 +167,42 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
             </li>
             <li>No poden haver estat prèviament exhaurides durant el capítol en curs</li>
             <li>
-              No poden contenir unitats militars d'altres jugadors, a menys que els jugadors en qüestió donin el seu
-              consentiment a l'utilització del territori. Les unitats <Reference item={unitTypes.explorer} /> rivals no
-              compten a aquest efecte.
+              No poden contenir unitats militars o vaixells d'altres jugadors, a menys que els jugadors en qüestió donin
+              el seu consentiment a l'utilització del territori. Les unitats <Reference item={unitTypes.explorer} />{" "}
+              rivals no compten a aquest efecte.
             </li>
           </ul>
           <p>
             Les caselles seleccionades passaran a considerar-se <em>exhaurides</em> durant la resta del capítol.
           </p>
+          <Example>
+            <p>
+              El <PlayerReference number={1} /> i el <PlayerReference number={2} /> tenen un edifici{" "}
+              <Reference item={buildings.sawmill} /> cada un a les posicions indicades:
+            </p>
+            <HexMap
+              hexSet={Territory.beginSet({ label: "A", type: "grassland", owner: 1, buildings: [buildings.sawmill] })
+                .push((c) => c.northEast({ label: "B", type: "forest" }))
+                .push((c) => c.southEast({ label: "C", type: "forest", owner: 2, buildings: [buildings.sawmill] }))
+                .push((c) => c.southWest({ label: "D", type: "forest" }))
+                .build()}
+            />
+            <p>L'edifici proporciona la següent capacitat:</p>
+            <CapabilityDisplay capability={buildings.sawmill.getCapability("produce-wood")} />
+            <p>
+              El <PlayerReference number={1} /> actua primer, i executa la capacitat del seu edifici. Tot i que
+              l'edifici està en contacte amb 2 territoris <ForestHex /> (posicions B i D), només disposa d'una unitat de{" "}
+              <Reference item={resources.population} /> no exhaurida a la ciutat, així que només pot exhaurir un dels
+              territoris; escull exhaurir el territoris B, i guanya un sol recurs <Reference item={resources.wood} />.
+            </p>
+            <p>
+              Al seu torn, el <PlayerReference number={2} /> també executa la capacitat del seu edifici. Té 3{" "}
+              <ForestHex />
+              en contacte amb l'edifici i disposa de 3 <Reference item={resources.population} />, però el territori B ja
+              ha estat exhaurit prèviament durant el capítol. Per tant, com a molt podrà exhaurir els territoris C i D
+              per guanyar 2 recursos de <Reference item={resources.wood} />.
+            </p>
+          </Example>
         </Section>
       </Section>
     </Section>
