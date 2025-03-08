@@ -5,6 +5,9 @@ export const instantiate = <T, P>(obj: T | P, type: Constructor<T, P>): T =>
 export const instantiateAll = <T, P>(objects: Array<T | P>, type: Constructor<T, P>): T[] =>
   objects.map((obj) => instantiate(obj, type))
 
+export const createSibling = <T extends Object, P>(source: T, props: P): T =>
+  new (source.constructor as Constructor<T, P>)(props)
+
 export const repeat = <T,>(amount: number, supplier: (index: number) => T) => {
   const items = []
   for (let n = 0; n < amount; n++) {
