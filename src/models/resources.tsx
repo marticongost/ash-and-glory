@@ -101,18 +101,18 @@ export class TerrainHex extends Resource {}
 export const materials: Record<MaterialId, Material> = {
   anyMaterial: new Material({ id: "anyMaterial", title: "Qualsevol material", icon: AnyMaterialIcon }),
   gold: new Material({ id: "gold", title: "Or", icon: GoldIcon }),
-  wood: new Material({ id: "wood", title: "Or", icon: WoodIcon }),
-  ore: new Material({ id: "ore", title: "Or", icon: OreIcon }),
-  food: new Material({ id: "food", title: "Or", icon: FoodIcon }),
+  wood: new Material({ id: "wood", title: "Fusta", icon: WoodIcon }),
+  ore: new Material({ id: "ore", title: "Mineral", icon: OreIcon }),
+  food: new Material({ id: "food", title: "Menjar", icon: FoodIcon }),
 }
 
 export const drives: Record<DriveId, Drive> = {
   anyDrive: new Drive({ id: "anyDrive", title: "Qualsevol impuls", icon: AnyDriveIcon }),
   effort: new Drive({ id: "effort", title: "Esforç", icon: EffortIcon }),
-  growth: new Drive({ id: "growth", title: "Esforç", icon: GrowthIcon }),
-  curiosity: new Drive({ id: "curiosity", title: "Esforç", icon: CuriosityIcon }),
-  strife: new Drive({ id: "strife", title: "Esforç", icon: StrifeIcon }),
-  resolve: new Drive({ id: "resolve", title: "Esforç", icon: ResolveIcon }),
+  growth: new Drive({ id: "growth", title: "Creixement", icon: GrowthIcon }),
+  curiosity: new Drive({ id: "curiosity", title: "Curiositat", icon: CuriosityIcon }),
+  strife: new Drive({ id: "strife", title: "Conflicte", icon: StrifeIcon }),
+  resolve: new Drive({ id: "resolve", title: "Determinació", icon: ResolveIcon }),
 }
 
 export const devotion: Record<DevotionId, Devotion> = {
