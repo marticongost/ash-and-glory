@@ -151,7 +151,7 @@ export const terrainHex = mapRecord(terrainTypes, (_, terrainType) => {
   ]
 }) as unknown as Record<TerrainHexId, TerrainHex>
 
-export const population = new Population({ title: "Mobilitzar treballadors", icon: PopulationIcon })
+export const population = new Population({ title: "Treballadors", icon: PopulationIcon })
 export const populationLoss = new PopulationLoss({ title: "Reduïr població", icon: PopulationLossIcon })
 export const glory = new Glory({ title: "Glòria", icon: GloryIcon })
 export const resources: Record<ResourceId, Resource> = Object.assign(
