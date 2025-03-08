@@ -1,0 +1,29 @@
+@use "common.scss";
+
+.HexMap {
+  --hex-height: 5rem;
+}
+
+.territory {
+  display: flex;
+  justify-content: center;
+  @include common.vertical-padding(0.75rem);
+
+  @each $territory in (grassland, forest, mountain, sea, wasteland) {
+    &[data-type="#{$territory}"] {
+      --territory-color: var(--resource-color-#{$territory}Hex);
+    }
+  }
+}
+
+.territoryContour {
+  --icon-color: var(--territory-color, var(--light-color));
+}
+
+.terrainIcon {
+  position: relative;
+  z-index: 1;
+  height: 1rem;
+  width: auto;
+  --icon-color: rgba(255, 255, 255, 0.7);
+}
