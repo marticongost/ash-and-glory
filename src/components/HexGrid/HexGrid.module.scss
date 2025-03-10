@@ -13,8 +13,8 @@ $hexWidth: var(--hex-width, calc(#{$hexHeight} * var(--hex-aspect-ratio, 1.1547)
   position: absolute;
   width: $hexWidth;
   height: $hexHeight;
-  left: calc(var(--column) * #{$hexWidth} * 0.75);
-  top: calc(var(--row) * #{$hexHeight} + var(--offset) * #{$hexHeight});
+  left: calc(var(--col) * #{$hexWidth} * 0.75);
+  top: calc(var(--row) * #{$hexHeight});
 }
 
 .contour {
