@@ -21,7 +21,9 @@ const decorateTerritoryHex = (territory: Territory): HexDecoration => {
         {territory.label ? <div className={styles.label}>{territory.label}</div> : null}
         <div className={styles.buildings}>
           {territory.buildings.map((building) => (
-            <div className={styles.building}>{createElement(building.icon, { className: styles.buildingIcon })}</div>
+            <div key={building.id} className={styles.building}>
+              {createElement(building.icon, { className: styles.buildingIcon })}
+            </div>
           ))}
         </div>
       </>
