@@ -6,7 +6,7 @@ export interface PlayerReferenceProps extends StandardComponentProps {
 }
 
 export const PlayerReference = ({ number, ...baseProps }: PlayerReferenceProps) => (
-  <div {...getStandardAttributes(baseProps, styles.PlayerReference)} data-player={number}>
+  <span {...getStandardAttributes(baseProps, styles.PlayerReference)} data-player={number}>
     jugador {number}
-  </div>
+  </span>
 )
