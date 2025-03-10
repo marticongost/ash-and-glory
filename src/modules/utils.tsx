@@ -34,6 +34,20 @@ export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): R
   return record
 }
 
+export const getMinAndMaxValues = <T extends Comparable>(items: T[]): [T, T] => {
+  let min = items[0]
+  let max = items[0]
+  for (const item of items) {
+    if (item < min) {
+      min = item
+    }
+    if (item > max) {
+      max = item
+    }
+  }
+  return [min, max]
+}
+
 export const sortBy = <T, K extends Comparable>(items: T[], getKey: (item: T) => K): T[] => {
   const entries = items.map((item) => ({ key: getKey(item), item }))
   entries.sort((a, b) => compareKeys(a.key, b.key))
