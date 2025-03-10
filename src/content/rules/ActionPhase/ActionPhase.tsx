@@ -157,15 +157,16 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
         <Section title="Territori">
           <p>
             Els costos de territori (<ForestHex />, <MountainHex />, <GrasslandHex />, <SeaHex /> i <WastelandHex />)
-            requereixen que el jugador seleccioni i <em>exhaureixi</em> la quantitat demandada de caselles del tipus
-            indicat. Les caselles seleccionades han de complir les condicions següents:
+            requereixen que el jugador seleccioni i <em>exhaureixi</em> la quantitat demandada de territoris del tipus
+            indicat. Els territoris seleccionats han de complir les condicions següents:
           </p>
           <ul>
             <li>
-              Han d'estar en contacte amb la casella central de l'acció (normalment, la casella que conté l'edifici que
-              proporciona l'acció). Dues caselles es consideren en contacte si són la mateixa casella o són adjacents.
+              Han d'estar en contacte amb el territori central de l'acció (normalment, el territori que conté l'edifici
+              que proporciona l'acció). Dos territoris es consideren en contacte si són el mateix territori o si són
+              adjacents.
             </li>
-            <li>No poden haver estat prèviament exhaurides durant el capítol en curs</li>
+            <li>No poden haver estat prèviament exhaurits durant el capítol en curs</li>
             <li>
               No poden contenir unitats militars o vaixells d'altres jugadors, a menys que els jugadors en qüestió donin
               el seu consentiment a l'utilització del territori. Les unitats <Reference item={unitTypes.explorer} />{" "}
@@ -173,7 +174,7 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
             </li>
           </ul>
           <p>
-            Les caselles seleccionades passaran a considerar-se <em>exhaurides</em> durant la resta del capítol.
+            Els territoris seleccionats passaran a considerar-se <em>exhaurits</em> durant la resta del capítol.
           </p>
           <Example>
             <p>
@@ -197,10 +198,10 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
             </p>
             <p>
               Al seu torn, el <PlayerReference number={2} /> també executa la capacitat del seu edifici. Té 3{" "}
-              <ForestHex />
-              en contacte amb l'edifici i disposa de 3 <Reference item={resources.population} />, però el territori B ja
-              ha estat exhaurit prèviament durant el capítol. Per tant, com a molt podrà exhaurir els territoris C i D
-              per guanyar 2 recursos de <Reference item={resources.wood} />.
+              <ForestHex /> en contacte amb l'edifici i disposa de 3 <Reference item={resources.population} />, però el
+              territori B ja ha estat exhaurit prèviament durant el capítol pel <PlayerReference number={1} />. Per
+              tant, com a molt podrà exhaurir els territoris C i D per guanyar 2 recursos de{" "}
+              <Reference item={resources.wood} />.
             </p>
           </Example>
         </Section>
