@@ -228,4 +228,12 @@ export class HexSet<H extends Hex = Hex> {
   get height(): number {
     return this.bottom - this.top + 1
   }
+
+  topRow(): H[] {
+    return this.hexes.filter((hex) => hex.row === this.top)
+  }
+
+  bottomRow(): H[] {
+    return this.hexes.filter((hex) => hex.row === this.bottom)
+  }
 }
