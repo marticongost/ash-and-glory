@@ -18,6 +18,8 @@ export const repeat = <T,>(amount: number, supplier: (index: number) => T) => {
 
 export type Key = string | number | symbol
 
+export type Comparable = string | number | Date
+
 export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): Record<K, T[]> => {
   const record = {} as Record<K, T[]>
   for (const item of items) {
@@ -32,13 +34,13 @@ export const groupBy = <T, K extends Key>(items: T[], getKey: (item: T) => K): R
   return record
 }
 
-export const sortBy = <T, K extends string | number>(items: T[], getKey: (item: T) => K): T[] => {
+export const sortBy = <T, K extends Comparable>(items: T[], getKey: (item: T) => K): T[] => {
   const entries = items.map((item) => ({ key: getKey(item), item }))
   entries.sort((a, b) => compareKeys(a.key, b.key))
   return entries.map((entry) => entry.item)
 }
 
-export const compareKeys = <K extends string | number>(a: K, b: K): number => {
+export const compareKeys = <K extends Comparable>(a: K, b: K): number => {
   if (a > b) {
     return 1
   }
