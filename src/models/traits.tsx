@@ -1329,13 +1329,11 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
         capabilities: [
           new Action({
             id: "siege-machines",
-            cost: { wood: "1+" },
+            cost: { wood: "X" },
             timing: "reaction",
+            moment: "beforeCombat",
             effect: (
-              <>
-                Abans de començar un combat a una ciutat, gastar 1-3 <Wood />. Per cada
-                <Wood /> gastat es podrà repetir el resultat d'un dau d'atac
-              </>
+              <>Només aplicable si s'està atacant o defensant una ciutat. Màxim de 3. Repetir fins a X daus d'atac.</>
             ),
           }),
         ],
