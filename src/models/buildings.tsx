@@ -374,6 +374,16 @@ export const buildings = {
           </>
         ),
       }),
+      new Action({
+        id: "increase-population",
+        title: "Augmentar la població",
+        cost: { food: "X" },
+        effect: (
+          <>
+            Afegir X <Population /> a la ciutat
+          </>
+        ),
+      }),
     ],
   }),
   market: new Building({
@@ -467,6 +477,16 @@ export const buildings = {
           </>
         ),
       }),
+      new Action({
+        id: "recruit-militia",
+        title: "Lleva",
+        cost: { strife: 1, populationLoss: "X" },
+        effect: (
+          <>
+            Desplegar X <Militia />
+          </>
+        ),
+      }),
     ],
   }),
   barracks: new Building({
@@ -511,6 +531,16 @@ export const buildings = {
           </>
         ),
       }),
+      new Action({
+        id: "create-explorer",
+        title: "Emigrar",
+        cost: { curiosity: 1, populationLoss: "X" },
+        effect: (
+          <>
+            Desplegar X <Explorer />
+          </>
+        ),
+      }),
     ],
   }),
   palace: new Building({
@@ -540,6 +570,12 @@ export const buildings = {
             Guanyar <Resolve />
           </>
         ),
+      }),
+      new Action({
+        id: "build",
+        title: "Construir edifici",
+        cost: undefined,
+        effect: <>Construir edificis a la ciutat</>,
       }),
     ],
   }),
