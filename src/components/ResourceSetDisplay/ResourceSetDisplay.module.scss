@@ -37,22 +37,30 @@
   }
 
   &[data-arrangement="inline"] {
-    display: inline-flex;
-    gap: 1ch;
-    flex-wrap: wrap;
+    display: inline;
 
     .resource {
-      display: inline-flex;
-      gap: 0.5ch;
+      display: inline;
       white-space: nowrap;
+
+      & + .resource {
+        margin-left: 0.5ch;
+      }
     }
 
     .icon {
-      align-self: center;
+      display: inline;
+      vertical-align: middle;
+
+      & + .icon {
+        margin-left: 0.2ch;
+      }
     }
 
     .amount {
-      align-self: baseline;
+      display: inline;
+      vertical-align: baseline;
+      margin-left: 0.5ch;
     }
   }
 
