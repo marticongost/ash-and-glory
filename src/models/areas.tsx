@@ -23,15 +23,16 @@ import RuinedCastleIcon from "@/svg/terrain-features/ruined-castle.svg"
 import RuinedMageTowerIcon from "@/svg/terrain-features/ruined-mage-tower.svg"
 import RuinedPortalIcon from "@/svg/terrain-features/ruined-portal.svg"
 import RuinedMonumentIcon from "@/svg/terrain-features/ruined-monument.svg"
+import EldritchLandsIcon from "@/svg/terrain-features/eldritch-lands.svg"
 import { Action, BuildingEnhancement, Capability, Limitation, Passive } from "./capabilities"
 import { Reference } from "@/components/Reference"
-import { buildings, type Building } from "./buildings"
+import { buildings, buildingTypes, type Building } from "./buildings"
 import type { ResourceSet, ResourceSetProps } from "./resources"
-import { instantiate, instantiateAll, toPascalCase } from "@/modules/utils"
+import { instantiate, toPascalCase } from "@/modules/utils"
 import { TerrainType, terrainTypes, type TerrainTypeId } from "./terrain"
 import { unitTypes } from "./units"
-import { Curiosity, Effort, Food, Gold, Growth, Ore, SeaHex, Strife, Wood } from "@/components/ItemIcon"
-import { HexSet, HexSetBuilder, type Hex } from "@/modules/hex"
+import { Curiosity, Effort, Food, Gold, Growth, Ore, Resolve, SeaHex, Strife, Wood } from "@/components/ItemIcon"
+import { HexSet } from "@/modules/hex"
 
 export const areaShapes: HexSet[] = [
   HexSet.builder()
@@ -659,4 +660,33 @@ export const areas: Record<string, Area> = {
   ruinedMageTower: makeRuinedBuildingFeature(buildings.mageTower, RuinedMageTowerIcon, { population: 1, curiosity: 1 }),
   ruinedPortal: makeRuinedBuildingFeature(buildings.portal, RuinedPortalIcon, { population: 1, curiosity: 1 }),
   ruinedMonument: makeRuinedBuildingFeature(buildings.monument, RuinedMonumentIcon, { population: 1, ore: 1 }),
+  eldritchLands: new Area({
+    id: "eldritchLands",
+    title: "Terres sinistres",
+    types: ["riches"],
+    terrain: {
+      primary: "wasteland",
+    },
+    feature: {
+      icon: EldritchLandsIcon,
+      capabilities: [
+        new BuildingEnhancement({
+          id: "feature",
+          target: buildingTypes.magic,
+          targetAdjacency: "inContact",
+          capabilities: [
+            new Action({
+              id: "rawPower",
+              cost: { curiosity: 1 },
+              effect: (
+                <>
+                  Guanyar <Resolve amount={2} />
+                </>
+              ),
+            }),
+          ],
+        }),
+      ],
+    },
+  }),
 }
