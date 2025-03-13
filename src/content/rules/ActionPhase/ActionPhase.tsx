@@ -192,13 +192,13 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
           <p>Cal tenir present que:</p>
           <ul>
             <li>
-              Si el cost indicat és <AnyDrive />, el jugador podrà pagar utilitzant qualsevol impuls de la seva reserva
+              Si el cost indicat és <AnyDrive />, el jugador podrà pagar utilitzant qualsevol combinació d'impulsos de la seva reserva
               (
               <Growth />, <Effort />, <Curiosity />, <Strife /> o <Resolve />
               ).
             </li>
             <li>
-              Si el cost indicat és <AnyMaterial />, el jugador podrà pagar utilitzant qualsevol material de la seva
+              Si el cost indicat és <AnyMaterial />, el jugador podrà pagar utilitzant qualsevol combinació de materials de la seva
               reserva (<Food />, <Wood />, <Ore /> o <Gold />
               ).
             </li>
