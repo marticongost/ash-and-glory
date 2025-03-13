@@ -192,14 +192,14 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
           <p>Cal tenir present que:</p>
           <ul>
             <li>
-              Si el cost indicat és <AnyDrive />, el jugador podrà pagar utilitzant qualsevol combinació d'impulsos de la seva reserva
-              (
+              Si el cost indicat és <AnyDrive />, el jugador podrà pagar utilitzant qualsevol combinació d'impulsos de
+              la seva reserva (
               <Growth />, <Effort />, <Curiosity />, <Strife /> o <Resolve />
               ).
             </li>
             <li>
-              Si el cost indicat és <AnyMaterial />, el jugador podrà pagar utilitzant qualsevol combinació de materials de la seva
-              reserva (<Food />, <Wood />, <Ore /> o <Gold />
+              Si el cost indicat és <AnyMaterial />, el jugador podrà pagar utilitzant qualsevol combinació de materials
+              de la seva reserva (<Food />, <Wood />, <Ore /> o <Gold />
               ).
             </li>
             <li>
@@ -270,10 +270,10 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
               El <PlayerReference number={1} /> actua primer, i executa la capacitat del seu edifici. Tot i que
               l'edifici està en contacte amb 2 territoris <ForestHex /> (posicions B i D), només disposa d'una unitat de{" "}
               <Reference item={resources.population} /> no exhaurida a la ciutat, així que només pot exhaurir un dels
-              territoris; escull exhaurir el territoris B, i guanya un sol recurs <Reference item={resources.wood} />.
+              territoris; escull exhaurir el territori B, i guanya un sol recurs <Reference item={resources.wood} />.
             </p>
             <p>
-              Al seu torn, el <PlayerReference number={2} /> també executa la capacitat del seu edifici. Té 3{" "}
+              Al seu torn, el <PlayerReference number={2} /> també executa la capacitat del seu edifici. Té 3 territoris{" "}
               <ForestHex /> en contacte amb l'edifici i disposa de 3 <Reference item={resources.population} />, però el
               territori B ja ha estat exhaurit prèviament durant el capítol pel <PlayerReference number={1} />. Per
               tant, com a molt podrà exhaurir els territoris C i D per guanyar 2 recursos de{" "}
