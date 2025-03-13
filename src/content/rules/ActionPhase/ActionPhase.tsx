@@ -105,9 +105,85 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
       </Section>
       <Section title="Cost de les accions">
         <p>
-          La majoria d'accions tenen un cost que els jugadors hauran de pagar per poder-les executar. A continuació es
-          descriuen els diferents tipus de costos i com satisfer-los.
+          La majoria d'accions tenen un cost que els jugadors hauran de pagar per poder-les executar. El cost es denota
+          a continuació del tipus de l'acció, com un seguit d'icones de recursos precedint a una icona de fletxa.
         </p>
+        <p>A continuació es descriuen els diferents tipus de costos i com satisfer-los.</p>
+        <Section title="Quantitats">
+          <p>
+            La <em>quantitat</em> de recursos que caldrà invertir per satisfer el cost d'una acció es pot especificar de
+            diverses formes, tal i com es detalla als següents exemples:
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <CapabilityDisplay capability={new Action({ id: "example1", cost: { wood: 1 }, effect: "..." })} />
+                </td>
+                <td>
+                  Aquesta acció requereix gastar una única unitat de <Reference item={resources.wood} />.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay
+                    capability={new Action({ id: "example", cost: { food: 2, gold: 1 }, effect: "..." })}
+                  />
+                </td>
+                <td>
+                  Aquesta acció requereix gastar dues unitats de <Reference item={resources.food} /> i una d'
+                  <Reference item={resources.gold} />.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay
+                    capability={new Action({ id: "example", cost: { population: "1+" }, effect: "..." })}
+                  />
+                </td>
+                <td>
+                  Aquesta acció té un cost variable, de com a mínim una unitat de{" "}
+                  <Reference item={resources.population} />. Segons circumstàncies i factors indicats per l'acció, el
+                  cost pot ser més elevat.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay capability={new Action({ id: "example", cost: { effort: "X" }, effect: "..." })} />
+                </td>
+                <td>
+                  Aquesta acció requereix gastar tants recursos <Reference item={resources.effort} /> com el jugador
+                  vulgui. Com més recursos s'inverteixin, més potent serà l'efecte (tal com es descriurà al detall de
+                  l'acció).
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay
+                    capability={new Action({ id: "example", cost: { strife: "X", ore: "X" }, effect: "..." })}
+                  />
+                </td>
+                <td>
+                  Aquesta acció requereix gastar qualsevol nombre de recursos <Reference item={resources.strife} />, i
+                  la mateixa quantitat de recursos <Reference item={resources.ore} />. Com més recursos s'inverteixin,
+                  més potent serà l'efecte (tal com es descriurà al detall de l'acció).
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay capability={new Action({ id: "example1", cost: undefined, effect: "..." })} />
+                </td>
+                <td>Aquesta acció té un cost variable, que es detalla a una altra part de les regles.</td>
+              </tr>
+              <tr>
+                <td>
+                  <CapabilityDisplay capability={new Action({ id: "example1", cost: {}, effect: "..." })} />
+                </td>
+                <td>Aquesta acció no té cap cost associat i es pot dur a terme de forma totalment gratuïta.</td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
         <Section title="Impulsos i materials">
           <p>
             Si una acció requereix un o més impulsos o materials, el jugador haurà de pagar la quantitat indicada de
