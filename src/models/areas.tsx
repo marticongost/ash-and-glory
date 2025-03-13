@@ -663,7 +663,7 @@ export const areas: Record<string, Area> = {
   eldritchLands: new Area({
     id: "eldritchLands",
     title: "Terres sinistres",
-    types: ["riches"],
+    types: ["production"],
     terrain: {
       primary: "wasteland",
     },
