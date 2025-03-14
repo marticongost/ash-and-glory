@@ -20,10 +20,11 @@
   }
 
   &[data-arrangement="multi-column"] {
-    @include common.row(sm);
+    @include common.row(xs);
+    align-items: flex-start;
 
     .resource {
-      @include common.column;
+      @include common.column(0.5ch);
       align-items: center;
     }
 
