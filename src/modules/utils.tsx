@@ -58,7 +58,7 @@ export const compareKeys = <K extends Comparable>(a: K, b: K): number => {
   if (a > b) {
     return 1
   }
-  if (b < a) {
+  if (a < b) {
     return -1
   }
   return 0
