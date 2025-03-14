@@ -4,7 +4,7 @@ import { Section } from "@/components/Section"
 import ActionIcon from "@/svg/action-timing/action.svg"
 import InstantIcon from "@/svg/action-timing/instant.svg"
 import { Reference } from "@/components/Reference"
-import { Action, actionTimings } from "@/models/capabilities"
+import { Action, actionTimings, BuildingEnhancement } from "@/models/capabilities"
 import {
   AnyDrive,
   AnyMaterial,
@@ -31,6 +31,7 @@ import { HexMap } from "@/components/HexMap"
 import { Territory } from "@/modules/map"
 import { buildings } from "@/models/buildings"
 import { PlayerReference } from "@/components/PlayerReference"
+import { traitCategories } from "@/models/traits"
 
 export interface ActionsProps extends StandardComponentProps {}
 
@@ -63,18 +64,64 @@ export const Actions = (props: ActionsProps) => (
       </p>
     </Section>
     <Section title="Origen de les accions">
-      <p>Segons qui les confereixi, les accions es poden classificar en els següents tipus:</p>
-      <ul>
-        <li>
-          <strong>Accions d'edifici</strong>: Accions vinculades als edificis construits pels jugadors a les seves
-          ciutats. En executar una d'aquestes accions, cal seleccionar i <em>exhaurir</em> un edifici propi del tipus
-          corresponent. Si el jugador no disposa d'edificis no exhaurits d'aquell tipus, no podrà dur a terme l'acció.
-        </li>
-        <li>
-          <strong>Accions de tret</strong>: Accions vinculades als trets adquirits pels jugadors. Les accions{" "}
-          <ActionIcon /> i <InstantIcon /> d'aquest tipus es poden executar un sol cop per capítol.
-        </li>
-      </ul>
+      <p>Segons qui les confereixi, les accions es poden classificar en diferents tipus.</p>
+      <Section title="Accions estàndard">
+        <p>Són accions disponibles per a tots els jugadors, i es poden dur a terme múltiples vegades per capítol.</p>
+      </Section>
+      <Section title="Accions d'edifici">
+        <p>
+          Accions vinculades als edificis construits pels jugadors a les seves ciutats. En executar una d'aquestes
+          accions, cal seleccionar i <em>exhaurir</em> un edifici propi del tipus corresponent.
+        </p>
+        <ul>
+          <li>Si el jugador no disposa d'edificis no exhaurits d'aquell tipus, no podrà dur a terme l'acció</li>
+          <li>
+            Si el jugador disposa de diversos edificis del tipus indicat, podrà executar l'acció múltiples vegades en un
+            mateix capítol (en torns posteriors)
+          </li>
+          <li>
+            Si un mateix edifici proporciona múltiples accions, només se'n podrà executar una en exhaurir-lo: el jugador
+            haurà d'escollir quina prefereix, i renunciar a les altres. Naturalment, si disposa de més còpies de
+            l'edifici, podrà exhaurir-ne una altra en un torn posterior, i escollir una de les altres accions, si així
+            ho vol.
+          </li>
+        </ul>
+      </Section>
+      <Section title="Accions de tret">
+        <p>
+          Accions vinculades als trets adquirits pels jugadors. Les accions <ActionIcon /> i <InstantIcon /> d'aquest
+          tipus es poden executar un sol cop per capítol.
+        </p>
+        <p>
+          Alguns trets proporcionen millores d'edificis concrets, que els confereixen accions addicionals. Aquestes
+          accions es consideren <em>accions d'edifici</em>, com si fossin impreses a la carta de l'edifici millorat, i
+          són subjectes a les mateixes consideracions (caldrà exhaurir un edifici del tipus indicat per dur-les a
+          terme).
+        </p>
+        <Example>
+          <p>
+            El tret <Reference item={traitCategories.traders.getTrait("exporters")} />
+            proporciona una millora als edificis <Reference item={buildings.farm} />, conferint-los la següent acció:
+          </p>
+          <CapabilityDisplay
+            capability={
+              traitCategories.traders
+                .getTrait("exporters")
+                .capabilities.find((cap) => cap instanceof BuildingEnhancement)!.capabilities[0]
+            }
+          />
+          <p>
+            En circumstàncies normals, els edificis <Reference item={buildings.farm} /> proporcionen aquesta altra
+            acció:
+          </p>
+          <CapabilityDisplay capability={buildings.farm.getCapability("produce-food")} />
+          <p>
+            Per tant, cada cop que un jugador que posseeixi aquest tret exhaureixi un dels seus edificis{" "}
+            <Reference item={buildings.farm} />, podrà decidir si prefereix invertir en guanyar{" "}
+            <Reference item={resources.food} /> o <Reference item={resources.gold} />
+          </p>
+        </Example>
+      </Section>
     </Section>
     <Section title="Cost de les accions">
       <p>
