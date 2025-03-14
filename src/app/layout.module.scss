@@ -23,4 +23,8 @@
 
 .main {
   @include common.padding(md);
+
+  @media print {
+    padding: 0.5rem;
+  }
 }

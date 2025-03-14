@@ -1,43 +1,42 @@
 @use "common.scss";
 
 .BuildingsSheet {
-  border-collapse: collapse;
+  --gap: 0.3rem;
+  column-count: 4;
+  column-gap: var(--gap);
+}
 
-  tr {
-    break-inside: avoid;
-    border-top: var(--light-line);
-  }
+.BuildingsSheetEntry {
+  break-inside: avoid;
+  border: 1px solid var(--night-background-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: var(--gap);
 
-  td {
-    @include common.vertical-padding(sm);
-    vertical-align: top;
-
-    &:not(:last-child):not(.buildingIconCell) {
-      padding-right: var(--spacing-md);
-    }
-  }
-
-  .buildingIconCell {
-    padding-right: var(--spacing-sm);
+  .buildingHeader {
+    @include common.titlebar;
+    @include common.row(xs);
+    padding: 0.5rem;
   }
 
   .buildingIcon {
     height: 2rem;
     width: auto;
+    flex-shrink: 0;
   }
 
   .buildingTitle {
     white-space: nowrap;
     font-family: var(--heading-font-family);
-    color: var(--reference-text-color);
+    font-size: 0.9em;
   }
 
   .buildingTypes {
     @include common.row;
     white-space: nowrap;
     font-size: 0.7em;
-    font-style: italic;
-    opacity: 0.8em;
+    font-weight: 300;
+    margin-top: 0.25ch;
 
     & > * + *:before {
       content: ", ";
@@ -45,12 +44,18 @@
   }
 
   .buildingCost {
-    font-size: 0.9em;
+    padding: 0.5rem;
+    font-size: 0.8em;
+    background-color: var(--night-medium-background-color);
+    &:empty {
+      display: none;
+    }
   }
 
   .buildingCapabilities {
+    border-top: var(--subtle-line);
     font-size: 0.8em;
     margin: 0;
-    padding: 0;
+    padding: 0.5rem;
   }
 }
