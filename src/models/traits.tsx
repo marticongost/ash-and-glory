@@ -56,6 +56,14 @@ export abstract class TraitsCategory {
   }
 
   abstract readonly icon?: JSXElementConstructor<any>
+
+  getTrait(id: string): Trait {
+    const trait = this.traits.find((trait) => trait.id === id)
+    if (!trait) {
+      throw new Error(`Trait ${id} not found in category ${this.id}`)
+    }
+    return trait
+  }
 }
 
 export interface ArchetypeProps extends TraitsCategoryProps {
