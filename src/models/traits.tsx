@@ -2141,7 +2141,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
       },
       {
         level: 1,
-        id: "huners",
+        id: "hunters",
         title: "Caçadors",
         capabilities: [
           new BuildingEnhancement({
@@ -2149,7 +2149,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             target: buildings.farm,
             capabilities: [
               new Passive({
-                id: "shepherds",
+                id: "hunters",
                 effect: <>Permet comptar els boscos com si fossin camps</>,
               }),
             ],
