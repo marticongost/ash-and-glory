@@ -27,14 +27,6 @@
       @include common.column(0.5ch);
       align-items: center;
     }
-
-    .amount {
-      order: 1;
-    }
-
-    .icon {
-      order: 2;
-    }
   }
 
   &[data-arrangement="inline"] {

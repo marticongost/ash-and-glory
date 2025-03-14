@@ -1,0 +1,56 @@
+@use "common.scss";
+
+.BuildingsSheet {
+  border-collapse: collapse;
+
+  tr {
+    break-inside: avoid;
+    border-top: var(--light-line);
+  }
+
+  td {
+    @include common.vertical-padding(sm);
+    vertical-align: top;
+
+    &:not(:last-child):not(.buildingIconCell) {
+      padding-right: var(--spacing-md);
+    }
+  }
+
+  .buildingIconCell {
+    padding-right: var(--spacing-sm);
+  }
+
+  .buildingIcon {
+    height: 2rem;
+    width: auto;
+  }
+
+  .buildingTitle {
+    white-space: nowrap;
+    font-family: var(--heading-font-family);
+    color: var(--reference-text-color);
+  }
+
+  .buildingTypes {
+    @include common.row;
+    white-space: nowrap;
+    font-size: 0.7em;
+    font-style: italic;
+    opacity: 0.8em;
+
+    & > * + *:before {
+      content: ", ";
+    }
+  }
+
+  .buildingCost {
+    font-size: 0.9em;
+  }
+
+  .buildingCapabilities {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+  }
+}

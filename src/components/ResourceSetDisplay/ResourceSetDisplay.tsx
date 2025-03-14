@@ -28,7 +28,7 @@ export const ResourceSetDisplay = ({
           if (!amount) return null
           return (
             <div className={styles.resource} data-type={resource.id} key={resource.id}>
-              {typeof amount === "number" ? (
+              {typeof amount === "number" && arrangement !== "multi-column" ? (
                 repeat(amount, (i) => createElement(resource.icon, { key: i, className: styles.icon }))
               ) : (
                 <>
