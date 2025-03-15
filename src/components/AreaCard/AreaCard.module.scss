@@ -3,7 +3,7 @@
 .AreaCard {
   @include common.panel;
   @include common.column;
-  @include common.card;
+  @include common.euro-mini-card;
   align-items: stretch;
 }
 
