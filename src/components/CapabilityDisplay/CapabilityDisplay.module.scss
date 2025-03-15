@@ -26,17 +26,18 @@
 .actionIcon,
 .convertIcon {
   display: inline-block;
-  vertical-align: middle;
   width: auto;
 }
 
 .actionIcon {
   margin-right: 0.5ch;
+  vertical-align: text-top;
   height: 1.2em;
 }
 
 .convertIcon {
   @include common.horizontal-margin(0.5ch);
+  vertical-align: middle;
   height: 0.7em;
 }
 
