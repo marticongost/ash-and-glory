@@ -51,6 +51,7 @@ import {
   Cavalry,
 } from "@/components/ItemIcon/ItemIcon"
 import { Reference } from "@/components/Reference"
+import { maxCitySize } from "./values"
 
 export type BuildingTypeId =
   | "government"
@@ -144,7 +145,7 @@ export const buildings = {
       }),
       new Passive({
         id: "city-size-limit",
-        effect: <>Mida màxima 6</>,
+        effect: <>Mida màxima {maxCitySize}</>,
       }),
       new Action({
         id: "increase-population",

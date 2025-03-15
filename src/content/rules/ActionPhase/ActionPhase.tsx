@@ -2,6 +2,7 @@ import styles from "./ActionPhase.module.scss"
 import { getStandardAttributes, type StandardComponentProps } from "@/modules/react-utils"
 import { Section } from "@/components/Section"
 import { Actions } from "../Actions"
+import { BuildAction } from "../BuildAction"
 
 export interface ActionPhaseProps extends StandardComponentProps {}
 
@@ -29,5 +30,10 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
     </Section>
 
     <Actions />
+
+    <Section title="Accions particulars">
+      <p>A continuació es detalla el funcionament d'algunes accions que requereixen una explicació més extensa.</p>
+      <BuildAction />
+    </Section>
   </Section>
 )
