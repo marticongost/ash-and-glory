@@ -16,7 +16,7 @@ export const Navigation = ({}: NavigationProps) => {
         <Link
           className={styles.link}
           key={section.id}
-          href={section.url}
+          href={section.getEffectiveUrl()}
           data-state={section.getSelectionState(pathName)}
         >
           {createElement(section.icon, { className: styles.icon })}

@@ -13,6 +13,7 @@ export interface SectionProps {
   icon: JSXElementConstructor<any>
   parent?: Section
   children?: SectionProps[]
+  redirectToFirstChild?: boolean
 }
 
 export type SelectionState = "unselected" | "selection-ancestor" | "selected"
@@ -24,8 +25,9 @@ export class Section {
   readonly url: string
   readonly parent?: Section
   readonly children: Section[]
+  readonly redirectToFirstChild: boolean
 
-  constructor({ id, title, icon, parent, children }: SectionProps) {
+  constructor({ id, title, icon, parent, children, redirectToFirstChild = false }: SectionProps) {
     this.id = id
     this.title = title
     this.icon = icon
@@ -40,6 +42,7 @@ export class Section {
     }
     this.parent = parent
     this.children = (children ?? []).map((childProps) => new Section({ ...childProps, parent: this }))
+    this.redirectToFirstChild = redirectToFirstChild
   }
 
   getSelectionState(pathName: string): SelectionState {
@@ -52,6 +55,13 @@ export class Section {
     }
     return "unselected"
   }
+
+  getEffectiveUrl(): string {
+    if (this.redirectToFirstChild && this.children.length) {
+      return this.children[0].url
+    }
+    return this.url
+  }
 }
 
 export const sections: Section[] = [
@@ -63,6 +73,7 @@ export const sections: Section[] = [
     id: "exploration",
     title: "Exploració",
     icon: ExplorationIcon,
+    redirectToFirstChild: true,
     children: [
       new Section({ id: "areas", title: "Àrees", icon: AreasIcon }),
       new Section({ id: "shapes", title: "Formes", icon: ShapesIcon }),
