@@ -100,8 +100,8 @@ export const Actions = (props: ActionsProps) => (
         </p>
         <Example>
           <p>
-            El tret <Reference item={traitCategories.traders.getTrait("exporters")} />
-            proporciona una millora als edificis <Reference item={buildings.farm} />, conferint-los la següent acció:
+            El tret <Reference item={traitCategories.traders.getTrait("exporters")} /> proporciona una millora als
+            edificis <Reference item={buildings.farm} />, conferint-los la següent acció:
           </p>
           <CapabilityDisplay
             capability={
