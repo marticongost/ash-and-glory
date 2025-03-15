@@ -65,12 +65,12 @@ export type BuildingTypeId =
   | "monumental"
 
 export interface BuildingTypeProps {
-  id: string
+  id: BuildingTypeId
   title: string
 }
 
 export class BuildingType {
-  readonly id: string
+  readonly id: BuildingTypeId
   readonly title: string
 
   constructor({ id, title }: BuildingTypeProps) {
