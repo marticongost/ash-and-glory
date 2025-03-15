@@ -4,6 +4,7 @@ import { Section } from "@/components/Section"
 import { Actions } from "../Actions"
 import { BuildAction } from "../BuildAction"
 import { IncreasePopulationAction } from "../IncreasePopulationAction"
+import { FoundCityAction } from "../FoundCityAction"
 
 export interface ActionPhaseProps extends StandardComponentProps {}
 
@@ -36,6 +37,7 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
       <p>A continuació es detalla el funcionament d'algunes accions que requereixen una explicació més extensa.</p>
       <BuildAction />
       <IncreasePopulationAction />
+      <FoundCityAction />
     </Section>
   </Section>
 )
