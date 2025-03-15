@@ -12,7 +12,7 @@ export interface InnerNavigationProps extends StandardComponentProps {}
 export const InnerNavigation = ({ ...baseProps }: InnerNavigationProps) => {
   const pathName = usePathname()
   const topSection = requireTopSection(pathName)
-  return topSection.children.length ? (
+  return (
     <nav {...getStandardAttributes(baseProps, styles.InnerNavigation)}>
       {topSection.children.map((section) => (
         <Link
@@ -26,5 +26,5 @@ export const InnerNavigation = ({ ...baseProps }: InnerNavigationProps) => {
         </Link>
       ))}
     </nav>
-  ) : null
+  )
 }

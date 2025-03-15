@@ -4,6 +4,13 @@
   @include common.row;
   background-color: var(--night-medium-background-color);
   color: var(--night-text-color);
+  height: 4rem;
+  overflow: hidden;
+  transition: height 0.3s linear;
+
+  &:empty {
+    height: 0;
+  }
 }
 
 .link {
