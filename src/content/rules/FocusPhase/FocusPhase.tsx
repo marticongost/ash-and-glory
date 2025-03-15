@@ -65,8 +65,8 @@ export const FocusPhase = ({ ...baseProps }: FocusPhaseProps) => (
       </p>
       <p>
         Aquest procés es repeteix fins que tots els jugadors hagin seleccionat un total de{" "}
-        {focusCardsDraft.finalHandSize}
-        cartes. Les cartes descartades a la última selecció s'afegeixen a la pila de descartament general.
+        {focusCardsDraft.finalHandSize} cartes. Les cartes descartades a la última selecció s'afegeixen a la pila de
+        descartament general.
       </p>
     </Section>
   </Section>
