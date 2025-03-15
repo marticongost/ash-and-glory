@@ -6,14 +6,30 @@ import { CapabilityList } from "../CapabilityList"
 import { createElement } from "react"
 
 export interface BuildingsSheetProps extends StandardComponentProps {
+  buildingGroups: BuildingsGroup[]
+}
+
+export interface BuildingsGroup {
+  title: string
   buildings: Building[]
 }
 
-export const BuildingsSheet = ({ buildings, ...baseProps }: BuildingsSheetProps) => (
+export const BuildingsSheet = ({ buildingGroups, ...baseProps }: BuildingsSheetProps) => (
   <div {...getStandardAttributes(baseProps, styles.BuildingsSheet)}>
-    {buildings.map((building) => (
-      <BuildingsSheetEntry key={building.id} building={building} />
+    {buildingGroups.map((group) => (
+      <BuildingsGroup key={group.title} group={group} />
     ))}
+  </div>
+)
+
+export const BuildingsGroup = ({ group, ...baseProps }: { group: BuildingsGroup } & StandardComponentProps) => (
+  <div {...getStandardAttributes(baseProps, styles.BuildingsGroup)}>
+    <div className={styles.groupTitle}>{group.title}</div>
+    <div className={styles.groupBuildings}>
+      {group.buildings.map((building) => (
+        <BuildingsSheetEntry key={building.id} building={building} />
+      ))}
+    </div>
   </div>
 )
 

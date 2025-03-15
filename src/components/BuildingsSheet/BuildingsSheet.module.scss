@@ -1,12 +1,31 @@
 @use "common.scss";
 
 .BuildingsSheet {
+  @include common.column(calc(var(--gap) * 2));
+  justify-content: stretch;
+  align-items: stretch;
   --gap: 1rem;
-  @include common.grid(var(--gap));
 
   @media print {
     --gap: 0.5rem;
   }
+}
+
+.BuildingsGroup {
+  break-inside: avoid;
+}
+
+.groupTitle {
+  font-family: var(--heading-font-family);
+  font-size: 1.1em;
+  color: var(--section-heading-text-color);
+  border-bottom: var(--thick-separator);
+  padding-bottom: 0.2ch;
+}
+
+.groupBuildings {
+  @include common.grid(var(--gap));
+  margin-top: var(--gap);
 }
 
 .BuildingsSheetEntry {
@@ -16,9 +35,9 @@
     --columns: 3;
   }
 
-  width: calc(100% / var(--columns) - var(--gap) * (var(--columns) - 1));
+  width: calc((100% - var(--gap) * (var(--columns) - 1)) / var(--columns));
   break-inside: avoid;
-  border: 1px solid var(--night-background-color);
+  border: var(--clear-line);
   border-radius: 0.5rem;
   overflow: hidden;
 
