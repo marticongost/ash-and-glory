@@ -17,7 +17,7 @@ export const FocusCard = ({ focus, ...baseProps }: FocusCardProps) => (
     </div>
     <div className={styles.resourceSets}>
       {focus.resourceSets.map((resourceSet, index) => (
-        <ResourceSetDisplay key={index} className={styles.resources} arrangement="column" resourceSet={resourceSet} />
+        <ResourceSetDisplay key={index} className={styles.resources} arrangement="flat" resourceSet={resourceSet} />
       ))}
     </div>
   </div>

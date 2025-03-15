@@ -6,7 +6,7 @@ import { repeat } from "@/modules/utils"
 
 export interface ResourceSetDisplayProps extends StandardComponentProps {
   resourceSet?: ResourceSet
-  arrangement?: "row" | "column" | "multi-column" | "inline"
+  arrangement?: "row" | "column" | "multi-column" | "inline" | "flat"
   background?: "day" | "night"
 }
 

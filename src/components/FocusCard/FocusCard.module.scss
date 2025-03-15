@@ -67,6 +67,9 @@
   font-size: 3.7em;
 
   & + & {
+    --spacing: var(--spacing-md);
     border-top: var(--thick-separator);
+    margin-top: var(--spacing);
+    padding-top: var(--spacing);
   }
 }

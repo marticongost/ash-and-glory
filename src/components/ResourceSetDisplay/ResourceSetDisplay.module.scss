@@ -19,6 +19,17 @@
     }
   }
 
+  &[data-arrangement="flat"] {
+    @include common.grid(xs);
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    .resource {
+      display: contents;
+    }
+  }
+
   &[data-arrangement="multi-column"] {
     @include common.row(xs);
     align-items: flex-start;
