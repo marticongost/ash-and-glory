@@ -51,7 +51,7 @@ import {
   Cavalry,
 } from "@/components/ItemIcon/ItemIcon"
 import { Reference } from "@/components/Reference"
-import { maxCitySize } from "./values"
+import { initialCityMaxPopulation, maxCitySize } from "./values"
 
 export type BuildingTypeId =
   | "government"
@@ -141,7 +141,7 @@ export const buildings = {
     capabilities: [
       new Passive({
         id: "population-limit",
-        effect: <>Límit de població 3</>,
+        effect: <>Límit de població {initialCityMaxPopulation}</>,
       }),
       new Passive({
         id: "city-size-limit",

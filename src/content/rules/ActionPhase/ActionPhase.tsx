@@ -3,6 +3,7 @@ import { getStandardAttributes, type StandardComponentProps } from "@/modules/re
 import { Section } from "@/components/Section"
 import { Actions } from "../Actions"
 import { BuildAction } from "../BuildAction"
+import { IncreasePopulationAction } from "../IncreasePopulationAction"
 
 export interface ActionPhaseProps extends StandardComponentProps {}
 
@@ -34,6 +35,7 @@ export const ActionPhase = ({ ...baseProps }: ActionPhaseProps) => (
     <Section title="Accions particulars">
       <p>A continuació es detalla el funcionament d'algunes accions que requereixen una explicació més extensa.</p>
       <BuildAction />
+      <IncreasePopulationAction />
     </Section>
   </Section>
 )
