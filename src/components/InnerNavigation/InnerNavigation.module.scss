@@ -1,0 +1,39 @@
+@use "common.scss";
+
+.InnerNavigation {
+  @include common.row;
+  background-color: var(--night-medium-background-color);
+  color: var(--night-text-color);
+}
+
+.link {
+  @include common.row(xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  --icon-color: var(--night-icon-color);
+  --icon-transform: ;
+  --label-color: var(--night-unselected-text-color);
+
+  &[data-state="selected"] {
+    --icon-color: var(--night-selected-icon-color);
+    --label-color: var(--night-selected-text-color);
+    text-shadow: var(--text-glow);
+  }
+
+  &:hover {
+    --icon-color: var(--night-hover-icon-color);
+    --icon-transform: scale(1.1);
+    --label-color: var(--night-hover-text-color);
+    text-shadow: var(--text-shadow);
+  }
+}
+
+.icon {
+  height: 2rem;
+  width: auto;
+  transform: var(--icon-transform);
+}
+
+.label {
+  font-size: 1.2rem;
+  color: var(--label-color);
+}

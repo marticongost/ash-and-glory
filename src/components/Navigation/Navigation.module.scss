@@ -26,7 +26,8 @@
     text-shadow: var(--text-shadow);
   }
 
-  &[data-state="selected"] {
+  &[data-state="selected"],
+  &[data-state="selection-ancestor"] {
     --icon-color: var(--night-selected-icon-color);
     --icon-filter: var(--icon-glow);
     --label-color: var(--night-selected-text-color);
