@@ -163,6 +163,12 @@
   --dashed-line: 1px dashed #{$palette-cream};
 }
 
+nextjs-portal {
+  @media print {
+    display: none;
+  }
+}
+
 svg,
 svg * {
   fill: var(--icon-color) !important;
