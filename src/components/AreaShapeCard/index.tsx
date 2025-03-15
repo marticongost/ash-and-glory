@@ -1,0 +1,1 @@
+export { AreaShapeCard } from "./AreaShapeCard"

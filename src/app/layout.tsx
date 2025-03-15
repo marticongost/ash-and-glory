@@ -3,6 +3,7 @@ import localFont from "next/font/local"
 import "./globals.scss"
 import styles from "./layout.module.scss"
 import { Navigation } from "@/components/Navigation"
+import { InnerNavigation } from "@/components/InnerNavigation"
 
 const headingFont = localFont({
   src: "./fonts/AveriaSerifLibre-Bold.ttf",
@@ -41,10 +42,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={fonts.map((font) => font.variable).join(" ")}>
         <header className={styles.header}>
-          <div className={styles.heading}>
-            <span>Ash</span> <span>&amp;</span> <span>Glory</span>
+          <div className={styles.bar}>
+            <div className={styles.heading}>
+              <span>Ash</span> <span>&amp;</span> <span>Glory</span>
+            </div>
+            <Navigation />
           </div>
-          <Navigation />
+          <InnerNavigation />
         </header>
         <main className={styles.main}>{children}</main>
       </body>

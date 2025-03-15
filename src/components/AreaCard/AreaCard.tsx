@@ -24,7 +24,6 @@ export const AreaCard = ({ area, ...baseProps }: AreaCardProps) => (
     <div className={styles.terrainChoices}>
       <TerrainChoice choice={area.terrain.primary} />
       <TerrainChoice choice={area.terrain.secondary} />
-      <TerrainChoice choice={area.terrain.tertiary} />
     </div>
     {area.feature ? (
       <div className={styles.feature}>

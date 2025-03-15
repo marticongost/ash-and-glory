@@ -24,7 +24,7 @@ $hexWidth: var(--hex-width, calc(#{$hexHeight} * var(--hex-aspect-ratio, 1.1547)
   top: 0;
   width: 100%;
   height: 100%;
-  --icon-color: transparent;
+  --icon-color: var(--hex-fill-color, transparent);
 
   path {
     stroke: var(--hex-stroke-color, var(--light-line-color));

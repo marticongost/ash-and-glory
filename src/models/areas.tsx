@@ -73,15 +73,13 @@ export const areaShapes: HexSet[] = [
 export interface AreaTerrainChoicesProps {
   primary: TerrainChoice
   secondary?: TerrainChoice
-  tertiary?: TerrainChoice
 }
 
 export class AreaTerrainChoices {
   readonly primary: TerrainType[]
   readonly secondary: TerrainType[]
-  readonly tertiary: TerrainType[]
 
-  constructor({ primary, secondary, tertiary }: AreaTerrainChoicesProps) {
+  constructor({ primary, secondary }: AreaTerrainChoicesProps) {
     const toTerrainTypes = (choice: TerrainChoice): TerrainType[] => {
       if (choice === undefined) {
         return []
@@ -93,7 +91,6 @@ export class AreaTerrainChoices {
     }
     this.primary = toTerrainTypes(primary)
     this.secondary = toTerrainTypes(secondary)
-    this.tertiary = toTerrainTypes(tertiary)
   }
 }
 

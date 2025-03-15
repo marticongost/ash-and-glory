@@ -1,0 +1,15 @@
+@use "common.scss";
+
+.AreaShapeCard {
+  @include common.euro-mini-card;
+  @include common.panel;
+  @include common.column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hexGrid {
+  --hex-fill-color: var(--area-shape-color);
+  --hex-stroke-color: var(--page-background-color);
+  --hex-stroke-width: 0.2rem;
+}

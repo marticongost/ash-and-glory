@@ -1,13 +1,15 @@
 @use "common.scss";
 
 .header {
-  @include common.row;
-  background-color: var(--site-header-color);
-  color: var(--night-text-color);
-
   @media print {
     display: none;
   }
+}
+
+.bar {
+  @include common.row;
+  background-color: var(--site-header-color);
+  color: var(--night-text-color);
 }
 
 .heading {
