@@ -105,10 +105,10 @@ export const getSection = (pathName: string): Section | undefined => {
   return sectionsUrlIndex[normalisePath(pathName)]
 }
 
-export const requireTopSection = (pathName: string): Section => {
+export const getTopSection = (pathName: string): Section | undefined => {
   pathName = normalisePath(pathName)
   const topPathName = pathName.substring(0, pathName.indexOf("/", 1) + 1)
-  return requireSection(topPathName)
+  return getSection(topPathName)
 }
 
 export const requireSection = (pathName: string): Section => {
