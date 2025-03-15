@@ -547,7 +547,7 @@ export const buildings = {
     id: "palace",
     title: "Palau",
     icon: PalaceIcon,
-    types: ["government"],
+    types: ["government", "monumental"],
     cost: { growth: 1, population: 2, wood: 1, ore: 2, gold: 2 },
     capabilities: [
       unique,
