@@ -10,10 +10,10 @@ export interface BuildActionProps extends StandardComponentProps {}
 export const BuildAction = ({ ...baseProps }: BuildActionProps) => (
   <Section {...getStandardAttributes(baseProps, styles.BuildAction)} title="Construir edificis">
     <p>
-      Els edificis <Reference item={buildings.cityCenter} /> proporcionen una acció que permet ampliar la ciutat
-      construint nous edificis. Per fer-ho, el jugador exhaureix el <Reference item={buildings.cityCenter} /> de la
-      forma habitual, i a continuació escull un o més edifics que vulgui construir, d'entre tots els disponibles (veure
-      el full de referència d'edificis).
+      Alguns edificis, com ara el <Reference item={buildings.cityCenter} />, proporcionen una acció que permet ampliar
+      la ciutat construint-hi nous edificis. Per fer-ho, el jugador exhaureix l'edifici de la forma habitual, i a
+      continuació escull un o més edifics que vulgui construir, d'entre tots els disponibles (veure el full de
+      referència d'edificis).
     </p>
     <Section title="Cost de la construcció">
       <p>
