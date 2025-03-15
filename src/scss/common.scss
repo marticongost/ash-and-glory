@@ -85,7 +85,7 @@ $resources: gold, wood, ore, food, population, populationLoss, strife, effort, g
     &[data-type="#{$resource}"] {
       #{$property}: var(--resource-color-#{$resource});
       [class$="__secondary"] {
-        #{$property}: var(--resource-color-#{$resource}-secondary);
+        #{$property}: var(--resource-color-#{$resource}-secondary, var(--resource-secondary-color));
       }
     }
   }
@@ -96,7 +96,7 @@ $resources: gold, wood, ore, food, population, populationLoss, strife, effort, g
     &[data-type="#{$resource}"] {
       #{$property}: var(--night-resource-color-#{$resource});
       [class$="__secondary"] {
-        #{$property}: var(--night-resource-color-#{$resource}-secondary);
+        #{$property}: var(--night-resource-color-#{$resource}-secondary, var(--night-resource-secondary-color));
       }
     }
   }

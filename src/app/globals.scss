@@ -75,6 +75,8 @@
   --night-unselected-text-color: #{$palette-dull-gray};
   --night-selected-text-color: #{$palette-pearl};
   --night-hover-text-color: #{$palette-cream};
+  --resource-secondary-color: var(--page-background-color);
+  --night-resource-secondary-color: var(--page-background-color);
   --resource-color-gold: #{$palette-gold};
   --night-resource-color-gold: #{$palette-gold-night};
   --resource-color-wood: #{$palette-wood};
