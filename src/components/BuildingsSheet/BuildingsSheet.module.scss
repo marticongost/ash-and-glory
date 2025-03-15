@@ -10,7 +10,12 @@
 }
 
 .BuildingsSheetEntry {
-  --columns: 3;
+  --columns: 4;
+
+  @media print {
+    --columns: 3;
+  }
+
   width: calc(100% / var(--columns) - var(--gap) * (var(--columns) - 1));
   break-inside: avoid;
   border: 1px solid var(--night-background-color);
