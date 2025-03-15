@@ -1,17 +1,21 @@
 @use "common.scss";
 
 .BuildingsSheet {
-  --gap: 0.3rem;
-  column-count: 4;
-  column-gap: var(--gap);
+  --gap: 1rem;
+  @include common.grid(var(--gap));
+
+  @media print {
+    --gap: 0.5rem;
+  }
 }
 
 .BuildingsSheetEntry {
+  --columns: 3;
+  width: calc(100% / var(--columns) - var(--gap) * (var(--columns) - 1));
   break-inside: avoid;
   border: 1px solid var(--night-background-color);
   border-radius: 0.5rem;
   overflow: hidden;
-  margin-bottom: var(--gap);
 
   .buildingHeader {
     @include common.titlebar;
