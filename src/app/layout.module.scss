@@ -1,6 +1,8 @@
 @use "common.scss";
 
 .header {
+  flex: 0 0 auto;
+
   @media print {
     display: none;
   }
@@ -24,7 +26,13 @@
 }
 
 .main {
+  @include common.column;
   @include common.padding(md);
+  flex: 1 1 auto;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  overflow-y: auto;
 
   @media print {
     padding: 0.5rem;
