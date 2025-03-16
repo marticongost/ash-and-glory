@@ -34,6 +34,7 @@ import { buildings, buildingTypes } from "./buildings"
 import { Reference } from "@/components/Reference"
 import { areaTypes } from "./areas"
 import { moments } from "./moments"
+import { unitTypes } from "./units"
 
 export type ArchetypeId = "standard" | "warriors" | "traders" | "academics" | "architects" | "tyrants" | "farmers"
 export type TraitCategoryId = ArchetypeId | "advantages" | "disadvantages" | "standard"
@@ -206,8 +207,8 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
             cost: { growth: "1+" },
             effect: (
               <>
-                Substituir un explorador propi per una ciutat. El cost és de un <Growth /> per cada ciutat que el
-                jugador ja controli. Guanyar la mateixa quantitat en <Glory />.
+                Substituir un <Reference item={unitTypes.explorer} /> propi per una ciutat. El cost és de un <Growth />{" "}
+                per cada ciutat que es posseeixi. Guanyar la mateixa quantitat en <Glory />.
               </>
             ),
           }),
@@ -218,6 +219,31 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
               <>
                 Convertir-se en el primer jugador. No es pot utilitzar si un altre jugador ja l'ha utilitzat durant el
                 capítol en curs.
+              </>
+            ),
+          }),
+          new Action({
+            id: "move",
+            cost: { strife: 1 },
+            effect: <>Exhaurir un exèrcit per fer un moviment, que pot resultar en un combat.</>,
+          }),
+          new Action({
+            id: "raid",
+            cost: { strife: 1 },
+            effect: (
+              <>
+                Exhaurir un exèrcit per robar un <AnyMaterial /> i/o reduir <Population /> d'un rival amb edificis a la
+                mateixa casella.
+              </>
+            ),
+          }),
+          new Action({
+            id: "explore",
+            cost: { curiosity: 1 },
+            effect: (
+              <>
+                Exhaurir un <Reference item={unitTypes.explorer} /> per fer un moviment, que pot revel·lar noves parts
+                del mapa.
               </>
             ),
           }),

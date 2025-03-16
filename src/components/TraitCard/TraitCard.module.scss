@@ -24,7 +24,7 @@
   }
 
   &[data-id="basic-capabilities"] {
-    @include common.landscape-tarot-card;
+    @include common.tarot-card;
   }
 }
 
@@ -34,7 +34,7 @@
   @include common.row(xs);
   @include common.padding(sm);
   background-color: var(--titlebar-color);
-  flex: 0 0 21%;
+  flex: 0 0 3.3rem;
   margin-bottom: calc(var(--level-size) / 2);
 }
 
