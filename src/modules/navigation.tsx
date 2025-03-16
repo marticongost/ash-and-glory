@@ -34,7 +34,6 @@ export class Section {
     if (!id.length) {
       throw new Error("Section id can't be empty")
     }
-    console.log(id, parent)
     if (parent) {
       this.url = parent.url + id + "/"
     } else {
