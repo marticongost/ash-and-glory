@@ -6,6 +6,7 @@ import { unitTypes } from "@/models/units"
 import { terrainTypes } from "@/models/terrain"
 import { buildings } from "@/models/buildings"
 import { Glory, Growth, Population } from "@/components/ItemIcon"
+import { traitCategories } from "@/models/traits"
 
 export interface FoundCityActionProps extends StandardComponentProps {}
 

@@ -33,21 +33,29 @@ export const actionTimings: Record<ActionTimingId, ActionTiming> = {
   instant: new ActionTiming({ id: "instant", title: "Acció instantània", icon: InstantActionIcon }),
 }
 
+export interface RulebookLink {
+  hash: string
+  title: string
+}
+
 export interface CapabilityProps {
   id: string
   title?: string
   moment?: MomentId | Moment
+  rulebookLink?: RulebookLink
 }
 
 export abstract class Capability {
   readonly id: string
   readonly title: string
   readonly moment: Moment
+  readonly rulebookLink?: RulebookLink
 
-  constructor({ id, title = "", moment = "constant" }: CapabilityProps) {
+  constructor({ id, title = "", moment = "constant", rulebookLink }: CapabilityProps) {
     this.id = id
     this.title = title
     this.moment = typeof moment === "string" ? moments[moment] : moment
+    this.rulebookLink = rulebookLink
   }
 }
 

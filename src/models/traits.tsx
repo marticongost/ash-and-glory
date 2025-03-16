@@ -205,6 +205,7 @@ export const traitCategories: Record<TraitCategoryId, TraitsCategory> = {
           new Action({
             id: "found-city",
             cost: { growth: "1+" },
+            rulebookLink: { hash: "fundar-ciutat", title: "Fundar una ciutat" },
             effect: (
               <>
                 Substituir un <Reference item={unitTypes.explorer} /> propi per una ciutat. El cost és de un <Growth />{" "}

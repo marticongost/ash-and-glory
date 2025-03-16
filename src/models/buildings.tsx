@@ -153,9 +153,10 @@ export const buildings = {
         cost: { food: "X" },
         effect: (
           <>
-            Afegir X <Population /> a la ciutat
+            Afegir X <Population /> a la ciutat.
           </>
         ),
+        rulebookLink: { hash: "augmentar-poblacio", title: "Augmentar la població" },
       }),
       new Action({
         id: "create-explorer",
@@ -181,7 +182,8 @@ export const buildings = {
         id: "build",
         title: "Construir edifici",
         cost: undefined,
-        effect: <>Construir edificis a la ciutat</>,
+        effect: <>Construir edificis a la ciutat.</>,
+        rulebookLink: { hash: "construir-edificis", title: "Construir edificis" },
       }),
     ],
   }),
@@ -384,6 +386,7 @@ export const buildings = {
             Afegir X <Population /> a la ciutat
           </>
         ),
+        rulebookLink: { hash: "augmentar-poblacio", title: "Augmentar la població" },
       }),
     ],
   }),
@@ -576,7 +579,8 @@ export const buildings = {
         id: "build",
         title: "Construir edifici",
         cost: undefined,
-        effect: <>Construir edificis a la ciutat</>,
+        effect: <>Construir edificis a la ciutat.</>,
+        rulebookLink: { hash: "construir-edificis", title: "Construir edificis" },
       }),
     ],
   }),

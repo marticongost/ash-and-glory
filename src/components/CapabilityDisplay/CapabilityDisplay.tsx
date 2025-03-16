@@ -17,6 +17,7 @@ import { CapabilityList } from "../CapabilityList"
 import { Building, BuildingType } from "@/models/buildings"
 import { Reference } from "../Reference"
 import { createElement, type JSXElementConstructor } from "react"
+import Link from "next/link"
 
 export interface CapabilityDisplayProps extends StandardComponentProps {
   capability: Capability
@@ -56,7 +57,16 @@ export const CapabilityDisplay = ({ capability, ...baseProps }: CapabilityDispla
           )}
         </span>
       ) : null}
-      <Content className={styles.content}>{capability.effect}</Content>
+      <Content className={styles.content}>
+        {capability.effect}
+        {capability.rulebookLink ? (
+          <>
+            {" "}
+            Veure <Link href={`/rules/#${capability.rulebookLink.hash}`}>{capability.rulebookLink?.title}</Link> al
+            manual.
+          </>
+        ) : null}
+      </Content>
     </div>
   )
 }
