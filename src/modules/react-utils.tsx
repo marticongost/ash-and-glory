@@ -2,16 +2,18 @@ import type { CSSProperties } from "react"
 
 export interface StandardComponentProps {
   className?: string
+  id?: string
   style?: CSSProperties
   data?: Record<string, any>
 }
 
 export const getStandardAttributes = (
-  { className, style, data }: StandardComponentProps,
+  { className, id, style, data }: StandardComponentProps,
   baseClassName?: string,
 ): Record<string, any> => {
   const props: Record<string, any> = {
     className: mergeClassName(baseClassName, className),
+    id,
     style,
   }
   if (data) {
