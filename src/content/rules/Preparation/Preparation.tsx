@@ -13,11 +13,11 @@ export interface PreparationProps extends StandardComponentProps {}
 
 export const Preparation = ({ ...baseProps }: PreparationProps) => (
   <Section title="Preparació" {...getStandardAttributes(baseProps, styles.Preparation)}>
-    <Section title="1. Escollir colors">
+    <Section title="Escollir colors">
       Cada jugador escull un dels colors disponibles i pren els soldats, vaixells, exploradors i centres de ciutat
       corresponents
     </Section>
-    <Section title="2. Escollir avantatges i desavantatges">
+    <Section title="Escollir avantatges i desavantatges">
       <p>
         Repartir 5 <em>avantatges</em> i 5 <em>desavantatges</em> a cada jugador. D'entre les cartes obtingudes, cada
         jugador ha de quedar-se amb desavantatges amb un valor agregat d'entre 2 i 3 punts; i avantatges amb un valor
@@ -27,7 +27,7 @@ export const Preparation = ({ ...baseProps }: PreparationProps) => (
         s'utilitzaran durant la partida.
       </p>
     </Section>
-    <Section title="3. Preparar el mapa">
+    <Section title="Preparar el mapa">
       <p>
         Consultar la distribució corresponent al número de jugadors a la secció següent, i assignar a cada jugador un
         dels punts d'inici indicats, aleatòriament. A continuació, cada jugador roba 7 caselles de territori: 3 amb 2
@@ -147,7 +147,8 @@ interface MapDistributionProps {
 const MapDistribution = ({ playerCount, mapSize, startPositions }: MapDistributionProps) => {
   const startHexes = startPositions.map((coords) => Hex.at(...coords))
   return (
-    <Section title={`Distribució per ${playerCount} jugadors`} className={styles.mapDistributionSection}>
+    <div className={styles.mapDistributionSection}>
+      <div className={styles.mapDistributionLabel}>Distribució per {playerCount} jugadors</div>
       <HexGrid
         className={styles.mapDistributionHexGrid}
         hexSet={new HexSet(new Hex().concentricRings(mapSize))}
@@ -161,6 +162,6 @@ const MapDistribution = ({ playerCount, mapSize, startPositions }: MapDistributi
           }
         }}
       />
-    </Section>
+    </div>
   )
 }

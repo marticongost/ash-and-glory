@@ -1,0 +1,60 @@
+@use "common.scss";
+
+.TableOfContents {
+  padding-right: var(--spacing-md);
+}
+
+.TableOfContentsEntries {
+  --entry-spacing: var(--spacing-xs);
+  --entry-font-size: 1em;
+  --entry-color: var(--text-color);
+  list-style-type: none;
+
+  &:not([data-depth="0"]) {
+    padding-left: var(--spacing-md);
+  }
+
+  &[data-depth="0"] {
+    --entry-font-size: 1.3em;
+    --entry-spacing: var(--spacing-sm);
+    --entry-color: var(--section-heading-text-color);
+  }
+
+  &[data-depth="1"] {
+    --entry-font-size: 1.1em;
+    --entry-spacing: var(--spacing-sm);
+  }
+}
+
+.TableOfContentsEntry {
+  margin-top: var(--entry-spacing);
+}
+
+.link {
+  font-size: var(--entry-font-size);
+
+  &[data-state="selected"] {
+    font-weight: bold;
+  }
+}
+
+.number {
+  opacity: 0.8;
+  font-weight: 300;
+
+  &:after {
+    content: " - ";
+  }
+}
+
+.title {
+  color: var(--entry-color);
+}
+
+.inlineNumberLink {
+  opacity: 0.8;
+
+  &:after {
+    content: " - ";
+  }
+}

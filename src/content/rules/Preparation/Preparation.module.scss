@@ -13,10 +13,12 @@
 
 .mapDistributions {
   @include common.grid(lg);
+  @include common.vertical-margin(lg);
 }
 
 .mapDistributionSection {
-  @include common.column;
+  @include common.column(sm);
+  align-items: center;
 }
 
 .mapDistributionHexGrid {
